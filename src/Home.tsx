@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ResponsiveNavBar from "./components/ResponsiveNavBar";
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
