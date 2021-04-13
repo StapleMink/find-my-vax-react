@@ -56,23 +56,28 @@ export default function Contact() {
         </Typography>
         <List component="nav" aria-label="contact us list" className={styles.contact_list}>
           <ListItem>
-            <ListItemIcon>
-              <TwitterIcon />
-            </ListItemIcon>
-            <ListItemText primary="Twitter: @findmyvaxsc"></ListItemText>
-            {/* <Link href="https://twitter.com/findmyvaxsc" target="_blank"></Link> */}
+            <Link href="https://twitter.com/findmyvaxsc" target="_blank">
+              <ListItemIcon>
+                <TwitterIcon />
+              </ListItemIcon>
+              <ListItemText primary="Twitter: @findmyvaxsc"></ListItemText>
+            </Link>
           </ListItem>
           <ListItem>
+          <Link href="sc@findmyvaxla.com" target="_blank">
             <ListItemIcon>
               <EmailIcon />
             </ListItemIcon>
             <ListItemText primary="Email: sc@findmyvaxla.com"></ListItemText>
+            </Link>
           </ListItem>
           <ListItem>
+          <Link href="https://instagram.com/findmyvaxsc" target="_blank">
             <ListItemIcon>
               <InstagramIcon />
             </ListItemIcon>
             <ListItemText primary="Instagram: @findmyvaxsc"></ListItemText>
+            </Link>
           </ListItem>
         </List>
       </div>
