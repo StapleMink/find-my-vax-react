@@ -19,6 +19,12 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
+  // typography: {
+  //   fontFamily: [
+  //     'Chilanka',
+  //     'cursive',
+  //   ].join(','),
+  // },
 });
 
 export default theme;
