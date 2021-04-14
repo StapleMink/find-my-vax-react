@@ -9,9 +9,37 @@ import { Link as RouterLink } from "react-router-dom";
 import AppleIcon from "@material-ui/icons/Apple";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import TranslateIcon from '@material-ui/icons/Translate';
+import TranslateIcon from "@material-ui/icons/Translate";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
 import SideBar from "./Sidebar";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Divider } from "@material-ui/core";
+
+const pages = [
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Tips",
+    link: "/tips",
+  },
+  {
+    name: "About",
+    link: "/about",
+  },
+  {
+    name: "Contact",
+    link: "/contact",
+  },
+  // {
+  //   name: "New Page",
+  //   link: "/newpage",
+  // },
+];
 
 function a11yProps(index: any) {
   return {
@@ -57,13 +85,44 @@ const useStyles = makeStyles((theme: Theme) => ({
   desktopLogo: {
     marginRight: 10,
   },
+  menuDivider: {
+    marginTop: 8,
+    marginBottom: 8,
+  },
 }));
 
 interface ResponsiveNavBarProps {
-    value: number
-  }
+  value: number;
+}
 
-export default function ResponsiveNavBar(props:ResponsiveNavBarProps) {
+interface TranslateMenuProps {
+  anchorEl: HTMLElement | null;
+  handleClose: () => void;
+}
+
+function TranslateMenu(props: TranslateMenuProps) {
+  const { anchorEl, handleClose } = props;
+
+  const styles = useStyles();
+
+  return (
+    <Menu
+      id="simple-menu"
+      anchorEl={props.anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleClose}>English</MenuItem>
+      <MenuItem onClick={handleClose}>Spanish</MenuItem>
+      <MenuItem onClick={handleClose}>French</MenuItem>
+      <Divider className={styles.menuDivider} />
+      <MenuItem onClick={handleClose}>Help to translate</MenuItem>
+    </Menu>
+  );
+}
+
+export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
   const styles = useStyles();
   const [value, setValue] = React.useState(props.value);
 
@@ -93,6 +152,17 @@ export default function ResponsiveNavBar(props:ResponsiveNavBarProps) {
     setDrawerOpen(open);
   };
 
+  //Translation States
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleTranslateClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className={styles.root}>
       {isDesktop ? (
@@ -115,18 +185,35 @@ export default function ResponsiveNavBar(props:ResponsiveNavBarProps) {
               onChange={handleChange}
               aria-label="nav tabs example"
             >
-              <NavTab to="/" label="Home" {...a11yProps(0)} />
+              {
+                pages.map((page, index)=> {
+                  return(
+                    <NavTab to={page.link} label={page.name} {...a11yProps(index)} />
+                  );
+                })
+              }
+              {/* <NavTab to="/" label="Home" {...a11yProps(0)} />
               <NavTab to="/tips" label="Tips" {...a11yProps(1)} />
               <NavTab to="/about" label="About" {...a11yProps(2)} />
-              <NavTab to="/contact" label="Contact" {...a11yProps(3)} />
+              <NavTab to="/contact" label="Contact" {...a11yProps(3)} /> */}
             </Tabs>
             <div className={styles.grow} />
             <IconButton color="inherit" style={{ display: "none" }}>
               <SearchIcon />
             </IconButton>
-            <IconButton edge="end" color="inherit">
+            <Button
+              color="inherit"
+              size="large"
+              onClick={handleTranslateClick}
+              startIcon={<TranslateIcon />}
+              endIcon={<KeyboardArrowDownIcon />}
+            >
+              English
+            </Button>
+            {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
               <TranslateIcon />
-            </IconButton>
+            </IconButton> */}
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
           </Toolbar>
         </AppBar>
       ) : (
@@ -152,13 +239,23 @@ export default function ResponsiveNavBar(props:ResponsiveNavBarProps) {
             <IconButton color="inherit" style={{ display: "none" }}>
               <SearchIcon />
             </IconButton>
-            <IconButton edge="end" color="inherit">
+            <Button
+              color="inherit"
+              size="large"
+              onClick={handleTranslateClick}
+              startIcon={<TranslateIcon />}
+              endIcon={<KeyboardArrowDownIcon />}
+            >
+              English
+            </Button>
+            {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
               <TranslateIcon />
-            </IconButton>
+            </IconButton> */}
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
           </Toolbar>
         </AppBar>
       )}
-      <SideBar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
+      <SideBar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} pages={pages}/>
     </div>
   );
 }
