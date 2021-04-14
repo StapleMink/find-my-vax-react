@@ -34,7 +34,12 @@ function NavSideBarTab(props: NavTabProps) {
   );
 
   return (
-    <ListItem selected={true ? false : false} button key={props.label} component={renderLink}>
+    <ListItem
+      selected={true ? false : false}
+      button
+      key={props.label}
+      component={renderLink}
+    >
       <ListItemText primary={props.label} />
     </ListItem>
   );
@@ -49,29 +54,38 @@ function a11yProps(index: any) {
 
 interface SideBarProps {
   drawerOpen: boolean;
-  toggleDrawer: any;
+  toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
+  pages: {
+    name: string;
+    link: string;
+  }[];
 }
 
-export default function SideBar(props:SideBarProps) {
+export default function SideBar(props: SideBarProps) {
   const classes = useStyles();
 
   return (
-  <Drawer open={props.drawerOpen} onClose={props.toggleDrawer(false)}>
-        <div
-          className={classes.list}
-          role="presentation"
-          onClick={props.toggleDrawer(false)}
-          onKeyDown={props.toggleDrawer(false)}
-        >
-          <List>
-          <NavSideBarTab to="/" label="Home" {...a11yProps(0)} />
+    <Drawer open={props.drawerOpen} onClose={props.toggleDrawer(false)}>
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={props.toggleDrawer(false)}
+        onKeyDown={props.toggleDrawer(false)}
+      >
+        <List>
+          {/* <NavSideBarTab to="/" label="Home" {...a11yProps(0)} />
           <NavSideBarTab to="/tips" label="Tips" {...a11yProps(1)} />
           <NavSideBarTab to="/about" label="About" {...a11yProps(2)} />
-          <NavSideBarTab to="/contact" label="Contact" {...a11yProps(3)} />
-          </List>
-          {/* <Divider /> */}
-          {/* Add More Links Here */}
-        </div>
-      </Drawer>
+          <NavSideBarTab to="/contact" label="Contact" {...a11yProps(3)} /> */}
+          {props.pages.map((page, index) => {
+            return (
+              <NavSideBarTab to={page.link} label={page.name} {...a11yProps(index)} />
+            );
+          })}
+        </List>
+        {/* <Divider /> */}
+        {/* Add More Links Here */}
+      </div>
+    </Drawer>
   );
 }
