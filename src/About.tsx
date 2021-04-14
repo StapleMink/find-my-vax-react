@@ -41,7 +41,7 @@ export default function About() {
 
   return (
     <>
-      <ResponsiveNavBar value={2} />
+      <ResponsiveNavBar value={3} />
       {/* Content */}
       <div className={styles.content}>
         <Typography variant="h2" className={styles.title}>

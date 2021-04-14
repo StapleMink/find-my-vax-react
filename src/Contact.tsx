@@ -45,7 +45,7 @@ export default function Contact() {
 
   return (
     <>
-      <ResponsiveNavBar value={3} />
+      <ResponsiveNavBar value={4} />
       {/* Content */}
       <div className={styles.content}>
         <Typography variant="h2" className={styles.title}>

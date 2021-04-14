@@ -116,9 +116,10 @@ export default function ResponsiveNavBar(props:ResponsiveNavBarProps) {
               aria-label="nav tabs example"
             >
               <NavTab to="/" label="Home" {...a11yProps(0)} />
-              <NavTab to="/tips" label="Tips" {...a11yProps(1)} />
-              <NavTab to="/about" label="About" {...a11yProps(2)} />
-              <NavTab to="/contact" label="Contact" {...a11yProps(3)} />
+              <NavTab to="/howtouse" label="How To Use" {...a11yProps(1)} />
+              <NavTab to="/tips" label="Tips" {...a11yProps(2)} />
+              <NavTab to="/about" label="About" {...a11yProps(3)} />
+              <NavTab to="/contact" label="Contact" {...a11yProps(4)} />
             </Tabs>
             <div className={styles.grow} />
             <IconButton color="inherit" style={{ display: "none" }}>

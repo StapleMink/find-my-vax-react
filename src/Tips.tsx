@@ -87,7 +87,7 @@ export default function Tips() {
 
   return (
     <>
-      <ResponsiveNavBar value={1} />
+      <ResponsiveNavBar value={2} />
       {/* Content */}
       <div className={styles.content}>
         <Typography variant="h2" className={styles.title}>
@@ -153,6 +153,7 @@ export default function Tips() {
             <dd>Valley Health Center Tully</dd>
             <dd>Valley Speciality Center</dd>
             <dd>Emmanuel Baptist Church</dd>
+            <dd><strong>Note: if you are 16 or 17 years old, you can only get vaccinated at </strong></dd>
             <dt>Local Pharmacies:</dt>
             <dd><Link href="https://www.cvs.com/immunizations/covid-19-vaccine" target="_blank">CVS</Link>, 
             <Link href="https://www.riteaid.com/covid-vaccine-apt" target="_blank"> Rite Aid</Link>, 
