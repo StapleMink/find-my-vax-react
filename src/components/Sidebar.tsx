@@ -48,6 +48,7 @@ function NavSideBarTab(props: NavTabProps) {
 function a11yProps(index: any) {
   return {
     id: `nav-sidebar-tab-${index}`,
+    key: `nav-sidebar-tab-${index}`,
     "aria-controls": `nav-sidebartabpanel-${index}`,
   };
 }

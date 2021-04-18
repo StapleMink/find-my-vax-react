@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ResponsiveNavBar from "./components/ResponsiveNavBar";
+import Footer from "./components/Footer";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import LocationCard from "./components/LocationCard";
@@ -11,7 +12,10 @@ import SearchIcon from "@material-ui/icons/Search";
 import { Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
-import { sampleData } from "./sample";
+// import { sampleData } from "./sample";
+import axios from "axios";
+import Lottie from 'react-lottie';
+import animation from "./animations/loading-vaccine.json";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -65,11 +69,27 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   searchButton: {
     marginTop: 20,
+  },
+  availiblityHeader: {
+    marginTop: 50,
+  },
+  loading: {
+    marginTop: 50,
+  },
+  loadingCaption: {
+    marginTop: 20,
   }
 }));
 
+interface AppointmentAPIProps {
+  available: LocationCardProps[];
+  unknown: LocationCardProps[];
+  not_available: LocationCardProps[];
+  None: LocationCardProps[];
+}
+
 interface LocationCardProps {
-  time_past: string;
+  last_check_message: string;
   last_good: string;
   id: string;
   x_parent: string;
@@ -104,6 +124,30 @@ interface AppointmentProps {
 
 export default function Home() {
   const styles = useStyles();
+  const [appointments, setAppointments] = useState<AppointmentAPIProps | undefined>(undefined);
+
+  useEffect(() => {
+    //Get Appointment Details
+    axios
+      .get("/api/v2.0/appointments/results.json")
+      .then((response) => {
+        const serverResponse = response.data.data;
+        console.log(serverResponse);
+        setAppointments(serverResponse);
+      });
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
+  //Lottie Animation Options
+  const options = {
+    loop: true,
+    autoplay: true, 
+    animationData: animation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
 
   return (
     <>
@@ -160,7 +204,7 @@ export default function Home() {
           className={styles.subtitle}
           id="apointmentsTop"
         >
-          {"Available Apointments"}
+          {"Find Apointments"}
         </Typography>
         {/* Search */}
         <div className={styles.searchArea}>
@@ -189,32 +233,79 @@ export default function Home() {
           </Button>
         </div>
 
-        <Grid container spacing={2} className={styles.grid}>
-          {/* <Grid item xs={12} sm={6}>
-            <LocationCard />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <LocationCard />
-          </Grid> */}
-          {/* <Grid item xs={12} sm={6}>
-            <Typography>Text</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography>Text</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography>Text</Typography>
-          </Grid> */}
-          {sampleData.available.list.map((location, key) => {
-            let locationDetails = location as LocationCardProps;
-            return (
-              <Grid item xs={12} sm={6}>
-                <LocationCard {...location} />
-              </Grid>
-            );
-          })}
-        </Grid>
+        {/* Show Appointments and Loading */}
+        {appointments === undefined ? (
+          <div className={styles.loading}>
+            <Lottie options={options}
+              height={200}
+              width={200}
+              isStopped={false}
+            />
+            <Typography variant="h5" className={styles.loadingCaption}>Loading Apointments!</Typography>
+          </div>
+        ) : (
+          <>
+            {/* Available */}
+            <Typography
+              variant="h4"
+              className={styles.availiblityHeader}
+              id="apointmentsTop"
+            >
+              {"Available Apointments:"}
+            </Typography>
+            <Grid container spacing={2} className={styles.grid}>
+              {appointments.available.map(
+                (location: LocationCardProps, key) => {
+                  return (
+                    <Grid item xs={12} sm={6} key={`grid-avlb-location-card-${key}`}>
+                      <LocationCard availability={"available"} {...location}/>
+                    </Grid>
+                  );
+                }
+              )}
+            </Grid>
+            {/* Unknown */}
+            <Typography
+              variant="h4"
+              className={styles.availiblityHeader}
+              id="apointmentsTop"
+            >
+              {"Possible Availability:"}
+            </Typography>
+            <Grid container spacing={2} className={styles.grid}>
+              {appointments.unknown.map(
+                (location: LocationCardProps, key) => {
+                  return (
+                    <Grid item xs={12} sm={6} key={`grid-unkn-location-card-${key}`}>
+                      <LocationCard availability={"unknown"} {...location}/>
+                    </Grid>
+                  );
+                }
+              )}
+            </Grid>
+            {/* Unavailable */}
+            <Typography
+              variant="h4"
+              className={styles.availiblityHeader}
+              id="apointmentsTop"
+            >
+              {"No Apointments Available:"}
+            </Typography>
+            <Grid container spacing={2} className={styles.grid}>
+              {appointments.not_available.map(
+                (location: LocationCardProps, key) => {
+                  return (
+                    <Grid item xs={12} sm={6} key={`grid-navlb-location-card-${key}`}>
+                      <LocationCard availability={"unavailable"} {...location}/>
+                    </Grid>
+                  );
+                }
+              )}
+            </Grid>
+          </>
+        )}
       </Container>
+      <Footer/>
     </>
   );
 }

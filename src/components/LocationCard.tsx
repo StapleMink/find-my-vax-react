@@ -11,6 +11,9 @@ import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import LaunchIcon from "@material-ui/icons/Launch";
 import Tooltip from "@material-ui/core/Tooltip";
+import Link from "@material-ui/core/Link";
+import ShareIcon from '@material-ui/icons/Share';
+import clsx from "clsx";
 import { green } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
@@ -19,6 +22,12 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
     position: "relative",
+  },
+  unknownCard: {
+    borderTop: "4px solid orange",
+  },
+  unavailableCard: {
+    borderTop: "4px solid red",
   },
   media: {
     height: 140,
@@ -52,7 +61,10 @@ const useStyles = makeStyles({
 });
 
 interface LocationCardProps {
-  time_past: string;
+// Extra
+  availability:string
+// End Extra
+  last_check_message: string;
   last_good: string;
   id: string;
   x_parent: string;
@@ -101,8 +113,10 @@ export default function LocationCard(props: LocationCardProps) {
   const styles = useStyles();
 
   return (
-    <Card className={styles.root}>
-      {props.distance === 0 ? (
+    <Card className={clsx({[styles.root] : true, 
+                            [styles.unknownCard] : props.availability === "unknown", 
+                            [styles.unavailableCard] : props.availability === "unavailable"})}>
+      {props.distance === -1 ? (
         <></>
       ) : (
         <div className={styles.innerBadgeLeft}>
@@ -122,22 +136,22 @@ export default function LocationCard(props: LocationCardProps) {
         </div>
       )}
       <CardActionArea>
-        <CardMedia
+        {props.availability === "available" ?
+        (<CardMedia
           className={styles.media}
           image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
           title={props.name}
-        />
-        {/* <Typography variant="caption"><strong>4.5 Miles Away</strong></Typography> */}
+        />)
+        :
+        (<></>)
+        }
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {/* Mountain View Community Center */}
             {props.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {/* 201 S Rengstorff Ave */}
             {props.addr1}
             <br />
-            {/* Mountain View, CA 94040 */}
             {props.addr2}
           </Typography>
         </CardContent>
@@ -147,13 +161,13 @@ export default function LocationCard(props: LocationCardProps) {
         <Grid container spacing={1}>
           {props.appointment_list.map((appointment:AppointmentProps, apptKey) => {
             return (
-              <Grid item xs={12}>
+              <Grid item xs={12} key={`${props.id}-appt-${apptKey}`}>
                 <Typography>
                   <strong>{appointment.date_str}:</strong>
                 </Typography>
                 <Tooltip arrow title="Book Apointment" placement="bottom">
                   <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {appointment.appointment_num} Apointments Available
+                    {`${appointment.appointment_num} Apointment${appointment.appointment_num > 1 ? "s" : ""} Available`}
                   </GreenButton>
                 </Tooltip>
               </Grid>
@@ -188,14 +202,13 @@ export default function LocationCard(props: LocationCardProps) {
         </Grid>
       </CardActions>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button startIcon={<ShareIcon />} size="small" color="primary" component={Link} href={`sms:&body=I found a vaccine appointments at ${props.name}! Located at: ${props.addr1}, ${props.addr2}. Book it here: ${props.link}`} >
           Share
         </Button>
-        <a href={"sms:&body=I found a vaccine appointments at " + props.name + "! Book it here: " + props.link}>Share</a>
       </CardActions>
       <Divider />
       <CardActions>
-        <Typography variant="caption">Last Updated: {props.time_past}</Typography>
+        <Typography variant="caption">Last Updated: {props.last_check_message}</Typography>
       </CardActions>
     </Card>
   );

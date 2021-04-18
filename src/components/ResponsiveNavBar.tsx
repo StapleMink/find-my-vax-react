@@ -44,6 +44,7 @@ const pages = [
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
+    key: `nav-tab-${index}`,
     "aria-controls": `nav-tabpanel-${index}`,
   };
 }
@@ -127,13 +128,13 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
   const [value, setValue] = React.useState(props.value);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    console.log(newValue);
+    // console.log(newValue);
     setValue(newValue);
   };
 
   //Determine which Nav to show
   const isDesktop = useMediaQuery("(min-width:768px)");
-  console.log(isDesktop);
+  // console.log(isDesktop);
 
   // Drawer State
   const [drawerOpen, setDrawerOpen] = React.useState(false);
