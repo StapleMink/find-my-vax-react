@@ -11,11 +11,13 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import { Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+// { animateScroll as scroll } from "react-scroll";
 // import { sampleData } from "./sample";
 import axios from "axios";
 import Lottie from 'react-lottie';
 import animation from "./animations/loading-vaccine.json";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -124,6 +126,7 @@ interface AppointmentProps {
 
 export default function Home() {
   const styles = useStyles();
+  const { t, i18n } = useTranslation();
   const [appointments, setAppointments] = useState<AppointmentAPIProps | undefined>(undefined);
 
   useEffect(() => {
@@ -155,7 +158,7 @@ export default function Home() {
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
         <Typography variant="h2" className={styles.title}>
-          {"Welcome to Find My Vax Santa Clara"}
+          {t("Welcome")}
         </Typography>
         <Typography variant="h4" className={styles.subtitle}>
           {"A Vaccine Locator for Santa Clara County"}
