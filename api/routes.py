@@ -270,9 +270,8 @@ def create_final_dict(json_data):
             zipcode_str = str(zipcode.strip())
             zipcode_int = int(zipcode_str)
             if len(zipcode_str) == 5:
-                # Removed LINE
                 lat_loc, long_loc = get_lat_long_from_zip(zipcode_str)
-                lat_long_main = (lat_loc, long_loc)
+                query_lat_long = (lat_loc, long_loc)
                 zipcode_bool = True
         except:
             zipcode_bool = False
@@ -282,8 +281,8 @@ def create_final_dict(json_data):
     for item in final_dict["data"]:
         for key in json_data[item]:
             if zipcode_bool:
-                distance = get_distance_new(final_dict, json_data[item][key], lat_long_main,
-                                            zipcode_int, all_zipcode_coords)
+                distance = get_distance_appointment(final_dict, json_data[item][key], query_lat_long,
+                                            zipcode_int)
                 json_data[item][key]["distance"] = distance
 
             final_dict["data"][item].append(json_data[item][key])
@@ -308,20 +307,20 @@ def get_lat_long_from_zip(zipcode):
 
     return lat_loc, long_loc
 
-def get_distance_new(final_dict, json_filtered_item, lat_long_main, zipcode_int, json_zipcode):
-    if json_filtered_item["lat_loc"] and json_filtered_item["long_loc"]:
+def get_distance_appointment(final_dict, json_location, query_lat_long, zipcode_int):
+    if json_location["lat_loc"] and json_location["long_loc"]:
         try:
-            lat_long_sub = (json_filtered_item["lat_loc"],
-                            json_filtered_item["long_loc"])
-            distance = geodesic(lat_long_main, lat_long_sub).mi
+            location_lat_long = (json_location["lat_loc"],
+                            json_location["long_loc"])
+            distance = geodesic(query_lat_long, location_lat_long).mi
 
             if distance > 400 and zipcode_int >= 90001 and zipcode_int <= 96162:
                 zipcode_new = items[6].split(" ")[-1]
-                lat_loc, long_loc = get_lat_long_from_zip(json_zipcode, zipcode_new)
+                lat_loc, long_loc = get_lat_long_from_zip(all_zipcode_coords, zipcode_new)
                 if not lat_loc or not long_loc:
                     distance = -1
                 else:
-                    distance = geodesic(lat_long_main, lat_long_sub).mi
+                    distance = geodesic(query_lat_long, location_lat_long).mi
         except:
             distance = -1
     else:
