@@ -77,6 +77,9 @@ export default function About() {
           <ListItem>
             <ListItemText primary="Stop AAPI Hate - In response to the alarming escalation in xenophobia and bigotry resulting from the COVID-19 pandemic, the Asian Pacific Planning and Policy Council (A3PCON), Chinese for Affirmative Action (CAA), and the Asian American Studies Department of San Francisco State University launched the Stop AAPI Hate reporting center on March 19, 2020. The center tracks and responds to incidents of hate, violence, harassment, discrimination, shunning, and child bullying against Asian Americans and Pacific Islanders in the United States." />
           </ListItem>
+         <ListItem>
+            <ListItemText primary="COVID Relief Fund" />
+         </ListItem>
         </List>
       </div>
     </>

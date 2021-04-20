@@ -11,6 +11,7 @@ import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import { AutorenewTwoTone } from "@material-ui/icons";
+import Container from '@material-ui/core/Container';
 
 // import Accordion from '@material-ui/core/Accordion';
 // import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -23,22 +24,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   content: {
-    textAlign: "center",
+    // textAlign: "center",
   },
   title: {
     marginTop: 20,
-    marginLeft: 40,
-    marginRight: 40,
+    textAlign: "center",
   },
   subheader: {
     marginTop: 20,
-    marginLeft: 40,
-    marginRight: 40,
+    textAlign: "center",
   },
   faqs_list: {
     marginTop: 20,
-    marginLeft: "auto",
-    marginRight: "auto",
   }
 }));
 
@@ -88,6 +85,10 @@ export default function Tips() {
   return (
     <>
       <ResponsiveNavBar value={2} />
+      
+      <Container maxWidth="lg">
+        <Typography component="div" style={{ backgroundColor: '#cfe8fc' }} />
+      
       {/* Content */}
       <div className={styles.content}>
         <Typography variant="h2" className={styles.title}>
@@ -96,10 +97,10 @@ export default function Tips() {
         <Typography variant="h6" className={styles.subheader}>
           {"Have questions or want additional information or resources on the COVID-19 vaccine? Read below for more."}
         </Typography>
-
+        {/* TODO: vertical tabs */}
 
         <div>
-      <Button
+      {/* <Button
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
@@ -127,9 +128,8 @@ export default function Tips() {
         <StyledMenuItem>
           <ListItemText primary="Santa Clara County Dashboard" />
         </StyledMenuItem>
-      </StyledMenu>
+      </StyledMenu> */}
     </div>
-
 
         {/* <Typography variant="h5" className={styles.subheader}>
           {"Where You Can Get Vaccinated in Santa Clara County"}
@@ -220,6 +220,7 @@ export default function Tips() {
             {"Not compatible on phone or mobile devices, but below are dashboards that go into more detail about vaccine distribution in Santa Clara County"}
           </Typography>
       </div>
+      </Container>
     </>
   );
 }
