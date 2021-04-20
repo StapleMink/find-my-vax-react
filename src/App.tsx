@@ -8,6 +8,7 @@ import Home from "./Home";
 import Tips from "./Tips";
 import Contact from "./Contact";
 import About from "./About";
+import HowToUse from "./HowToUse";
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
           </Route>
           <Route path="/tips">
             <Tips />
+          </Route>
+          <Route path="/howtouse">
+            <HowToUse />
           </Route>
           <Route path="/">
             <Home />

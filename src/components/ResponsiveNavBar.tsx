@@ -26,6 +26,10 @@ const pages = [
     link: "/",
   },
   {
+    name: "How To Use",
+    link: "/howtouse",
+  },
+  {
     name: "Tips",
     link: "/tips",
   },
@@ -37,10 +41,6 @@ const pages = [
     name: "Contact",
     link: "/contact",
   },
-  // {
-  //   name: "New Page",
-  //   link: "/newpage",
-  // },
 ];
 
 function a11yProps(index: any) {
