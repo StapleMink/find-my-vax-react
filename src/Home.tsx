@@ -125,7 +125,22 @@ interface AppointmentProps {
 export default function Home() {
   const styles = useStyles();
   const { t, i18n } = useTranslation();
+  const [ zipcode, setZipcode] = useState("");
+  const [ zipcodeToSearch, setZipcodeToSearch] = useState("");
   const [appointments, setAppointments] = useState<AppointmentAPIProps | undefined>(undefined);
+
+  useEffect(() => {
+    //Get Appointment Details
+    axios
+      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}`)
+      .then((response) => {
+        const serverResponse = response.data.data;
+        console.log(serverResponse);
+        setAppointments(serverResponse);
+      });
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, [zipcodeToSearch]);
 
   useEffect(() => {
     //Get Appointment Details
@@ -139,6 +154,25 @@ export default function Home() {
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
+
+  //Search
+  function handleSearchClick(e: React.SyntheticEvent<Element>): void {
+    e.preventDefault();
+    if (zipcode.trim().length === 5) {
+      let cleanZip = zipcode.trim(); 
+      setZipcodeToSearch(cleanZip);
+      //setChat("");
+    }
+  }
+
+  function onKeyPress(e: React.KeyboardEvent<Element>): void {
+    if (e.key !== "Enter") {
+      return;
+    }
+    
+    e.preventDefault();
+    handleSearchClick(e);
+  }
 
   //Lottie Animation Options
   const options = {
@@ -215,6 +249,12 @@ export default function Home() {
             label={t("Search by Zipcode")}
             placeholder="95014"
             variant="outlined"
+            value={zipcode}
+            onChange={(e): void => {
+              // console.log(zipcode);
+              setZipcode(e.target.value);
+            }}
+            onKeyPress={onKeyPress}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -229,6 +269,8 @@ export default function Home() {
             size="large"
             className={styles.searchButton}
             startIcon={<SearchIcon />}
+            onClick={handleSearchClick}
+            disabled={zipcode.trim().length !== 5}
           >
             {t("Search Locations")}
           </Button>

@@ -140,10 +140,6 @@ def add_location_and_appointment(json_data, main_entry):
     json_data[category][main_entry_id] = {}
     specific_text = {}
     json_location_data = json_data[category][main_entry_id]
-    if main_entry.last_good:
-        json_location_data['last_check_message'] = get_time_difference(main_entry.last_good)
-    elif not main_entry.last_good:
-        json_location_data['last_check_message'] = None
     json_location_data['id'] = main_entry_id
     json_location_data['x_parent'] = main_entry.x_parent
     json_location_data['organization'] = main_entry.organization
@@ -159,8 +155,9 @@ def add_location_and_appointment(json_data, main_entry):
     json_location_data['long_loc'] = main_entry.long_loc
     json_location_data['category'] = category
     json_location_data['last_check_date'] = main_entry.last_check
+    json_location_data['last_check_message'] = get_time_difference(main_entry.last_check)
     json_location_data['last_time_available_date'] = main_entry.last_good
-    json_location_data['last_time_available_message'] = get_time_difference(main_entry.last_check)
+    json_location_data['last_time_available_message'] = get_time_difference(main_entry.last_good)
     json_location_data['current_uuid_set'] = main_entry.current_uuid_set
     json_location_data['appointment_list'] = []
     json_location_data['distance'] = -1
@@ -178,6 +175,8 @@ def get_time_difference(end):
 
 ''' Format time differences into nice strings! '''
 def get_time_difference_string(start, end):
+    if end is None:
+        return None
     difference = start - end
     seconds = difference.total_seconds()
     if seconds < 60:

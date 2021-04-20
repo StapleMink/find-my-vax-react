@@ -14,8 +14,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Link from "@material-ui/core/Link";
 import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
-import ReportProblemRoundedIcon from '@material-ui/icons/ReportProblemRounded';
-import { green } from "@material-ui/core/colors";
+import ReportProblemRoundedIcon from "@material-ui/icons/ReportProblemRounded";
+import { green, orange, red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
   root: {
@@ -64,13 +64,17 @@ const useStyles = makeStyles({
     textAlign: "left",
   },
   warning: {
-    // height: 50,
-    color: "green",
+    // height: 50,\
   },
   low: {
-
+    color: "green",
   },
-
+  medium: {
+    color: "orange",
+  },
+  high: {
+    color: "red",
+  },
 });
 
 interface LocationCardProps {
@@ -111,12 +115,30 @@ interface AppointmentProps {
 
 const GreenButton = withStyles((theme: Theme) => ({
   root: {
-    //color: theme.palette.getContrastText(green[500]),
-    //backgroundColor: green[500],
     borderColor: green[600],
     color: green[700],
     "&:hover": {
       backgroundColor: green[100],
+    },
+  },
+}))(Button);
+
+const OrangeButton = withStyles((theme: Theme) => ({
+  root: {
+    borderColor: orange[700],
+    color: orange[800],
+    "&:hover": {
+      backgroundColor: orange[100],
+    },
+  },
+}))(Button);
+
+const RedButton = withStyles((theme: Theme) => ({
+  root: {
+    borderColor: red[600],
+    color: red[700],
+    "&:hover": {
+      backgroundColor: red[100],
     },
   },
 }))(Button);
@@ -175,50 +197,48 @@ export default function LocationCard(props: LocationCardProps) {
       <CardActions>
         {/* Show available apointments */}
         <Grid container spacing={1}>
-          {props.appointment_list.map(
-            (appointment: AppointmentProps, apptKey) => {
-              return (
-                <Grid item xs={12} key={`${props.id}-appt-${apptKey}`}>
-                  <Typography>
-                    <strong>{appointment.date_str}:</strong>
-                  </Typography>
-                  <Tooltip arrow title="Book Apointment" placement="bottom">
-                    <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
-                      {`${appointment.appointment_num} Apointment${
-                        appointment.appointment_num > 1 ? "s" : ""
-                      } Available`}
-                    </GreenButton>
-                  </Tooltip>
-                </Grid>
-              );
-            }
+          {props.category === "available" ? (
+            <>
+              {props.appointment_list.map(
+                (appointment: AppointmentProps, apptKey) => {
+                  return (
+                    <Grid item xs={12} key={`${props.id}-appt-${apptKey}`}>
+                      <Typography>
+                        <strong>{appointment.date_str}:</strong>
+                      </Typography>
+                      <Tooltip arrow title="Book Apointment" placement="bottom">
+                        <GreenButton
+                          variant="outlined"
+                          endIcon={<LaunchIcon />}
+                        >
+                          {`${appointment.appointment_num} Apointment${
+                            appointment.appointment_num > 1 ? "s" : ""
+                          } Available`}
+                        </GreenButton>
+                      </Tooltip>
+                    </Grid>
+                  );
+                }
+              )}
+            </>
+          ) : (
+            <Grid item xs={12}>
+              {/* <Typography>
+                <strong>{"Placeholder"}:</strong>
+              </Typography> */}
+              <Tooltip arrow title="Check Apointments" placement="bottom">
+                {props.category === "unknown" ? (
+                  <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
+                    {"Check Appointments"}
+                  </OrangeButton>
+                ) : (
+                  <RedButton variant="outlined" endIcon={<LaunchIcon />}>
+                    {"Check Appointments"}
+                  </RedButton>
+                )}
+              </Tooltip>
+            </Grid>
           )}
-          {/* <Grid item xs={12}>
-            <Typography>
-              <strong>April 13, 2021:</strong>
-            </Typography>
-            <Tooltip arrow title="Book Apointment" placement="bottom">
-              <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
-                31+ Apointments Available
-              </GreenButton>
-            </Tooltip>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography>
-              <strong>April 14, 2021:</strong>
-            </Typography>
-            <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
-              351+ Apointments Available
-            </GreenButton>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography>
-              <strong>April 15, 2021:</strong>
-            </Typography>
-            <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
-              2+ Apointments Available
-            </GreenButton>
-          </Grid> */}
         </Grid>
       </CardActions>
       <CardActions>
@@ -233,7 +253,7 @@ export default function LocationCard(props: LocationCardProps) {
         </Button>
       </CardActions>
 
-        {/* <>
+      {/* <>
           <Divider />
           <CardActions>
           <ReportProblemRoundedIcon className={styles.warning}/>
@@ -244,7 +264,14 @@ export default function LocationCard(props: LocationCardProps) {
         <>
           <Divider />
           <CardActions>
-            <ReportProblemRoundedIcon className={styles.warning}/>
+            <ReportProblemRoundedIcon
+              className={clsx({
+                [styles.warning]: true,
+                [styles.low]: props.warning_tier === 1,
+                [styles.medium]: props.warning_tier === 2,
+                [styles.high]: props.warning_tier === 3,
+              })}
+            />
             <Typography variant="body2" className={styles.metadata}>
               <strong>Note:</strong> {props.notes}
             </Typography>
@@ -263,8 +290,8 @@ export default function LocationCard(props: LocationCardProps) {
             <></>
           ) : (
             <Typography variant="caption" className={styles.metadata}>
-              <strong>Last Availibility:</strong>{" "}
-              {props.last_time_available_message}
+              <strong>Last Availability:</strong>{" "}
+              {props.last_time_available_message === null ? "Unknown" : props.last_time_available_message}
             </Typography>
           )}
         </div>
