@@ -49,17 +49,28 @@ const resources = {
   },
 };
 
+const options = {
+  order: ['querystring', 'navigator'],
+  lookupQuerystring: 'lng'
+}
+
 i18n
+  .use(XHR)
+  .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: "es",
+    //lng: "en",
+    detection: options,
+
+    fallbackLng: "en", // use en if detected lng is not available
 
     keySeparator: false, // we do not use keys in form messages.welcome
-
+    supportedLngs: ['en', 'es', 'fr'],
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
+    debug: false,
   });
 
 export default i18n;

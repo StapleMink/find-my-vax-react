@@ -12,8 +12,9 @@ import Grid from "@material-ui/core/Grid";
 import LaunchIcon from "@material-ui/icons/Launch";
 import Tooltip from "@material-ui/core/Tooltip";
 import Link from "@material-ui/core/Link";
-import ShareIcon from '@material-ui/icons/Share';
+import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
+import ReportProblemRoundedIcon from '@material-ui/icons/ReportProblemRounded';
 import { green } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
@@ -58,35 +59,46 @@ const useStyles = makeStyles({
     paddingRight: 5,
     borderRadius: 5,
   },
+  metadata: {
+    display: "block",
+    textAlign: "left",
+  },
+  warning: {
+    // height: 50,
+    color: "green",
+  },
+  low: {
+
+  },
+
 });
 
 interface LocationCardProps {
-// Extra
-  availability:string
-// End Extra
+  // Extra
+  availability: string;
+  // End Extra
   last_check_message: string;
-  last_good: string;
+  last_check_date: string;
+  last_time_available_date: string;
+  last_time_available_message: string;
   id: string;
   x_parent: string;
   organization: string;
   name: string;
   addr1: string;
   addr2: string;
-  vaccines: string;
+  vaccines: string | undefined;
   map_zoom: string;
   link: string;
-  residents: any; //
-  comments: string;
+  comments: string | undefined;
   lat_loc: string;
   long_loc: string;
   category: string;
-  last_check: string;
   current_uuid_set: string;
   appointment_list: AppointmentProps[];
   distance: number;
-  reported_as_not_available: boolean;
-  add_eligible: string; //
-  eligible: string; //
+  notes: string | undefined;
+  warning_tier: number;
 }
 
 interface AppointmentProps {
@@ -113,15 +125,19 @@ export default function LocationCard(props: LocationCardProps) {
   const styles = useStyles();
 
   return (
-    <Card className={clsx({[styles.root] : true, 
-                            [styles.unknownCard] : props.availability === "unknown", 
-                            [styles.unavailableCard] : props.availability === "unavailable"})}>
+    <Card
+      className={clsx({
+        [styles.root]: true,
+        [styles.unknownCard]: props.availability === "unknown",
+        [styles.unavailableCard]: props.availability === "unavailable",
+      })}
+    >
       {props.distance === -1 ? (
         <></>
       ) : (
         <div className={styles.innerBadgeLeft}>
           <Typography variant="caption">
-            <strong>{props.distance} Miles Away</strong>
+            <strong>{Math.round(props.distance * 10) / 10} Miles Away</strong>
           </Typography>
         </div>
       )}
@@ -136,15 +152,15 @@ export default function LocationCard(props: LocationCardProps) {
         </div>
       )}
       <CardActionArea>
-        {props.availability === "available" ?
-        (<CardMedia
-          className={styles.media}
-          image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
-          title={props.name}
-        />)
-        :
-        (<></>)
-        }
+        {props.availability === "available" ? (
+          <CardMedia
+            className={styles.media}
+            image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
+            title={props.name}
+          />
+        ) : (
+          <></>
+        )}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.name}
@@ -159,20 +175,24 @@ export default function LocationCard(props: LocationCardProps) {
       <CardActions>
         {/* Show available apointments */}
         <Grid container spacing={1}>
-          {props.appointment_list.map((appointment:AppointmentProps, apptKey) => {
-            return (
-              <Grid item xs={12} key={`${props.id}-appt-${apptKey}`}>
-                <Typography>
-                  <strong>{appointment.date_str}:</strong>
-                </Typography>
-                <Tooltip arrow title="Book Apointment" placement="bottom">
-                  <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {`${appointment.appointment_num} Apointment${appointment.appointment_num > 1 ? "s" : ""} Available`}
-                  </GreenButton>
-                </Tooltip>
-              </Grid>
-            );
-          })}
+          {props.appointment_list.map(
+            (appointment: AppointmentProps, apptKey) => {
+              return (
+                <Grid item xs={12} key={`${props.id}-appt-${apptKey}`}>
+                  <Typography>
+                    <strong>{appointment.date_str}:</strong>
+                  </Typography>
+                  <Tooltip arrow title="Book Apointment" placement="bottom">
+                    <GreenButton variant="outlined" endIcon={<LaunchIcon />}>
+                      {`${appointment.appointment_num} Apointment${
+                        appointment.appointment_num > 1 ? "s" : ""
+                      } Available`}
+                    </GreenButton>
+                  </Tooltip>
+                </Grid>
+              );
+            }
+          )}
           {/* <Grid item xs={12}>
             <Typography>
               <strong>April 13, 2021:</strong>
@@ -202,13 +222,52 @@ export default function LocationCard(props: LocationCardProps) {
         </Grid>
       </CardActions>
       <CardActions>
-        <Button startIcon={<ShareIcon />} size="small" color="primary" component={Link} href={`sms:&body=I found a vaccine appointments at ${props.name}! Located at: ${props.addr1}, ${props.addr2}. Book it here: ${props.link}`} >
+        <Button
+          startIcon={<ShareIcon />}
+          size="small"
+          color="primary"
+          component={Link}
+          href={`sms:&body=I found a vaccine appointments at ${props.name}! Located at: ${props.addr1}, ${props.addr2}. Book it here: ${props.link}`}
+        >
           Share
         </Button>
       </CardActions>
+
+        {/* <>
+          <Divider />
+          <CardActions>
+          <ReportProblemRoundedIcon className={styles.warning}/>
+          </CardActions>
+        </> */}
+
+      {props.notes !== null ? (
+        <>
+          <Divider />
+          <CardActions>
+            <ReportProblemRoundedIcon className={styles.warning}/>
+            <Typography variant="body2" className={styles.metadata}>
+              <strong>Note:</strong> {props.notes}
+            </Typography>
+          </CardActions>
+        </>
+      ) : (
+        <></>
+      )}
       <Divider />
       <CardActions>
-        <Typography variant="caption">Last Updated: {props.last_check_message}</Typography>
+        <div>
+          <Typography variant="caption" className={styles.metadata}>
+            <strong>Last Updated:</strong> {props.last_check_message}
+          </Typography>
+          {props.category === "available" ? (
+            <></>
+          ) : (
+            <Typography variant="caption" className={styles.metadata}>
+              <strong>Last Availibility:</strong>{" "}
+              {props.last_time_available_message}
+            </Typography>
+          )}
+        </div>
       </CardActions>
     </Card>
   );

@@ -1,10 +1,17 @@
 {
-    "Welcome": "Welcome to Find My Vax Santa Clara",
-    "is an internationalization-framework which offers a complete solution to localize your product from web to mobile and desktop": "is an internationalization-framework which offers a complete solution to localize your product from web to mobile and desktop",
-    "Plugins to detect the user language": "Plugins to detect the user language",
-    "Plugins to load translations": "Plugins to load translations",
-    "Optionally cache the translations": "Optionally cache the translations",
-    "Advantages": "Advantages",
-    "Flexibility to use other packages": "Flexibility to use other packages"
-  }
-  
+  "Welcome to Find My Vax Santa Clara": "Welcome to Find My Vax Santa Clara",
+  "A Vaccine Locator for Santa Clara County": "A Vaccine Locator for Santa Clara County",
+  "You are eligible for vaccination if you are 16 and older!": "You are eligible for vaccination if you are 16 and older!",
+  "COVID-19 vaccines are free regardless of insurance or immigration status.": "COVID-19 vaccines are free regardless of insurance or immigration status.",
+  "You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs": "You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs",
+  "Find My Vaccine!": "Find My Vaccine!",
+  "Notes": "Notes",
+  "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support.": "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support.",
+  "Find Apointments": "Find Apointments",
+  "Search by Zipcode": "Search by Zipcode",
+  "Search Locations": "Search Locations",
+  "Loading Appointments!": "Loading Apointments!",
+  "Available Appointments": "Available Apointments",
+  "Possible Availability": "Possible Availability",
+  "No Appointments Available": "No Apointments Available"
+}

@@ -181,25 +181,25 @@ def get_time_difference_string(start, end):
     difference = start - end
     seconds = difference.total_seconds()
     if seconds < 60:
-        info_str = "Less Than a Minute"
+        info_str = "Less Than a Minute Ago"
     elif seconds <= 3600:
         minutes = math.floor(seconds / 60)
         if minutes == 1:
-            info_str = "{} Minute".format(minutes)
+            info_str = "{} Minute Ago".format(minutes)
         else:
-            info_str = "{} Minutes".format(minutes)
+            info_str = "{} Minutes Ago".format(minutes)
     elif seconds >= 86400:
         days = math.floor(seconds / 86400)
         if days == 1:
-            info_str = "{} Day".format(days)
+            info_str = "{} Day Ago".format(days)
         else:
-            info_str = "{} Days".format(days)
+            info_str = "{} Days Ago".format(days)
     elif seconds > 3600:
         hours = math.floor(seconds / 3600)
         if hours == 1:
-            info_str = "{} Hour".format(hours)
+            info_str = "{} Hour Ago".format(hours)
         else:
-            info_str = "{} Hours".format(hours)
+            info_str = "{} Hours Ago".format(hours)
 
     return info_str
 

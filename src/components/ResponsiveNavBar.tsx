@@ -17,6 +17,8 @@ import SideBar from "./Sidebar";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Divider } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
+import { ReactComponent as FindMyVaxLogo } from "../assets/logo.svg";
 
 const pages = [
   {
@@ -90,6 +92,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 8,
     marginBottom: 8,
   },
+  fmvLogo: {
+    height: 40,
+    width: 40,
+  }
 }));
 
 interface ResponsiveNavBarProps {
@@ -99,12 +105,19 @@ interface ResponsiveNavBarProps {
 interface TranslateMenuProps {
   anchorEl: HTMLElement | null;
   handleClose: () => void;
+  setCurrentLanguage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function TranslateMenu(props: TranslateMenuProps) {
-  const { anchorEl, handleClose } = props;
-
+  const { anchorEl, handleClose, setCurrentLanguage } = props;
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
+
+  function handleLanguageChange(newLanguageCode: string, newLanguage: string) {
+    handleClose();
+    i18n.changeLanguage(newLanguageCode);
+    setCurrentLanguage(newLanguage)
+  }
 
   return (
     <Menu
@@ -114,9 +127,9 @@ function TranslateMenu(props: TranslateMenuProps) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      <MenuItem onClick={handleClose}>English</MenuItem>
-      <MenuItem onClick={handleClose}>Spanish</MenuItem>
-      <MenuItem onClick={handleClose}>French</MenuItem>
+      <MenuItem onClick={() => {handleLanguageChange("en", "English")}}>English</MenuItem>
+      <MenuItem onClick={() => {handleLanguageChange("es", "Español")}}>Español</MenuItem>
+      {/* <MenuItem onClick={() => {handleLanguageChange("fr", "Français")}}>Français</MenuItem> */}
       <Divider className={styles.menuDivider} />
       <MenuItem onClick={handleClose}>Help to translate</MenuItem>
     </Menu>
@@ -155,7 +168,7 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
 
   //Translation States
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+  const [currentLangauge, setCurrentLanguage] = React.useState("English");
   const handleTranslateClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -178,7 +191,8 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               disableFocusRipple
               style={{ backgroundColor: "transparent" }}
             >
-              <AppleIcon />
+              {/* <AppleIcon /> */}
+              <FindMyVaxLogo className={styles.fmvLogo} />
             </IconButton>
             <Tabs
               variant="fullWidth"
@@ -209,12 +223,12 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              English
+              {currentLangauge}
             </Button>
             {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
               <TranslateIcon />
             </IconButton> */}
-            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} setCurrentLanguage={setCurrentLanguage}/>
           </Toolbar>
         </AppBar>
       ) : (
@@ -247,12 +261,12 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              English
+              {currentLangauge}
             </Button>
             {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
               <TranslateIcon />
             </IconButton> */}
-            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} setCurrentLanguage={setCurrentLanguage}/>
           </Toolbar>
         </AppBar>
       )}

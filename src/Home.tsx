@@ -87,33 +87,31 @@ interface AppointmentAPIProps {
   available: LocationCardProps[];
   unknown: LocationCardProps[];
   not_available: LocationCardProps[];
-  None: LocationCardProps[];
 }
 
 interface LocationCardProps {
   last_check_message: string;
-  last_good: string;
+  last_check_date: string;
+  last_time_available_date: string;
+  last_time_available_message: string;
   id: string;
   x_parent: string;
   organization: string;
   name: string;
   addr1: string;
   addr2: string;
-  vaccines: string;
+  vaccines: string | undefined;
   map_zoom: string;
   link: string;
-  residents: any; //
-  comments: string;
+  comments: string | undefined;
   lat_loc: string;
   long_loc: string;
   category: string;
-  last_check: string;
   current_uuid_set: string;
   appointment_list: AppointmentProps[];
   distance: number;
-  reported_as_not_available: boolean;
-  add_eligible: string; //
-  eligible: string; //
+  notes: string | undefined;
+  warning_tier: number;
 }
 
 interface AppointmentProps {
@@ -158,22 +156,22 @@ export default function Home() {
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
         <Typography variant="h2" className={styles.title}>
-          {t("Welcome")}
+          {t("Welcome to Find My Vax Santa Clara")}
         </Typography>
         <Typography variant="h4" className={styles.subtitle}>
-          {"A Vaccine Locator for Santa Clara County"}
+          {t("A Vaccine Locator for Santa Clara County")}
         </Typography>
         <Typography className={styles.info} variant="h6">
-          {"You are eligible for vaccination if you are 16 and older!"}
+          {t("You are eligible for vaccination if you are 16 and older!")}
         </Typography>
         <Typography className={styles.info} variant="subtitle1">
           <strong>
             {
-              "COVID-19 vaccines are free regardless of insurance or immigration status."
+              t("COVID-19 vaccines are free regardless of insurance or immigration status.")
             }
           </strong>{" "}
           {
-            "You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs"
+            t("You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs")
           }
         </Typography>
         <ScrollLink
@@ -189,15 +187,15 @@ export default function Home() {
             size="large"
             className={styles.findVaxButton}
           >
-            Find My Vaccine!
+            {t("Find My Vaccine!")}
           </Button>
         </ScrollLink>
 
         <Typography className={styles.supportDisclaimer}>
           <em>
-            <strong>{"Notes: "}</strong>
+            <strong>{t("Notes")}: </strong>
             {
-              "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support."
+              t("At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support.")
             }
           </em>
         </Typography>
@@ -207,14 +205,14 @@ export default function Home() {
           className={styles.subtitle}
           id="apointmentsTop"
         >
-          {"Find Apointments"}
+          {t("Find Apointments")}
         </Typography>
         {/* Search */}
         <div className={styles.searchArea}>
           <TextField
             id="input-with-icon-textfield"
             className={styles.search}
-            label="Search by Zipcode"
+            label={t("Search by Zipcode")}
             placeholder="95014"
             variant="outlined"
             InputProps={{
@@ -232,7 +230,7 @@ export default function Home() {
             className={styles.searchButton}
             startIcon={<SearchIcon />}
           >
-            Search Locations
+            {t("Search Locations")}
           </Button>
         </div>
 
@@ -244,7 +242,7 @@ export default function Home() {
               width={200}
               isStopped={false}
             />
-            <Typography variant="h5" className={styles.loadingCaption}>Loading Apointments!</Typography>
+            <Typography variant="h5" className={styles.loadingCaption}>{t("Loading Appointments!")}</Typography>
           </div>
         ) : (
           <>
@@ -254,7 +252,7 @@ export default function Home() {
               className={styles.availiblityHeader}
               id="apointmentsTop"
             >
-              {"Available Apointments:"}
+              {t("Available Appointments") + ":"}
             </Typography>
             <Grid container spacing={2} className={styles.grid}>
               {appointments.available.map(
@@ -273,7 +271,7 @@ export default function Home() {
               className={styles.availiblityHeader}
               id="apointmentsTop"
             >
-              {"Possible Availability:"}
+              {t("Possible Availability") + ":"}
             </Typography>
             <Grid container spacing={2} className={styles.grid}>
               {appointments.unknown.map(
@@ -292,7 +290,7 @@ export default function Home() {
               className={styles.availiblityHeader}
               id="apointmentsTop"
             >
-              {"No Apointments Available:"}
+              {t("No Appointments Available") + ":"}
             </Typography>
             <Grid container spacing={2} className={styles.grid}>
               {appointments.not_available.map(
