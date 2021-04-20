@@ -20,29 +20,6 @@ import { Divider } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as FindMyVaxLogo } from "../assets/logo.svg";
 
-const pages = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "How To Use",
-    link: "/howtouse",
-  },
-  {
-    name: "Tips",
-    link: "/tips",
-  },
-  {
-    name: "About",
-    link: "/about",
-  },
-  {
-    name: "Contact",
-    link: "/contact",
-  },
-];
-
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -105,18 +82,16 @@ interface ResponsiveNavBarProps {
 interface TranslateMenuProps {
   anchorEl: HTMLElement | null;
   handleClose: () => void;
-  setCurrentLanguage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function TranslateMenu(props: TranslateMenuProps) {
-  const { anchorEl, handleClose, setCurrentLanguage } = props;
-  const { t, i18n } = useTranslation();
+  const { anchorEl, handleClose } = props;
+  const { i18n, t } = useTranslation();
   const styles = useStyles();
 
   function handleLanguageChange(newLanguageCode: string, newLanguage: string) {
     handleClose();
     i18n.changeLanguage(newLanguageCode);
-    setCurrentLanguage(newLanguage)
   }
 
   return (
@@ -131,13 +106,36 @@ function TranslateMenu(props: TranslateMenuProps) {
       <MenuItem onClick={() => {handleLanguageChange("es", "Español")}}>Español</MenuItem>
       {/* <MenuItem onClick={() => {handleLanguageChange("fr", "Français")}}>Français</MenuItem> */}
       <Divider className={styles.menuDivider} />
-      <MenuItem onClick={handleClose}>Help to translate</MenuItem>
+      <MenuItem onClick={handleClose}>{t("Help to translate")}</MenuItem>
     </Menu>
   );
 }
 
 export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
   const styles = useStyles();
+  const { t } = useTranslation();
+  const pages = [
+    {
+      name: t("Home"),
+      link: "/",
+    },
+    {
+      name: t("How To Use"),
+      link: "/howtouse",
+    },
+    {
+      name: t("Tips"),
+      link: "/tips",
+    },
+    {
+      name: t("About"),
+      link: "/about",
+    },
+    {
+      name: t("Contact"),
+      link: "/contact",
+    },
+  ];
   const [value, setValue] = React.useState(props.value);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -168,7 +166,7 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
 
   //Translation States
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [currentLangauge, setCurrentLanguage] = React.useState("English");
+  //const [currentLangauge, setCurrentLanguage] = React.useState("English");
   const handleTranslateClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -223,12 +221,12 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              {currentLangauge}
+              {t("English")}
             </Button>
             {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
               <TranslateIcon />
             </IconButton> */}
-            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} setCurrentLanguage={setCurrentLanguage}/>
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose}/>
           </Toolbar>
         </AppBar>
       ) : (
@@ -261,12 +259,12 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              {currentLangauge}
+              {t("English")}
             </Button>
             {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
               <TranslateIcon />
             </IconButton> */}
-            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} setCurrentLanguage={setCurrentLanguage}/>
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose}/>
           </Toolbar>
         </AppBar>
       )}

@@ -1,4 +1,11 @@
 {
+  "Home": "Home",
+  "How To Use": "How To Use",
+  "Tips": "Tips",
+  "About": "About",
+  "Contact": "Contact",
+  "English": "English",
+  "Help to translate": "Help to translate",
   "Welcome to Find My Vax Santa Clara": "Welcome to Find My Vax Santa Clara",
   "A Vaccine Locator for Santa Clara County": "A Vaccine Locator for Santa Clara County",
   "You are eligible for vaccination if you are 16 and older!": "You are eligible for vaccination if you are 16 and older!",
@@ -13,5 +20,14 @@
   "Loading Appointments!": "Loading Apointments!",
   "Available Appointments": "Available Apointments",
   "Possible Availability": "Possible Availability",
-  "No Appointments Available": "No Apointments Available"
+  "No Appointments Available": "No Apointments Available",
+  "Miles Away": "Miles Away",
+  "Book Apointment": "Book Apointment",
+  "Appointment": "Appointment",
+  "Available": "Available",
+  "Check Apointments": "Check Apointments",
+  "Share": "Share",
+  "Note": "Note",
+  "Last Updated": "Last Updated",
+  "Last Availability": "Last Availability"
 }

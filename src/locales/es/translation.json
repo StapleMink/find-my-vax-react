@@ -1,4 +1,11 @@
 {
+  "Home": "Inicio",
+  "How To Use": "Cómo Utilizar",
+  "Tips": "Consejos",
+  "About": "Acerca De",
+  "Contact": "Contacto",
+  "English": "Español",
+  "Help to translate": "Ayuda para traducir",
   "Welcome to Find My Vax Santa Clara": "Bienvenido a Find My Vax Santa Clara",
   "A Vaccine Locator for Santa Clara County": "Un Localizador de Vacunas para el Condado de Santa Clara",
   "You are eligible for vaccination if you are 16 and older!": "¡Es elegible para la vacunación si tiene 16 años o más!",
@@ -13,5 +20,14 @@
   "Loading Appointments!": "Cargando Citas!",
   "Available Appointments": "Citas Disponibles",
   "Possible Availability": "Posible Disponibilidad",
-  "No Appointments Available": "No Hay Citas Disponibles"
+  "No Appointments Available": "No Hay Citas Disponibles",
+  "Miles Away": "Millas de distancia",
+  "Book Apointment": "Reservar Una Cita",
+  "Appointment": "Cita",
+  "Available": "Disponible",
+  "Check Apointments": "Consultar Citas",
+  "Share": "Compartir",
+  "Note": "Nota",
+  "Last Updated": "Última Actualización",
+  "Last Availability": "Última Disponibilidad"
 }

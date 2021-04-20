@@ -15,6 +15,7 @@ import Link from "@material-ui/core/Link";
 import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
 import ReportProblemRoundedIcon from "@material-ui/icons/ReportProblemRounded";
+import { useTranslation } from "react-i18next";
 import { green, orange, red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles({
@@ -145,6 +146,7 @@ const RedButton = withStyles((theme: Theme) => ({
 
 export default function LocationCard(props: LocationCardProps) {
   const styles = useStyles();
+  const { i18n, t } = useTranslation();
 
   return (
     <Card
@@ -159,7 +161,7 @@ export default function LocationCard(props: LocationCardProps) {
       ) : (
         <div className={styles.innerBadgeLeft}>
           <Typography variant="caption">
-            <strong>{Math.round(props.distance * 10) / 10} Miles Away</strong>
+            <strong>{Math.round(props.distance * 10) / 10} {t("Miles Away")}</strong>
           </Typography>
         </div>
       )}
@@ -206,14 +208,14 @@ export default function LocationCard(props: LocationCardProps) {
                       <Typography>
                         <strong>{appointment.date_str}:</strong>
                       </Typography>
-                      <Tooltip arrow title="Book Apointment" placement="bottom">
+                      <Tooltip arrow title={t("Book Apointment").toString()} placement="bottom">
                         <GreenButton
                           variant="outlined"
                           endIcon={<LaunchIcon />}
                         >
-                          {`${appointment.appointment_num} Apointment${
+                          {`${appointment.appointment_num} ${t("Appointment")}${
                             appointment.appointment_num > 1 ? "s" : ""
-                          } Available`}
+                          } ${t("Available")}`}
                         </GreenButton>
                       </Tooltip>
                     </Grid>
@@ -226,14 +228,14 @@ export default function LocationCard(props: LocationCardProps) {
               {/* <Typography>
                 <strong>{"Placeholder"}:</strong>
               </Typography> */}
-              <Tooltip arrow title="Check Apointments" placement="bottom">
+              <Tooltip arrow title={t("Check Apointments").toString()} placement="bottom">
                 {props.category === "unknown" ? (
                   <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {"Check Appointments"}
+                    {t("Check Apointments")}
                   </OrangeButton>
                 ) : (
                   <RedButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {"Check Appointments"}
+                    {t("Check Apointments")}
                   </RedButton>
                 )}
               </Tooltip>
@@ -249,7 +251,7 @@ export default function LocationCard(props: LocationCardProps) {
           component={Link}
           href={`sms:&body=I found a vaccine appointments at ${props.name}! Located at: ${props.addr1}, ${props.addr2}. Book it here: ${props.link}`}
         >
-          Share
+          {t("Share")}
         </Button>
       </CardActions>
 
@@ -273,7 +275,7 @@ export default function LocationCard(props: LocationCardProps) {
               })}
             />
             <Typography variant="body2" className={styles.metadata}>
-              <strong>Note:</strong> {props.notes}
+              <strong>{t("Note")}:</strong> {props.notes}
             </Typography>
           </CardActions>
         </>
@@ -284,13 +286,13 @@ export default function LocationCard(props: LocationCardProps) {
       <CardActions>
         <div>
           <Typography variant="caption" className={styles.metadata}>
-            <strong>Last Updated:</strong> {props.last_check_message}
+            <strong>{t("Last Updated")}:</strong> {props.last_check_message}
           </Typography>
           {props.category === "available" ? (
             <></>
           ) : (
             <Typography variant="caption" className={styles.metadata}>
-              <strong>Last Availability:</strong>{" "}
+              <strong>{t("Last Availability")}:</strong>{" "}
               {props.last_time_available_message === null ? "Unknown" : props.last_time_available_message}
             </Typography>
           )}
