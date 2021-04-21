@@ -5,11 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import Container from "@material-ui/core/Container";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import EmailIcon from '@material-ui/icons/Email';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -37,18 +40,25 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     display: "block",
+  },
+  contactGrid: {
+    marginTop: 20,
+    maxWidth: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
   }
 }));
 
 export default function Contact() {
   const styles = useStyles();
+  const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
   return (
     <>
       <ResponsiveNavBar value={4} />
       {/* Content */}
-      <div className={styles.content}>
-        <Typography variant="h2" className={styles.title}>
+      <Container maxWidth="lg" className={styles.content}>
+        <Typography variant={!isMobilePortrait ? "h2" : "h3"} className={styles.title}>
           {"Contact"}
         </Typography>
         <Typography variant="h6" className={styles.info}>
@@ -80,7 +90,29 @@ export default function Contact() {
             </Link>
           </ListItem>
         </List>
-      </div>
+        <div className={styles.contactGrid}>
+        <Grid container spacing={4}>
+          <Grid item xs={6} md={4}>
+            <EmailIcon />
+            <Typography>
+              sc@findmyvaxla.com
+            </Typography>
+          </Grid>
+          <Grid item xs={6} md={4}>
+            <TwitterIcon />
+            <Typography>
+              @findmyvaxsc
+            </Typography>
+          </Grid>
+          <Grid item xs={6} md={4}>
+            <InstagramIcon />
+            <Typography>
+              @findmyvaxsc
+            </Typography>
+          </Grid>
+        </Grid>
+        </div>
+      </Container>
     </>
   );
 }

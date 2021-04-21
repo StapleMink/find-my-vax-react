@@ -12,7 +12,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { Divider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { Link as ScrollLink } from "react-scroll";
-// { animateScroll as scroll } from "react-scroll";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 // import { sampleData } from "./sample";
 import axios from "axios";
 import Lottie from "react-lottie";
@@ -107,14 +107,15 @@ export default function Home() {
   const [appointments, setAppointments] = useState<
     AppointmentAPIProps | undefined
   >(undefined);
+  const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
   useEffect(() => {
     //Get Appointment Details
     axios
-      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}`)
+      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}?brands=true`)
       .then((response) => {
         const serverResponse = response.data.data;
-        console.log(serverResponse);
+        // console.log(serverResponse);
         setAppointments(serverResponse);
       });
 
@@ -123,9 +124,8 @@ export default function Home() {
 
   useEffect(() => {
     //Get Appointment Details
-    axios.get("/api/v2.0/appointments/results.json").then((response) => {
+    axios.get("/api/v2.0/appointments/results.json?brands=true").then((response) => {
       const serverResponse = response.data.data;
-      console.log(serverResponse);
       setAppointments(serverResponse);
     });
 
@@ -167,10 +167,10 @@ export default function Home() {
       <ResponsiveNavBar value={0} />
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
-        <Typography variant="h2" className={styles.title}>
+        <Typography variant={!isMobilePortrait ? "h2" : "h3"} className={styles.title}>
           {t("Welcome to Find My Vax Santa Clara")}
         </Typography>
-        <Typography variant="h4" className={styles.subtitle}>
+        <Typography variant={!isMobilePortrait ? "h4" : "h5"} className={styles.subtitle}>
           {t("A Vaccine Locator for Santa Clara County")}
         </Typography>
         <Typography className={styles.info} variant="h6">
