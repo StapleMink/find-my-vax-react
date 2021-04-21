@@ -59,7 +59,7 @@ Talisman(app, content_security_policy=csp,)
 
 # Handle 404s
 if not LOCAL_UI:
-    @flask_app.route('/')
+    @app.route('/')
     def index():
         return app.send_static_file('index.html')   
 
