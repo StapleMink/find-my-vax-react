@@ -10,11 +10,11 @@ import os
 # Setup
 LOCAL_UI = os.getenv('LOCAL_UI')
 if LOCAL_UI:
-    print("Development Mode")
+    print("Will not bundle React")
     app = Flask(__name__)
 else:
+    print("Bundling React")
     app = Flask(__name__, static_folder='../build', static_url_path='/')
-
 
 
 # Import Config and Set
