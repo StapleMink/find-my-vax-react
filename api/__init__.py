@@ -9,7 +9,13 @@ import os
 
 # Setup
 LOCAL_UI = os.getenv('LOCAL_UI')
-app = Flask(__name__)
+if LOCAL_UI:
+    print("Development Mode")
+    app = Flask(__name__)
+else:
+    app = Flask(__name__, static_folder='../build', static_url_path='/')
+
+
 
 # Import Config and Set
 app.config.from_object(Config)
@@ -22,9 +28,9 @@ app.config.update(
 # Setup DB
 db = SQLAlchemy(app)
 
-if LOCAL_UI:
-    migrate = Migrate(app, db, compare_type=True)
-    migrate.init_app(app)
+# if LOCAL_UI:
+#     migrate = Migrate(app, db, compare_type=True)
+#     migrate.init_app(app)
 
 # Compress App Bundle
 Compress(app)
@@ -51,5 +57,15 @@ csp = {
     }
 Talisman(app, content_security_policy=csp,)
 
-# Import thr routes.py and models.py files and runs them
+# Handle 404s
+if not LOCAL_UI:
+    @flask_app.route('/')
+    def index():
+        return app.send_static_file('index.html')   
+
+    @app.errorhandler(404)
+    def not_found(e):
+        return app.send_static_file('index.html')
+
+# Import the routes.py and models.py files and runs them
 from api import routes, models
