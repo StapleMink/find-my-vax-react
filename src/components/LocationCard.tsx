@@ -17,6 +17,7 @@ import clsx from "clsx";
 import ReportProblemRoundedIcon from "@material-ui/icons/ReportProblemRounded";
 import { useTranslation } from "react-i18next";
 import { green, orange, red } from "@material-ui/core/colors";
+import { LocationCardProps, AppointmentProps } from "../types";
 
 const useStyles = makeStyles({
   root: {
@@ -76,43 +77,11 @@ const useStyles = makeStyles({
   high: {
     color: "red",
   },
+  cardText: {
+    display: "block",
+    // width: "100%",
+  },
 });
-
-interface LocationCardProps {
-  // Extra
-  availability: string;
-  // End Extra
-  last_check_message: string;
-  last_check_date: string;
-  last_time_available_date: string;
-  last_time_available_message: string;
-  id: string;
-  x_parent: string;
-  organization: string;
-  name: string;
-  addr1: string;
-  addr2: string;
-  vaccines: string | undefined;
-  map_zoom: string;
-  link: string;
-  comments: string | undefined;
-  lat_loc: string;
-  long_loc: string;
-  category: string;
-  current_uuid_set: string;
-  appointment_list: AppointmentProps[];
-  distance: number;
-  notes: string | undefined;
-  warning_tier: number;
-}
-
-interface AppointmentProps {
-  date_str: string;
-  link_appointment: string;
-  appointment_num: number;
-  updated_date: string;
-  id: number;
-}
 
 const GreenButton = withStyles((theme: Theme) => ({
   root: {
@@ -152,8 +121,8 @@ export default function LocationCard(props: LocationCardProps) {
     <Card
       className={clsx({
         [styles.root]: true,
-        [styles.unknownCard]: props.availability === "unknown",
-        [styles.unavailableCard]: props.availability === "unavailable",
+        [styles.unknownCard]: props.category === "unknown",
+        [styles.unavailableCard]: props.category === "not_available",
       })}
     >
       {props.distance === -1 ? (
@@ -161,7 +130,9 @@ export default function LocationCard(props: LocationCardProps) {
       ) : (
         <div className={styles.innerBadgeLeft}>
           <Typography variant="caption">
-            <strong>{Math.round(props.distance * 10) / 10} {t("Miles Away")}</strong>
+            <strong>
+              {Math.round(props.distance * 10) / 10} {t("Miles Away")}
+            </strong>
           </Typography>
         </div>
       )}
@@ -176,7 +147,7 @@ export default function LocationCard(props: LocationCardProps) {
         </div>
       )}
       <CardActionArea>
-        {props.availability === "available" ? (
+        {props.category === "available" ? (
           <CardMedia
             className={styles.media}
             image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
@@ -185,17 +156,27 @@ export default function LocationCard(props: LocationCardProps) {
         ) : (
           <></>
         )}
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.addr1}
-            <br />
-            {props.addr2}
-          </Typography>
-        </CardContent>
       </CardActionArea>
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          className={styles.cardText}
+        >
+          {props.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          className={styles.cardText}
+        >
+          {props.addr1}
+          <br />
+          {props.addr2}
+        </Typography>
+      </CardContent>
       <CardActions>
         {/* Show available appointments */}
         <Grid container spacing={1}>
@@ -204,11 +185,19 @@ export default function LocationCard(props: LocationCardProps) {
               {props.appointment_list.map(
                 (appointment: AppointmentProps, apptKey) => {
                   return (
-                    <Grid item xs={12} key={`${props.id}-appt-${appointment.id}`}>
+                    <Grid
+                      item
+                      xs={12}
+                      key={`${props.id}-appt-${appointment.id}`}
+                    >
                       <Typography>
                         <strong>{appointment.date_str}:</strong>
                       </Typography>
-                      <Tooltip arrow title={t("Book Appointment").toString()} placement="bottom">
+                      <Tooltip
+                        arrow
+                        title={t("Book Appointment").toString()}
+                        placement="bottom"
+                      >
                         <GreenButton
                           variant="outlined"
                           endIcon={<LaunchIcon />}
@@ -228,7 +217,11 @@ export default function LocationCard(props: LocationCardProps) {
               {/* <Typography>
                 <strong>{"Placeholder"}:</strong>
               </Typography> */}
-              <Tooltip arrow title={t("Check Appointments").toString()} placement="bottom">
+              <Tooltip
+                arrow
+                title={t("Check Appointments").toString()}
+                placement="bottom"
+              >
                 {props.category === "unknown" ? (
                   <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
                     {t("Check Appointments")}
@@ -293,7 +286,9 @@ export default function LocationCard(props: LocationCardProps) {
           ) : (
             <Typography variant="caption" className={styles.metadata}>
               <strong>{t("Last Availability")}:</strong>{" "}
-              {props.last_time_available_message === null ? "Unknown" : props.last_time_available_message}
+              {props.last_time_available_message === null
+                ? "Unknown"
+                : props.last_time_available_message}
             </Typography>
           )}
         </div>

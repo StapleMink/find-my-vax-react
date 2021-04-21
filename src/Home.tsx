@@ -18,6 +18,7 @@ import axios from "axios";
 import Lottie from "react-lottie";
 import animation from "./animations/loading-vaccine.json";
 import { useTranslation } from "react-i18next";
+import { LocationCardProps } from "./types";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -94,39 +95,6 @@ interface AppointmentAPIProps {
   available: LocationCardProps[];
   unknown: LocationCardProps[];
   not_available: LocationCardProps[];
-}
-
-interface LocationCardProps {
-  last_check_message: string;
-  last_check_date: string;
-  last_time_available_date: string;
-  last_time_available_message: string;
-  id: string;
-  x_parent: string;
-  organization: string;
-  name: string;
-  addr1: string;
-  addr2: string;
-  vaccines: string | undefined;
-  map_zoom: string;
-  link: string;
-  comments: string | undefined;
-  lat_loc: string;
-  long_loc: string;
-  category: string;
-  current_uuid_set: string;
-  appointment_list: AppointmentProps[];
-  distance: number;
-  notes: string | undefined;
-  warning_tier: number;
-}
-
-interface AppointmentProps {
-  date_str: string;
-  link_appointment: string;
-  appointment_num: number;
-  updated_date: string;
-  id: number;
 }
 
 export default function Home() {
@@ -319,7 +287,7 @@ export default function Home() {
                       sm={6}
                       key={`grid-avlb-location-card-${key}`}
                     >
-                      <LocationCard availability={"available"} {...location} />
+                      <LocationCard {...location} />
                     </Grid>
                   );
                 }
@@ -346,7 +314,6 @@ export default function Home() {
                           key={`grid-unkn-location-card-${location.id}`}
                         >
                           <LocationCard
-                            availability={"unknown"}
                             {...location}
                           />
                         </Grid>
@@ -388,7 +355,6 @@ export default function Home() {
                           key={`grid-navlb-location-card-${location.id}`}
                         >
                           <LocationCard
-                            availability={"unavailable"}
                             {...location}
                           />
                         </Grid>
