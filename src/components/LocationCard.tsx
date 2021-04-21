@@ -137,7 +137,7 @@ export default function LocationCard(props: LocationCardProps) {
         </div>
       )}
 
-      {props.vaccines === "" || props.vaccines === "Unknown" ? (
+      {props.vaccines === null || props.vaccines === "Unknown" ? (
         <></>
       ) : (
         <div className={styles.innerBadgeRight}>

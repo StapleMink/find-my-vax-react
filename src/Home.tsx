@@ -112,7 +112,7 @@ export default function Home() {
   useEffect(() => {
     //Get Appointment Details
     axios
-      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}?brands=true`)
+      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}&brands=true`)
       .then((response) => {
         const serverResponse = response.data.data;
         // console.log(serverResponse);

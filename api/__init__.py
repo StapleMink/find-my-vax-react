@@ -8,8 +8,8 @@ from flask_seasurf import SeaSurf
 import os
 
 # Setup
-LOCAL_UI = os.getenv('LOCAL_UI')
-if LOCAL_UI:
+USE_PRODUCTION_REACT = os.getenv('USE_PRODUCTION_REACT')
+if USE_PRODUCTION_REACT:
     print("Will not bundle React")
     app = Flask(__name__)
 else:
@@ -28,7 +28,7 @@ app.config.update(
 # Setup DB
 db = SQLAlchemy(app)
 
-# if LOCAL_UI:
+# if USE_PRODUCTION_REACT:
 #     migrate = Migrate(app, db, compare_type=True)
 #     migrate.init_app(app)
 
@@ -58,7 +58,7 @@ csp = {
 Talisman(app, content_security_policy=csp,)
 
 # Handle 404s
-if not LOCAL_UI:
+if not USE_PRODUCTION_REACT:
     @app.route('/')
     def index():
         return app.send_static_file('index.html')   

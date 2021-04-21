@@ -12,8 +12,6 @@ from api.models import PrimaryEntry, AppointmentListsMain
 from geopy.distance import geodesic
 from dateutil import tz
 
-LOCAL_UI = os.getenv('LOCAL_UI')
-
 # Demo Time Api
 @app.route('/api/time')
 def get_current_time():
