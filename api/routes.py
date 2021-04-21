@@ -60,7 +60,7 @@ def get_vaccine_appointments():
     brands = request.args.get('brands')
     flags = get_flags(zipcode, brands)
 
-    entries = create_apointment_json(flags)
+    entries = create_appointment_json(flags)
 
     vaccine_info = [entries, flags]
 
@@ -80,7 +80,7 @@ def get_flags(zipcode, brands):
     return flags
 
 
-def create_apointment_json(flags):
+def create_appointment_json(flags):
     q = create_query()
     json_data = {}
     json_data["available"] = {}

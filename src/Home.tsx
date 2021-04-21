@@ -15,9 +15,9 @@ import { Link as ScrollLink } from "react-scroll";
 // { animateScroll as scroll } from "react-scroll";
 // import { sampleData } from "./sample";
 import axios from "axios";
-import Lottie from 'react-lottie';
+import Lottie from "react-lottie";
 import animation from "./animations/loading-vaccine.json";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -29,13 +29,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     marginTop: 20,
-    marginLeft: 40,
-    marginRight: 40,
+    marginLeft: 10,
+    marginRight: 10,
   },
   subtitle: {
     marginTop: 20,
-    marginLeft: 40,
-    marginRight: 40,
+    marginLeft: 10,
+    marginRight: 10,
   },
   info: {
     maxWidth: 1000,
@@ -46,8 +46,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   supportDisclaimer: {
     marginTop: 20,
-    marginLeft: 50,
-    marginRight: 50,
+    marginLeft: 10,
+    marginRight: 10,
+    // maxWidth: 700,
   },
   divider: {
     color: theme.palette.primary.main,
@@ -80,7 +81,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   loadingCaption: {
     marginTop: 20,
-  }
+  },
+  disclosureButtons: {
+    marginTop: 20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block",
+  },
 }));
 
 interface AppointmentAPIProps {
@@ -124,10 +131,14 @@ interface AppointmentProps {
 
 export default function Home() {
   const styles = useStyles();
-  const { t, i18n } = useTranslation();
-  const [ zipcode, setZipcode] = useState("");
-  const [ zipcodeToSearch, setZipcodeToSearch] = useState("");
-  const [appointments, setAppointments] = useState<AppointmentAPIProps | undefined>(undefined);
+  const { t } = useTranslation();
+  const [showUnknown, setShowUnknown] = useState(false);
+  const [showUnavailable, setShowUnavailable] = useState(false);
+  const [zipcode, setZipcode] = useState("");
+  const [zipcodeToSearch, setZipcodeToSearch] = useState("");
+  const [appointments, setAppointments] = useState<
+    AppointmentAPIProps | undefined
+  >(undefined);
 
   useEffect(() => {
     //Get Appointment Details
@@ -144,13 +155,11 @@ export default function Home() {
 
   useEffect(() => {
     //Get Appointment Details
-    axios
-      .get("/api/v2.0/appointments/results.json")
-      .then((response) => {
-        const serverResponse = response.data.data;
-        console.log(serverResponse);
-        setAppointments(serverResponse);
-      });
+    axios.get("/api/v2.0/appointments/results.json").then((response) => {
+      const serverResponse = response.data.data;
+      console.log(serverResponse);
+      setAppointments(serverResponse);
+    });
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
@@ -159,9 +168,10 @@ export default function Home() {
   function handleSearchClick(e: React.SyntheticEvent<Element>): void {
     e.preventDefault();
     if (zipcode.trim().length === 5) {
-      let cleanZip = zipcode.trim(); 
+      let cleanZip = zipcode.trim();
       setZipcodeToSearch(cleanZip);
-      //setChat("");
+      setShowUnknown(false);
+      setShowUnavailable(false);
     }
   }
 
@@ -169,7 +179,7 @@ export default function Home() {
     if (e.key !== "Enter") {
       return;
     }
-    
+
     e.preventDefault();
     handleSearchClick(e);
   }
@@ -177,11 +187,11 @@ export default function Home() {
   //Lottie Animation Options
   const options = {
     loop: true,
-    autoplay: true, 
+    autoplay: true,
     animationData: animation,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   return (
@@ -200,16 +210,16 @@ export default function Home() {
         </Typography>
         <Typography className={styles.info} variant="subtitle1">
           <strong>
-            {
-              t("COVID-19 vaccines are free regardless of insurance or immigration status.")
-            }
+            {t(
+              "COVID-19 vaccines are free regardless of insurance or immigration status."
+            )}
           </strong>{" "}
-          {
-            t("You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs")
-          }
+          {t(
+            "You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs"
+          )}
         </Typography>
         <ScrollLink
-          to="apointmentsTop"
+          to="appointmentsTop"
           spy={true}
           smooth={true}
           offset={-20}
@@ -228,18 +238,18 @@ export default function Home() {
         <Typography className={styles.supportDisclaimer}>
           <em>
             <strong>{t("Notes")}: </strong>
-            {
-              t("At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support.")
-            }
+            {t(
+              "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support."
+            )}
           </em>
         </Typography>
         <Divider className={styles.divider} />
         <Typography
           variant="h4"
           className={styles.subtitle}
-          id="apointmentsTop"
+          id="appointmentsTop"
         >
-          {t("Find Apointments")}
+          {t("Find Appointments")}
         </Typography>
         {/* Search */}
         <div className={styles.searchArea}>
@@ -279,12 +289,15 @@ export default function Home() {
         {/* Show Appointments and Loading */}
         {appointments === undefined ? (
           <div className={styles.loading}>
-            <Lottie options={options}
+            <Lottie
+              options={options}
               height={200}
               width={200}
               isStopped={false}
             />
-            <Typography variant="h5" className={styles.loadingCaption}>{t("Loading Appointments!")}</Typography>
+            <Typography variant="h5" className={styles.loadingCaption}>
+              {t("Loading Appointments!")}
+            </Typography>
           </div>
         ) : (
           <>
@@ -292,7 +305,7 @@ export default function Home() {
             <Typography
               variant="h4"
               className={styles.availiblityHeader}
-              id="apointmentsTop"
+              id="appointmentsTop"
             >
               {t("Available Appointments") + ":"}
             </Typography>
@@ -300,8 +313,13 @@ export default function Home() {
               {appointments.available.map(
                 (location: LocationCardProps, key) => {
                   return (
-                    <Grid item xs={12} sm={6} key={`grid-avlb-location-card-${key}`}>
-                      <LocationCard availability={"available"} {...location}/>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      key={`grid-avlb-location-card-${key}`}
+                    >
+                      <LocationCard availability={"available"} {...location} />
                     </Grid>
                   );
                 }
@@ -311,44 +329,90 @@ export default function Home() {
             <Typography
               variant="h4"
               className={styles.availiblityHeader}
-              id="apointmentsTop"
+              id="appointmentsTop"
             >
               {t("Possible Availability") + ":"}
             </Typography>
-            <Grid container spacing={2} className={styles.grid}>
-              {appointments.unknown.map(
-                (location: LocationCardProps, key) => {
-                  return (
-                    <Grid item xs={12} sm={6} key={`grid-unkn-location-card-${key}`}>
-                      <LocationCard availability={"unknown"} {...location}/>
-                    </Grid>
-                  );
-                }
-              )}
-            </Grid>
+            {showUnknown ? (
+              <>
+                <Grid container spacing={2} className={styles.grid}>
+                  {appointments.unknown.map(
+                    (location: LocationCardProps, key) => {
+                      return (
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          key={`grid-unkn-location-card-${location.id}`}
+                        >
+                          <LocationCard
+                            availability={"unknown"}
+                            {...location}
+                          />
+                        </Grid>
+                      );
+                    }
+                  )}
+                </Grid>
+              </>
+            ) : (
+              <Button
+                color="primary"
+                variant="contained"
+                className={styles.disclosureButtons}
+                onClick={() => {
+                  setShowUnknown(true);
+                }}
+              >
+                Show Potentially Available Appointments
+              </Button>
+            )}
             {/* Unavailable */}
             <Typography
               variant="h4"
               className={styles.availiblityHeader}
-              id="apointmentsTop"
+              id="appointmentsTop"
             >
               {t("No Appointments Available") + ":"}
             </Typography>
-            <Grid container spacing={2} className={styles.grid}>
-              {appointments.not_available.map(
-                (location: LocationCardProps, key) => {
-                  return (
-                    <Grid item xs={12} sm={6} key={`grid-navlb-location-card-${key}`}>
-                      <LocationCard availability={"unavailable"} {...location}/>
-                    </Grid>
-                  );
-                }
-              )}
-            </Grid>
+            {showUnavailable ? (
+              <>
+                <Grid container spacing={2} className={styles.grid}>
+                  {appointments.not_available.map(
+                    (location: LocationCardProps, key) => {
+                      return (
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          key={`grid-navlb-location-card-${location.id}`}
+                        >
+                          <LocationCard
+                            availability={"unavailable"}
+                            {...location}
+                          />
+                        </Grid>
+                      );
+                    }
+                  )}
+                </Grid>
+              </>
+            ) : (
+              <Button
+                color="primary"
+                variant="contained"
+                className={styles.disclosureButtons}
+                onClick={() => {
+                  setShowUnavailable(true);
+                }}
+              >
+                Show Unavailable Appointments
+              </Button>
+            )}
           </>
         )}
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 }

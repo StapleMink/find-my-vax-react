@@ -6,7 +6,6 @@ import Tab from "@material-ui/core/Tab";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import { Link as RouterLink } from "react-router-dom";
-import AppleIcon from "@material-ui/icons/Apple";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import TranslateIcon from "@material-ui/icons/Translate";
@@ -60,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
 
-    width: 50,
+    width: 200,
   },
   desktopLogo: {
     marginRight: 10,
@@ -71,8 +70,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   fmvLogo: {
     height: 40,
-    width: 40,
-  }
+    // width: 40,
+  },
 }));
 
 interface ResponsiveNavBarProps {
@@ -102,8 +101,20 @@ function TranslateMenu(props: TranslateMenuProps) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      <MenuItem onClick={() => {handleLanguageChange("en", "English")}}>English</MenuItem>
-      <MenuItem onClick={() => {handleLanguageChange("es", "Español")}}>Español</MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleLanguageChange("en", "English");
+        }}
+      >
+        English
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleLanguageChange("es", "Español");
+        }}
+      >
+        Español
+      </MenuItem>
       {/* <MenuItem onClick={() => {handleLanguageChange("fr", "Français")}}>Français</MenuItem> */}
       <Divider className={styles.menuDivider} />
       <MenuItem onClick={handleClose}>{t("Help to translate")}</MenuItem>
@@ -144,8 +155,9 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
   };
 
   //Determine which Nav to show
-  const isDesktop = useMediaQuery("(min-width:768px)");
-  // console.log(isDesktop);
+  const isDesktop = useMediaQuery("(min-width:1150px)");
+  const isMobilePortrait = useMediaQuery("(max-width:550px)");
+  // console.log(isMobilePortrait);
 
   // Drawer State
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -166,7 +178,6 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
 
   //Translation States
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  //const [currentLangauge, setCurrentLanguage] = React.useState("English");
   const handleTranslateClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -189,7 +200,6 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               disableFocusRipple
               style={{ backgroundColor: "transparent" }}
             >
-              {/* <AppleIcon /> */}
               <FindMyVaxLogo className={styles.fmvLogo} />
             </IconButton>
             <Tabs
@@ -198,17 +208,15 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               onChange={handleChange}
               aria-label="nav tabs example"
             >
-              {
-                pages.map((page, index)=> {
-                  return(
-                    <NavTab to={page.link} label={page.name} {...a11yProps(index)} />
-                  );
-                })
-              }
-              {/* <NavTab to="/" label="Home" {...a11yProps(0)} />
-              <NavTab to="/tips" label="Tips" {...a11yProps(1)} />
-              <NavTab to="/about" label="About" {...a11yProps(2)} />
-              <NavTab to="/contact" label="Contact" {...a11yProps(3)} /> */}
+              {pages.map((page, index) => {
+                return (
+                  <NavTab
+                    to={page.link}
+                    label={page.name}
+                    {...a11yProps(index)}
+                  />
+                );
+              })}
             </Tabs>
             <div className={styles.grow} />
             <IconButton color="inherit" style={{ display: "none" }}>
@@ -223,10 +231,7 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
             >
               {t("English")}
             </Button>
-            {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
-              <TranslateIcon />
-            </IconButton> */}
-            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose}/>
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
           </Toolbar>
         </AppBar>
       ) : (
@@ -246,7 +251,7 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               className={styles.logo}
               style={{ backgroundColor: "transparent" }}
             >
-              <AppleIcon />
+              <FindMyVaxLogo className={styles.fmvLogo} />
             </IconButton>
             <div className={styles.grow} />
             <IconButton color="inherit" style={{ display: "none" }}>
@@ -259,16 +264,17 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              {t("English")}
+              {isMobilePortrait ? <> </> : <> {t("English")} </>}
             </Button>
-            {/* <IconButton edge="end" color="inherit" onClick={handleTranslateClick}>
-              <TranslateIcon />
-            </IconButton> */}
-            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose}/>
+            <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
           </Toolbar>
         </AppBar>
       )}
-      <SideBar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} pages={pages}/>
+      <SideBar
+        drawerOpen={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        pages={pages}
+      />
     </div>
   );
 }

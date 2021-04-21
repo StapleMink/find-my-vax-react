@@ -146,7 +146,7 @@ const RedButton = withStyles((theme: Theme) => ({
 
 export default function LocationCard(props: LocationCardProps) {
   const styles = useStyles();
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Card
@@ -197,18 +197,18 @@ export default function LocationCard(props: LocationCardProps) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {/* Show available apointments */}
+        {/* Show available appointments */}
         <Grid container spacing={1}>
           {props.category === "available" ? (
             <>
               {props.appointment_list.map(
                 (appointment: AppointmentProps, apptKey) => {
                   return (
-                    <Grid item xs={12} key={`${props.id}-appt-${apptKey}`}>
+                    <Grid item xs={12} key={`${props.id}-appt-${appointment.id}`}>
                       <Typography>
                         <strong>{appointment.date_str}:</strong>
                       </Typography>
-                      <Tooltip arrow title={t("Book Apointment").toString()} placement="bottom">
+                      <Tooltip arrow title={t("Book Appointment").toString()} placement="bottom">
                         <GreenButton
                           variant="outlined"
                           endIcon={<LaunchIcon />}
@@ -228,14 +228,14 @@ export default function LocationCard(props: LocationCardProps) {
               {/* <Typography>
                 <strong>{"Placeholder"}:</strong>
               </Typography> */}
-              <Tooltip arrow title={t("Check Apointments").toString()} placement="bottom">
+              <Tooltip arrow title={t("Check Appointments").toString()} placement="bottom">
                 {props.category === "unknown" ? (
                   <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {t("Check Apointments")}
+                    {t("Check Appointments")}
                   </OrangeButton>
                 ) : (
                   <RedButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {t("Check Apointments")}
+                    {t("Check Appointments")}
                   </RedButton>
                 )}
               </Tooltip>

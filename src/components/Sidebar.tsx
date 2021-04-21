@@ -74,10 +74,6 @@ export default function SideBar(props: SideBarProps) {
         onKeyDown={props.toggleDrawer(false)}
       >
         <List>
-          {/* <NavSideBarTab to="/" label="Home" {...a11yProps(0)} />
-          <NavSideBarTab to="/tips" label="Tips" {...a11yProps(1)} />
-          <NavSideBarTab to="/about" label="About" {...a11yProps(2)} />
-          <NavSideBarTab to="/contact" label="Contact" {...a11yProps(3)} /> */}
           {props.pages.map((page, index) => {
             return (
               <NavSideBarTab to={page.link} label={page.name} {...a11yProps(index)} />
