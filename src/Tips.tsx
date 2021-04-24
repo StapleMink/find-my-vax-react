@@ -77,7 +77,9 @@ export default function Tips() {
             </dd>
             <dt>Phone Number: (408)970-2000</dt>
             <dd>
-              {"NOTE: Only call if you NEED to! Wait times might be long, and we don't want to overwhelm the already-overwhelmed call system!"}
+              {
+                "NOTE: Only call if you NEED to! Wait times might be long, and we don't want to overwhelm the already-overwhelmed call system!"
+              }
             </dd>
             <dt>Locations:</dt>
             <dd>Berger Auditorium</dd>

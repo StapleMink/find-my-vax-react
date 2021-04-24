@@ -12,11 +12,8 @@ format: node_modules/prettier
 node_modules/eslint:
 	npm install 
 
-node_modules/jest:
-	npm install 
-
-node_modules/jest:
-	npm install 
+# node_modules/jest:
+# 	npm install 
 
 node_modules/prettier:
 	npm install 
@@ -24,9 +21,9 @@ node_modules/prettier:
 node_modules/typescript:
 	npm install 
 
-.PHONY: test
-test: node_modules/jest
-	npm run test
+# .PHONY: test
+# test: node_modules/jest
+# 	npm run test
 
 .PHONY: test-all
 test-all:
@@ -34,7 +31,6 @@ test-all:
 	$(MAKE) test-format
 	$(MAKE) test-lint
 	$(MAKE) test-types
-	$(MAKE) test
 
 .PHONY: test-audit
 test-audit:

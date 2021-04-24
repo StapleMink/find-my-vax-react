@@ -34,12 +34,7 @@ function NavSideBarTab(props: NavTabProps) {
   );
 
   return (
-    <ListItem
-      selected={false}
-      button
-      key={props.label}
-      component={renderLink}
-    >
+    <ListItem selected={false} button key={props.label} component={renderLink}>
       <ListItemText primary={props.label} />
     </ListItem>
   );
