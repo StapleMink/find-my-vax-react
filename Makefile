@@ -25,6 +25,9 @@ node_modules/typescript:
 # test: node_modules/jest
 # 	npm run test
 
+# node_modules/cypress:
+# 	npm install --frozen-lockfile
+
 .PHONY: test-all
 test-all:
 	$(MAKE) test-audit
@@ -47,6 +50,10 @@ test-lint: node_modules/eslint
 .PHONY: test-types
 test-types: node_modules/typescript
 	npm run test:types
+
+# .PHONY: test-cypress
+# test-cypress: node_modules/cypress
+# 	npm run test:cypress
 
 LICENSE:
 	@echo "you must have a LICENSE file" 1>&2
