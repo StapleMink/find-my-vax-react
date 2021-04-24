@@ -2,7 +2,7 @@ name: Test and Publish
 on: push
 jobs:
   test-client:
-    name: test client
+    name: Test Client
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
   #     - name: cypress - run tests
   #       run: make test-e2e-exec
   publish-check:
-    name: publish check
+    name: Publish Check
     needs:
       - test-client
       # - test-license
