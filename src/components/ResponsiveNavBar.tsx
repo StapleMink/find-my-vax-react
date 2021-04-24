@@ -19,14 +19,6 @@ import { Divider } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as FindMyVaxLogo } from "../assets/logo.svg";
 
-function a11yProps(index: any) {
-  return {
-    id: `nav-tab-${index}`,
-    key: `nav-tab-${index}`,
-    "aria-controls": `nav-tabpanel-${index}`,
-  };
-}
-
 interface NavTabProps {
   label?: string;
   href?: string;
@@ -149,7 +141,7 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
   ];
   const [value, setValue] = React.useState(props.value);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: React.ChangeEvent, newValue: number) => {
     // console.log(newValue);
     setValue(newValue);
   };
@@ -205,7 +197,7 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
             <Tabs
               variant="fullWidth"
               value={value}
-              onChange={handleChange}
+              onChange={() => handleChange}
               aria-label="nav tabs example"
             >
               {pages.map((page, index) => {
@@ -213,7 +205,8 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
                   <NavTab
                     to={page.link}
                     label={page.name}
-                    {...a11yProps(index)}
+                    key={`nav-tab-${index}`}
+                    aria-controls={`nav-tabpanel-${index}`}
                   />
                 );
               })}

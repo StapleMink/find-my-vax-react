@@ -35,7 +35,7 @@ function NavSideBarTab(props: NavTabProps) {
 
   return (
     <ListItem
-      selected={true ? false : false}
+      selected={false}
       button
       key={props.label}
       component={renderLink}
@@ -43,14 +43,6 @@ function NavSideBarTab(props: NavTabProps) {
       <ListItemText primary={props.label} />
     </ListItem>
   );
-}
-
-function a11yProps(index: any) {
-  return {
-    id: `nav-sidebar-tab-${index}`,
-    key: `nav-sidebar-tab-${index}`,
-    "aria-controls": `nav-sidebartabpanel-${index}`,
-  };
 }
 
 interface SideBarProps {
@@ -81,7 +73,8 @@ export default function SideBar(props: SideBarProps) {
               <NavSideBarTab
                 to={page.link}
                 label={page.name}
-                {...a11yProps(index)}
+                key={`nav-sidebar-${index}`}
+                aria-controls={`nav-sidebartabpanel-${index}`}
               />
             );
           })}

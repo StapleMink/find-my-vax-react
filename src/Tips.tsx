@@ -77,8 +77,7 @@ export default function Tips() {
             </dd>
             <dt>Phone Number: (408)970-2000</dt>
             <dd>
-              NOTE: Only call if you NEED to! Wait times might be long, and we
-              don't want to overwhelm the already-overwhelmed call system!
+              {"NOTE: Only call if you NEED to! Wait times might be long, and we don't want to overwhelm the already-overwhelmed call system!"}
             </dd>
             <dt>Locations:</dt>
             <dd>Berger Auditorium</dd>
@@ -205,13 +204,13 @@ export default function Tips() {
             </ListItem>
             <ListItem>
               <Link href="https://shotoclock.io/" target="_blank">
-                Shot O' Clock:{" "}
+                {"Shot O' Clock:"}{" "}
               </Link>
               <ListItemText primary=" get notifications about pharmacy appointments on your email or phone" />
             </ListItem>
             <ListItem>
               <Link href="https://itsmyshot.weebly.com" target="_blank">
-                It's My Shot:{" "}
+                {"It's My Shot:"}{" "}
               </Link>
               <ListItemText primary=" more Bay Area-specific information" />
             </ListItem>

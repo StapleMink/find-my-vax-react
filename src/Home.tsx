@@ -140,7 +140,7 @@ export default function Home() {
   function handleSearchClick(e: React.SyntheticEvent<Element>): void {
     e.preventDefault();
     if (zipcode.trim().length === 5) {
-      let cleanZip = zipcode.trim();
+      const cleanZip = zipcode.trim();
       setZipcodeToSearch(cleanZip);
       setShowUnknown(false);
       setShowUnavailable(false);

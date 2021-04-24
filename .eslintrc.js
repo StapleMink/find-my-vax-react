@@ -7,11 +7,6 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
   ],
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
   env: {
     browser: true,
     es6: true,
