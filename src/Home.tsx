@@ -112,7 +112,9 @@ export default function Home() {
   useEffect(() => {
     //Get Appointment Details
     axios
-      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}&brands=true`)
+      .get(
+        `/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}&brands=true`
+      )
       .then((response) => {
         const serverResponse = response.data.data;
         // console.log(serverResponse);
@@ -124,10 +126,12 @@ export default function Home() {
 
   useEffect(() => {
     //Get Appointment Details
-    axios.get("/api/v2.0/appointments/results.json?brands=true").then((response) => {
-      const serverResponse = response.data.data;
-      setAppointments(serverResponse);
-    });
+    axios
+      .get("/api/v2.0/appointments/results.json?brands=true")
+      .then((response) => {
+        const serverResponse = response.data.data;
+        setAppointments(serverResponse);
+      });
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
@@ -167,10 +171,16 @@ export default function Home() {
       <ResponsiveNavBar value={0} />
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
-        <Typography variant={!isMobilePortrait ? "h2" : "h3"} className={styles.title}>
+        <Typography
+          variant={!isMobilePortrait ? "h2" : "h3"}
+          className={styles.title}
+        >
           {t("Welcome to Find My Vax Santa Clara")}
         </Typography>
-        <Typography variant={!isMobilePortrait ? "h4" : "h5"} className={styles.subtitle}>
+        <Typography
+          variant={!isMobilePortrait ? "h4" : "h5"}
+          className={styles.subtitle}
+        >
           {t("A Vaccine Locator for Santa Clara County")}
         </Typography>
         <Typography className={styles.info} variant="h6">
@@ -313,9 +323,7 @@ export default function Home() {
                           sm={6}
                           key={`grid-unkn-location-card-${location.id}`}
                         >
-                          <LocationCard
-                            {...location}
-                          />
+                          <LocationCard {...location} />
                         </Grid>
                       );
                     }
@@ -354,9 +362,7 @@ export default function Home() {
                           sm={6}
                           key={`grid-navlb-location-card-${location.id}`}
                         >
-                          <LocationCard
-                            {...location}
-                          />
+                          <LocationCard {...location} />
                         </Grid>
                       );
                     }

@@ -50,9 +50,9 @@ const resources = {
 };
 
 const options = {
-  order: ['querystring', 'navigator'],
-  lookupQuerystring: 'lng'
-}
+  order: ["querystring", "navigator"],
+  lookupQuerystring: "lng",
+};
 
 i18n
   .use(XHR)
@@ -66,7 +66,7 @@ i18n
     fallbackLng: "en", // use en if detected lng is not available
 
     keySeparator: false, // we do not use keys in form messages.welcome
-    supportedLngs: ['en', 'es', 'fr'],
+    supportedLngs: ["en", "es", "fr"],
     interpolation: {
       escapeValue: false, // react already safes from xss
     },

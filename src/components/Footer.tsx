@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   footerText: {
     marginTop: 10,
     marginBottom: 10,
-  }
+  },
 }));
 
 export default function Footer() {
@@ -25,17 +25,30 @@ export default function Footer() {
       <Container>
         <Toolbar>
           <div>
-          <Typography variant="h6" color="inherit" className={styles.footerText}>
-            Disclaimer
-          </Typography>
-          <Typography variant="body2" color="inherit" className={styles.footerText}>
-            {"findmyvaxsc.com does not provide medical advice and all content, including text, graphics, images and information, contained on or available through this web site is for general information purposes only. All data on this site is expressly provided \"AS IS\". findmyvaxsc.com makes no warranty of any kind, express or implied, concerning this information, including but not limited to any warranties of merchantability or fitness for any particular purpose. findmyvaxsc.com assumes no responsibility or legal liability concerning the Data’s accuracy, reliability, completeness, timeliness, or usefulness. Users assume the risk of using this Data and shall have no remedy at law or equity against findmyvaxsc.com or any related entity in case the Data provided is inaccurate, incomplete or otherwise defective in any way."}
-          </Typography>
-          <Typography variant="body1" color="inherit" className={styles.footerText}>
-            © 2021 Find My Vax Santa Clara
-          </Typography>
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={styles.footerText}
+            >
+              Disclaimer
+            </Typography>
+            <Typography
+              variant="body2"
+              color="inherit"
+              className={styles.footerText}
+            >
+              {
+                'findmyvaxsc.com does not provide medical advice and all content, including text, graphics, images and information, contained on or available through this web site is for general information purposes only. All data on this site is expressly provided "AS IS". findmyvaxsc.com makes no warranty of any kind, express or implied, concerning this information, including but not limited to any warranties of merchantability or fitness for any particular purpose. findmyvaxsc.com assumes no responsibility or legal liability concerning the Data’s accuracy, reliability, completeness, timeliness, or usefulness. Users assume the risk of using this Data and shall have no remedy at law or equity against findmyvaxsc.com or any related entity in case the Data provided is inaccurate, incomplete or otherwise defective in any way.'
+              }
+            </Typography>
+            <Typography
+              variant="body1"
+              color="inherit"
+              className={styles.footerText}
+            >
+              © 2021 Find My Vax Santa Clara
+            </Typography>
           </div>
-          
         </Toolbar>
       </Container>
     </AppBar>

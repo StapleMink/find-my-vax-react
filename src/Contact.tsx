@@ -2,15 +2,15 @@ import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import ResponsiveNavBar from "./components/ResponsiveNavBar";
 import Typography from "@material-ui/core/Typography";
-import Link from '@material-ui/core/Link';
-import List from '@material-ui/core/List';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import Link from "@material-ui/core/Link";
+import List from "@material-ui/core/List";
+import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 import Container from "@material-ui/core/Container";
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import EmailIcon from '@material-ui/icons/Email';
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import EmailIcon from "@material-ui/icons/Email";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "80%",
     marginLeft: "auto",
     marginRight: "auto",
-  }
+  },
 }));
 
 export default function Contact() {
@@ -58,13 +58,22 @@ export default function Contact() {
       <ResponsiveNavBar value={4} />
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
-        <Typography variant={!isMobilePortrait ? "h2" : "h3"} className={styles.title}>
+        <Typography
+          variant={!isMobilePortrait ? "h2" : "h3"}
+          className={styles.title}
+        >
           {"Contact"}
         </Typography>
         <Typography variant="h6" className={styles.info}>
-          {"If you have any other questions or concerns, please contact us through the options below: "}
+          {
+            "If you have any other questions or concerns, please contact us through the options below: "
+          }
         </Typography>
-        <List component="nav" aria-label="contact us list" className={styles.contact_list}>
+        <List
+          component="nav"
+          aria-label="contact us list"
+          className={styles.contact_list}
+        >
           <ListItem>
             <Link href="https://twitter.com/findmyvaxsc" target="_blank">
               <ListItemIcon>
@@ -74,43 +83,37 @@ export default function Contact() {
             </Link>
           </ListItem>
           <ListItem>
-          <Link href="sc@findmyvaxla.com" target="_blank">
-            <ListItemIcon>
-              <EmailIcon />
-            </ListItemIcon>
-            <ListItemText primary="Email: sc@findmyvaxla.com"></ListItemText>
+            <Link href="sc@findmyvaxla.com" target="_blank">
+              <ListItemIcon>
+                <EmailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Email: sc@findmyvaxla.com"></ListItemText>
             </Link>
           </ListItem>
           <ListItem>
-          <Link href="https://instagram.com/findmyvaxsc" target="_blank">
-            <ListItemIcon>
-              <InstagramIcon />
-            </ListItemIcon>
-            <ListItemText primary="Instagram: @findmyvaxsc"></ListItemText>
+            <Link href="https://instagram.com/findmyvaxsc" target="_blank">
+              <ListItemIcon>
+                <InstagramIcon />
+              </ListItemIcon>
+              <ListItemText primary="Instagram: @findmyvaxsc"></ListItemText>
             </Link>
           </ListItem>
         </List>
         <div className={styles.contactGrid}>
-        <Grid container spacing={4}>
-          <Grid item xs={6} md={4}>
-            <EmailIcon />
-            <Typography>
-              sc@findmyvaxla.com
-            </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={6} md={4}>
+              <EmailIcon />
+              <Typography>sc@findmyvaxla.com</Typography>
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <TwitterIcon />
+              <Typography>@findmyvaxsc</Typography>
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <InstagramIcon />
+              <Typography>@findmyvaxsc</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={6} md={4}>
-            <TwitterIcon />
-            <Typography>
-              @findmyvaxsc
-            </Typography>
-          </Grid>
-          <Grid item xs={6} md={4}>
-            <InstagramIcon />
-            <Typography>
-              @findmyvaxsc
-            </Typography>
-          </Grid>
-        </Grid>
         </div>
       </Container>
     </>

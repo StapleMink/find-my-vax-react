@@ -55,7 +55,9 @@ function a11yProps(index: any) {
 
 interface SideBarProps {
   drawerOpen: boolean;
-  toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
+  toggleDrawer: (
+    open: boolean
+  ) => (event: React.KeyboardEvent | React.MouseEvent) => void;
   pages: {
     name: string;
     link: string;
@@ -76,7 +78,11 @@ export default function SideBar(props: SideBarProps) {
         <List>
           {props.pages.map((page, index) => {
             return (
-              <NavSideBarTab to={page.link} label={page.name} {...a11yProps(index)} />
+              <NavSideBarTab
+                to={page.link}
+                label={page.name}
+                {...a11yProps(index)}
+              />
             );
           })}
         </List>

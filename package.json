@@ -32,8 +32,17 @@
     "start": "react-scripts start",
     "start-api": "cd api && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write '**/*.{js,jsx,json,ts,tsx}'",
+    "test": "jest",
+    "test:all": "npm run test:format && npm run test:lint && npm run test:audit && npm run test:types && npm test",
+    "test:audit": "npm audit --audit-level=moderate",
+    "test:format": "prettier --check '**/*.{js,jsx,json,ts,tsx}'",
+    "test:lint": "eslint src --ext ts --ext tsx --ext js --ext jsx",
+    "test:types": "tsc --noEmit",
+    "test:watch": "jest --watch",
+    "license:fix": "license-check-and-add remove -f license-config.json && license-check-and-add add -f license-config.json",
+    "test:license": "license-check-and-add check -f license-config.json"
   },
   "eslintConfig": {
     "extends": [
@@ -57,6 +66,7 @@
   "devDependencies": {
     "@types/react-lottie": "^1.2.5",
     "@types/react-router-dom": "^5.1.7",
-    "@types/react-scroll": "^1.8.2"
+    "@types/react-scroll": "^1.8.2",
+    "prettier": "^2.2.1"
   }
 }

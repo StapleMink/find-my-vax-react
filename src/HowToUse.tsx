@@ -68,7 +68,7 @@ export default function HowToUse() {
           }
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>5.</strong>{" "} {"If no appointments fit your schedule, click "}
+          <strong>5.</strong> {"If no appointments fit your schedule, click "}
           <strong>{`"Possible Availability"`}</strong>{" "}
           {" button and check appointments on an individual basis."}
         </Typography>
