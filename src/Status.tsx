@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   statusTable: {
     width: "100%",
-    borderCollapse: "collapse"
+    borderCollapse: "collapse",
   },
   statusTableRow: {
     border: "1px solid lightGrey",
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   statusIcon: {
     // border: "1px solid grey",
-    position: "relative"
+    position: "relative",
   },
   statusIndicator: {
     position: "absolute",
@@ -69,22 +69,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: 30,
     paddingTop: 5,
     paddingBottom: 5,
-  }
+  },
 }));
 
-function StatusItem(props:{name:string, status:string}) {
+function StatusItem(props: { name: string; status: string }) {
   const styles = useStyles();
-  return(
+  return (
     <div className={styles.statusIcon}>
-      <FiberManualRecordIcon className={clsx({
-        [styles.statusIndicator]: true,
-        [styles.online]: props.status === "ONLINE",
-        [styles.warning]: props.status === "ISSUE",
-        [styles.down]: props.status === "DOWN",
-      })}/>
-      <Typography className={styles.statusService}>
-        {props.name}
-      </Typography>
+      <FiberManualRecordIcon
+        className={clsx({
+          [styles.statusIndicator]: true,
+          [styles.online]: props.status === "ONLINE",
+          [styles.warning]: props.status === "ISSUE",
+          [styles.down]: props.status === "DOWN",
+        })}
+      />
+      <Typography className={styles.statusService}>{props.name}</Typography>
     </div>
   );
 }
@@ -109,18 +109,34 @@ export default function Status() {
         </Typography>
         <table className={styles.statusTable}>
           <tr className={styles.statusTableRow}>
-            <td className={styles.statusTableCell}><StatusItem name={"SCC Sites"} status="ONLINE"/></td>
-            <td className={styles.statusTableCell}><StatusItem name={"Walgreens"} status="ONLINE"/></td>
-            <td className={styles.statusTableCell}><StatusItem name={"Walmart"} status="ONLINE"/></td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"SCC Sites"} status="ONLINE" />
+            </td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"Walgreens"} status="ONLINE" />
+            </td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"Walmart"} status="ONLINE" />
+            </td>
           </tr>
           <tr className={styles.statusTableRow}>
-            <td className={styles.statusTableCell}><StatusItem name={"El Camino Hospital"} status="ONLINE"/></td>
-            <td className={styles.statusTableCell}><StatusItem name={"CVS"} status="ONLINE"/></td>
-            <td className={styles.statusTableCell}><StatusItem name={"Costco"} status="ONLINE"/></td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"El Camino Hospital"} status="ONLINE" />
+            </td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"CVS"} status="ONLINE" />
+            </td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"Costco"} status="ONLINE" />
+            </td>
           </tr>
           <tr className={styles.statusTableRow}>
-            <td className={styles.statusTableCell}><StatusItem name={"Rite Aid"} status="ONLINE"/></td>
-            <td className={styles.statusTableCell}><StatusItem name={"MyTurn"} status="ONLINE"/></td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"Rite Aid"} status="ONLINE" />
+            </td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"MyTurn"} status="ONLINE" />
+            </td>
           </tr>
         </table>
         <Typography variant="h5" className={styles.subtitle}>
@@ -128,7 +144,9 @@ export default function Status() {
         </Typography>
         <table className={styles.statusTable}>
           <tr className={styles.statusTableRow}>
-            <td className={styles.statusTableCell}><StatusItem name={"Twitter Bot"} status="ONLINE"/></td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"Twitter Bot"} status="ONLINE" />
+            </td>
           </tr>
         </table>
         <Typography variant="body1" className={styles.info}>

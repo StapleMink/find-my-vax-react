@@ -5,7 +5,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import TranslateIcon from "@material-ui/icons/Translate";
@@ -109,7 +112,9 @@ function TranslateMenu(props: TranslateMenuProps) {
       </MenuItem>
       {/* <MenuItem onClick={() => {handleLanguageChange("fr", "Français")}}>Français</MenuItem> */}
       <Divider className={styles.menuDivider} />
-      <MenuItem component={RouterLink} to="/contact" onClick={handleClose}>{t("Help to translate")}</MenuItem>
+      <MenuItem component={RouterLink} to="/contact" onClick={handleClose}>
+        {t("Help to translate")}
+      </MenuItem>
     </Menu>
   );
 }

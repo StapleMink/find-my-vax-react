@@ -96,8 +96,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: 0,
   },
   quickButton: {
-    width: "50%"
-  }
+    width: "50%",
+  },
 }));
 
 const GreenButton = withStyles((theme: Theme) => ({
@@ -140,7 +140,9 @@ export default function LocationDialog(props: {
           </DialogTitle>
         </div>
         <DialogContent dividers>
-          <Typography variant="h6" className={styles.subtitle}>{"Required Identification:"}</Typography>   
+          <Typography variant="h6" className={styles.subtitle}>
+            {"Required Identification:"}
+          </Typography>
           <Divider />
           <Typography gutterBottom className={styles.content}>
             <strong>

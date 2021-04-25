@@ -128,201 +128,207 @@ export default function LocationCard(props: LocationCardProps) {
 
   return (
     <>
-    <Card
-      className={clsx({
-        [styles.root]: true,
-        [styles.unknownCard]: props.category === "unknown",
-        [styles.unavailableCard]: props.category === "not_available",
-      })}
-    >
-      {props.distance === -1 ? (
-        <></>
-      ) : (
-        <div className={styles.innerBadgeLeft}>
-          <Typography variant="caption">
-            <strong>
-              {Math.round(props.distance * 10) / 10} {t("Miles Away")}
-            </strong>
-          </Typography>
-        </div>
-      )}
-
-      {props.vaccines === null || props.vaccines === "Unknown" ? (
-        <></>
-      ) : (
-        <div className={styles.innerBadgeRight}>
-          <Typography variant="caption">
-            <strong>{props.vaccines}</strong>
-          </Typography>
-        </div>
-      )}
-      <CardActionArea>
-        {props.category === "available" ? (
-          <CardMedia
-            className={styles.media}
-            image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
-            title={props.name}
-          />
-        ) : (
+      <Card
+        className={clsx({
+          [styles.root]: true,
+          [styles.unknownCard]: props.category === "unknown",
+          [styles.unavailableCard]: props.category === "not_available",
+        })}
+      >
+        {props.distance === -1 ? (
           <></>
+        ) : (
+          <div className={styles.innerBadgeLeft}>
+            <Typography variant="caption">
+              <strong>
+                {Math.round(props.distance * 10) / 10} {t("Miles Away")}
+              </strong>
+            </Typography>
+          </div>
         )}
-      </CardActionArea>
-      <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="h2"
-          className={styles.cardText}
-        >
-          {props.name}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          className={styles.cardText}
-        >
-          {props.addr1}
-          <br />
-          {props.addr2}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        {/* Show available appointments */}
-        <Grid container spacing={1}>
+
+        {props.vaccines === null || props.vaccines === "Unknown" ? (
+          <></>
+        ) : (
+          <div className={styles.innerBadgeRight}>
+            <Typography variant="caption">
+              <strong>{props.vaccines}</strong>
+            </Typography>
+          </div>
+        )}
+        <CardActionArea>
           {props.category === "available" ? (
-            <>
-              {props.appointment_list.map(
-                (appointment: AppointmentProps, apptKey) => {
-                  return (
-                    <Grid
-                      item
-                      xs={12}
-                      key={`${props.id}-appt-${appointment.id}`}
-                    >
-                      <Typography>
-                        <strong>{appointment.date_str}:</strong>
-                      </Typography>
-                      <Tooltip
-                        arrow
-                        title={t("Book Appointment").toString()}
-                        placement="bottom"
-                      >
-                        <GreenButton
-                          variant="outlined"
-                          endIcon={<LaunchIcon />}
-                          onClick={() => setShowLocationDialog(true)}
-                        >
-                          {`${appointment.appointment_num} ${t("Appointment")}${
-                            appointment.appointment_num > 1 ? "s" : ""
-                          } ${t("Available")}`}
-                        </GreenButton>
-                      </Tooltip>
-                    </Grid>
-                  );
-                }
-              )}
-            </>
+            <CardMedia
+              className={styles.media}
+              image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
+              title={props.name}
+            />
           ) : (
-            <Grid item xs={12}>
-              {/* <Typography>
+            <></>
+          )}
+        </CardActionArea>
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            className={styles.cardText}
+          >
+            {props.name}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            className={styles.cardText}
+          >
+            {props.addr1}
+            <br />
+            {props.addr2}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          {/* Show available appointments */}
+          <Grid container spacing={1}>
+            {props.category === "available" ? (
+              <>
+                {props.appointment_list.map(
+                  (appointment: AppointmentProps, apptKey) => {
+                    return (
+                      <Grid
+                        item
+                        xs={12}
+                        key={`${props.id}-appt-${appointment.id}`}
+                      >
+                        <Typography>
+                          <strong>{appointment.date_str}:</strong>
+                        </Typography>
+                        <Tooltip
+                          arrow
+                          title={t("Book Appointment").toString()}
+                          placement="bottom"
+                        >
+                          <GreenButton
+                            variant="outlined"
+                            endIcon={<LaunchIcon />}
+                            onClick={() => setShowLocationDialog(true)}
+                          >
+                            {`${appointment.appointment_num} ${t(
+                              "Appointment"
+                            )}${appointment.appointment_num > 1 ? "s" : ""} ${t(
+                              "Available"
+                            )}`}
+                          </GreenButton>
+                        </Tooltip>
+                      </Grid>
+                    );
+                  }
+                )}
+              </>
+            ) : (
+              <Grid item xs={12}>
+                {/* <Typography>
                 <strong>{"Placeholder"}:</strong>
               </Typography> */}
-              <Tooltip
-                arrow
-                title={t("Check Appointments").toString()}
-                placement="bottom"
-              >
-                {props.category === "unknown" ? (
-                  <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {t("Check Appointments")}
-                  </OrangeButton>
-                ) : (
-                  <RedButton variant="outlined" endIcon={<LaunchIcon />}>
-                    {t("Check Appointments")}
-                  </RedButton>
-                )}
-              </Tooltip>
-            </Grid>
-          )}
-        </Grid>
-      </CardActions>
-      <CardActions>
-        <Button
-          startIcon={<ShareIcon />}
-          size="small"
-          color="primary"
-          component={Link}
-          href={`sms:&body=${t("I found a vaccine appointments at")} ${
-            props.name
-          }! ${t("Located at")} ${props.addr1}, ${props.addr2}. ${t(
-            "Book it here"
-          )}: ${props.link}`}
-        >
-          {t("Share")}
-        </Button>
-      </CardActions>
+                <Tooltip
+                  arrow
+                  title={t("Check Appointments").toString()}
+                  placement="bottom"
+                >
+                  {props.category === "unknown" ? (
+                    <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
+                      {t("Check Appointments")}
+                    </OrangeButton>
+                  ) : (
+                    <RedButton variant="outlined" endIcon={<LaunchIcon />}>
+                      {t("Check Appointments")}
+                    </RedButton>
+                  )}
+                </Tooltip>
+              </Grid>
+            )}
+          </Grid>
+        </CardActions>
+        <CardActions>
+          <Button
+            startIcon={<ShareIcon />}
+            size="small"
+            color="primary"
+            component={Link}
+            href={`sms:&body=${t("I found a vaccine appointments at")} ${
+              props.name
+            }! ${t("Located at")} ${props.addr1}, ${props.addr2}. ${t(
+              "Book it here"
+            )}: ${props.link}`}
+          >
+            {t("Share")}
+          </Button>
+        </CardActions>
 
-      {/* <>
+        {/* <>
           <Divider />
           <CardActions>
           <ReportProblemRoundedIcon className={styles.warning}/>
           </CardActions>
         </> */}
 
-      {props.notes !== null ? (
-        <>
-          <Divider />
-          <CardActions>
-            <ReportProblemRoundedIcon
-              className={clsx({
-                [styles.warning]: true,
-                [styles.low]: props.warning_tier === 1,
-                [styles.medium]: props.warning_tier === 2,
-                [styles.high]: props.warning_tier === 3,
-              })}
-            />
-            <Typography variant="body2" className={styles.metadata}>
-              <strong>{t("Note")}:</strong> {props.notes}
-            </Typography>
-          </CardActions>
-        </>
-      ) : (
-        <></>
-      )}
-      <Divider />
-      <CardActions>
-        <div>
-          <Typography variant="caption" className={styles.metadata}>
-            <strong>{t("Last Updated")}:</strong>{" "}
-            <Trans
-              i18nKey={last_checked_unit + "UpdateCaptionLC"}
-              count={last_checked_value}
-            >
-              {{ last_checked_value }} ago
-            </Trans>
-          </Typography>
-          {props.category === "available" ? (
-            <></>
-          ) : (
+        {props.notes !== null ? (
+          <>
+            <Divider />
+            <CardActions>
+              <ReportProblemRoundedIcon
+                className={clsx({
+                  [styles.warning]: true,
+                  [styles.low]: props.warning_tier === 1,
+                  [styles.medium]: props.warning_tier === 2,
+                  [styles.high]: props.warning_tier === 3,
+                })}
+              />
+              <Typography variant="body2" className={styles.metadata}>
+                <strong>{t("Note")}:</strong> {props.notes}
+              </Typography>
+            </CardActions>
+          </>
+        ) : (
+          <></>
+        )}
+        <Divider />
+        <CardActions>
+          <div>
             <Typography variant="caption" className={styles.metadata}>
-              <strong>{t("Last Availability")}:</strong>{" "}
-              {props.last_time_available_message === null ? (
-                t("Unknown")
-              ) : (
-                <Trans
-                  i18nKey={last_time_available_unit + "UpdateCaptionLA"}
-                  count={last_time_available_value}
-                >
-                  {{ last_time_available_value }} ago
-                </Trans>
-              )}
+              <strong>{t("Last Updated")}:</strong>{" "}
+              <Trans
+                i18nKey={last_checked_unit + "UpdateCaptionLC"}
+                count={last_checked_value}
+              >
+                {{ last_checked_value }} ago
+              </Trans>
             </Typography>
-          )}
-        </div>
-      </CardActions>
-    </Card>
-    <LocationDialog location={props} showLocationDialog={showLocationDialog} setShowLocationDialog={setShowLocationDialog} />
+            {props.category === "available" ? (
+              <></>
+            ) : (
+              <Typography variant="caption" className={styles.metadata}>
+                <strong>{t("Last Availability")}:</strong>{" "}
+                {props.last_time_available_message === null ? (
+                  t("Unknown")
+                ) : (
+                  <Trans
+                    i18nKey={last_time_available_unit + "UpdateCaptionLA"}
+                    count={last_time_available_value}
+                  >
+                    {{ last_time_available_value }} ago
+                  </Trans>
+                )}
+              </Typography>
+            )}
+          </div>
+        </CardActions>
+      </Card>
+      <LocationDialog
+        location={props}
+        showLocationDialog={showLocationDialog}
+        setShowLocationDialog={setShowLocationDialog}
+      />
     </>
   );
 }
