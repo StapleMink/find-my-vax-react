@@ -1,0 +1,7 @@
+.cache
+node_modules
+public
+static
+build
+venv
+__pycache__

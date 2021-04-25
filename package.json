@@ -13,10 +13,18 @@
     "@types/node": "^12.20.7",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "i18next": "^20.2.1",
+    "i18next-browser-languagedetector": "^6.1.0",
+    "i18next-xhr-backend": "^3.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.8.13",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-scroll": "^1.8.2",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
   },
@@ -24,8 +32,17 @@
     "start": "react-scripts start",
     "start-api": "cd api && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write '**/*.{js,jsx,json,ts,tsx}'",
+    "test": "jest",
+    "test:all": "npm run test:format && npm run test:lint && npm run test:audit && npm run test:types && npm test",
+    "test:audit": "npm audit --audit-level=moderate",
+    "test:format": "prettier --check '**/*.{js,jsx,json,ts,tsx}'",
+    "test:lint": "eslint src --ext ts --ext tsx --ext js --ext jsx",
+    "test:types": "tsc --noEmit",
+    "test:watch": "jest --watch",
+    "license:fix": "license-check-and-add remove -f license-config.json && license-check-and-add add -f license-config.json",
+    "test:license": "license-check-and-add check -f license-config.json"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +64,24 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-lottie": "^1.2.5",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-scroll": "^1.8.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-flowtype": "^5.7.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.5",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "license-check-and-add": "^4.0.2",
+    "prettier": "^2.2.1"
   }
 }

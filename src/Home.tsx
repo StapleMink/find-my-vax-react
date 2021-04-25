@@ -1,165 +1,397 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import { Link as RouterLink } from "react-router-dom";
-import AppleIcon from "@material-ui/icons/Apple";
-import MenuIcon from "@material-ui/icons/Menu";
-import SideBar from "./components/Sidebar";
+import ResponsiveNavBar from "./components/ResponsiveNavBar";
+import Footer from "./components/Footer";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
+import LocationCard from "./components/LocationCard";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+import { Divider } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import { Link as ScrollLink } from "react-scroll";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-function a11yProps(index: any) {
-  return {
-    id: `nav-tab-${index}`,
-    "aria-controls": `nav-tabpanel-${index}`,
-  };
-}
-
-interface NavTabProps {
-  label?: string;
-  href?: string;
-  to: string;
-}
-
-function NavTab(props: NavTabProps) {
-  const renderLink = React.useMemo(
-    () =>
-      React.forwardRef((itemProps, ref) => (
-        <RouterLink to={props.to} {...itemProps} />
-      )),
-    [props.to]
-  );
-
-  return <Tab component={renderLink} {...props} />;
-}
+// import { sampleData } from "./sample";
+import axios from "axios";
+import Lottie from "react-lottie";
+import animation from "./animations/loading-vaccine.json";
+import { useTranslation } from "react-i18next";
+import { LocationCardProps } from "./types";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
-  grow: {
-    flexGrow: 1
+  content: {
+    textAlign: "center",
   },
-  logo: {
-    position: "absolute",
-    //zIndex: 1,
-    // top: 4,
-    // left: 0,
-    // right: 0,
-    // margin: "0 auto",
-
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-
-    width: 50,
-  },
-  desktopLogo: {
+  title: {
+    marginTop: 20,
+    marginLeft: 10,
     marginRight: 10,
+  },
+  subtitle: {
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  info: {
+    maxWidth: 1000,
+    marginTop: 20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block",
+  },
+  supportDisclaimer: {
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    // maxWidth: 700,
+  },
+  divider: {
+    color: theme.palette.primary.main,
+    marginTop: 20,
+  },
+  grid: {
+    marginTop: 50,
+  },
+  findVaxButton: {
+    marginTop: 10,
+  },
+  searchArea: {
+    width: "100%",
+    maxWidth: 1000,
+    marginTop: 25,
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  search: {
+    width: "100%",
+  },
+  searchButton: {
+    marginTop: 20,
+  },
+  availiblityHeader: {
+    marginTop: 50,
+  },
+  loading: {
+    marginTop: 50,
+  },
+  loadingCaption: {
+    marginTop: 20,
+  },
+  disclosureButtons: {
+    marginTop: 20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block",
   },
 }));
 
+interface AppointmentAPIProps {
+  available: LocationCardProps[];
+  unknown: LocationCardProps[];
+  not_available: LocationCardProps[];
+}
+
 export default function Home() {
   const styles = useStyles();
-  const [value, setValue] = React.useState(0);
+  const { t } = useTranslation();
+  const [showUnknown, setShowUnknown] = useState(false);
+  const [showUnavailable, setShowUnavailable] = useState(false);
+  const [zipcode, setZipcode] = useState("");
+  const [zipcodeToSearch, setZipcodeToSearch] = useState("");
+  const [appointments, setAppointments] = useState<
+    AppointmentAPIProps | undefined
+  >(undefined);
+  const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    console.log(newValue);
-    setValue(newValue);
-  };
+  useEffect(() => {
+    //Get Appointment Details
+    axios
+      .get(
+        `/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}&brands=true`
+      )
+      .then((response) => {
+        const serverResponse = response.data.data;
+        console.log(serverResponse);
+        setAppointments(serverResponse);
+      });
 
-  //Determine which Nav to show
-  const isDesktop = useMediaQuery("(min-width:768px)");
-  console.log(isDesktop);
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, [zipcodeToSearch]);
 
-  // Drawer State
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  useEffect(() => {
+    //Get Appointment Details
+    axios
+      .get("/api/v2.0/appointments/results.json?brands=true")
+      .then((response) => {
+        const serverResponse = response.data.data;
+        setAppointments(serverResponse);
+      });
 
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent
-  ) => {
-    if (
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift")
-    ) {
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
+
+  //Search
+  function handleSearchClick(e: React.SyntheticEvent<Element>): void {
+    e.preventDefault();
+    if (zipcode.trim().length === 5) {
+      const cleanZip = zipcode.trim();
+      setZipcodeToSearch(cleanZip);
+      setShowUnknown(false);
+      setShowUnavailable(false);
+    }
+  }
+
+  function onKeyPress(e: React.KeyboardEvent<Element>): void {
+    if (e.key !== "Enter") {
       return;
     }
 
-    setDrawerOpen(open);
+    e.preventDefault();
+    handleSearchClick(e);
+  }
+
+  //Lottie Animation Options
+  const options = {
+    loop: true,
+    autoplay: true,
+    animationData: animation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
+  //TEST
+  const count2 = 10;
+  const name = "Daniel";
+
   return (
-    <div className={styles.root}>
-      {isDesktop ? 
-      <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={styles.desktopLogo}
-          color="inherit"
-          aria-label="menu"
-          disableRipple
-          disableFocusRipple
-          style={{ backgroundColor: "transparent" }}
+    <>
+      <ResponsiveNavBar value={0} />
+      {/* Content */}
+      <Container maxWidth="lg" className={styles.content}>
+        {/* <Trans i18nKey="testComplexTranslations" count={count2} name={name}>
+          Hi {{ name }}! You have {{ count }} new messages
+        </Trans> */}
+        <Typography
+          variant={!isMobilePortrait ? "h2" : "h3"}
+          className={styles.title}
         >
-          <AppleIcon />
-        </IconButton>
-        <Tabs
-          variant="fullWidth"
-          value={value}
-          onChange={handleChange}
-          aria-label="nav tabs example"
+          {t("Welcome to Find My Vax Santa Clara")}
+        </Typography>
+        <Typography
+          variant={!isMobilePortrait ? "h4" : "h5"}
+          className={styles.subtitle}
         >
-          <NavTab to="/" label="Home" {...a11yProps(0)} />
-          <NavTab to="/" label="How to Use" {...a11yProps(1)} />
-          <NavTab to="/" label="Get Involved" {...a11yProps(2)} />
-          <NavTab to="/" label="News" {...a11yProps(3)} />
-          <NavTab to="/" label="About Us" {...a11yProps(4)} />
-        </Tabs>
-      </Toolbar>
-    </AppBar>
-        :
-    <AppBar position="static">
-    <Toolbar>
-      <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer(true)}>
-        <MenuIcon />
-      </IconButton>
-      <IconButton
-        color="inherit"
-        aria-label="add"
-        className={styles.logo}
-        style={{ backgroundColor: 'transparent' }}
-      >
-        <AppleIcon />
-      </IconButton>
-      <div className={styles.grow} />
-      <IconButton color="inherit">
-        <MenuIcon />
-      </IconButton>
-      <IconButton edge="end" color="inherit">
-        <MenuIcon />
-      </IconButton>
-    </Toolbar>
-  </AppBar>
-      }
-      
-      
-      <SideBar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
-      {/* <TabPanel value={value} index={0}>
-        Page One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Page Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Page Three
-      </TabPanel> */}
-    </div>
+          {t("A Vaccine Locator for Santa Clara County")}
+        </Typography>
+        <Typography className={styles.info} variant="h6">
+          {t("You are eligible for vaccination if you are 16 and older!")}
+        </Typography>
+        <Typography className={styles.info} variant="subtitle1">
+          <strong>
+            {t(
+              "COVID-19 vaccines are free regardless of insurance or immigration status."
+            )}
+          </strong>{" "}
+          {t(
+            "You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs"
+          )}
+        </Typography>
+        <ScrollLink
+          to="appointmentsTop"
+          spy={true}
+          smooth={true}
+          offset={-20}
+          duration={500}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={styles.findVaxButton}
+          >
+            {t("Find My Vaccine!")}
+          </Button>
+        </ScrollLink>
+
+        <Typography className={styles.supportDisclaimer}>
+          <em>
+            <strong>{t("Notes")}: </strong>
+            {t(
+              "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support."
+            )}
+          </em>
+        </Typography>
+        <Divider className={styles.divider} />
+        <Typography
+          variant="h4"
+          className={styles.subtitle}
+          id="appointmentsTop"
+        >
+          {t("Find Appointments")}
+        </Typography>
+        {/* Search */}
+        <div className={styles.searchArea}>
+          <TextField
+            id="input-with-icon-textfield"
+            className={styles.search}
+            label={t("Search by Zipcode")}
+            placeholder="95014"
+            variant="outlined"
+            value={zipcode}
+            onChange={(e): void => {
+              // console.log(zipcode);
+              setZipcode(e.target.value);
+            }}
+            onKeyPress={onKeyPress}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={styles.searchButton}
+            startIcon={<SearchIcon />}
+            onClick={handleSearchClick}
+            disabled={zipcode.trim().length !== 5}
+          >
+            {t("Search Locations")}
+          </Button>
+        </div>
+
+        {/* Show Appointments and Loading */}
+        {appointments === undefined ? (
+          <div className={styles.loading}>
+            <Lottie
+              options={options}
+              height={200}
+              width={200}
+              isStopped={false}
+            />
+            <Typography variant="h5" className={styles.loadingCaption}>
+              {t("Loading Appointments!")}
+            </Typography>
+          </div>
+        ) : (
+          <>
+            {/* Available */}
+            <Typography
+              variant="h4"
+              className={styles.availiblityHeader}
+              id="appointmentsTop"
+            >
+              {t("Available Appointments") + ":"}
+            </Typography>
+            <Grid container spacing={2} className={styles.grid}>
+              {appointments.available.map(
+                (location: LocationCardProps, key) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      key={`grid-avlb-location-card-${key}`}
+                    >
+                      <LocationCard {...location} />
+                    </Grid>
+                  );
+                }
+              )}
+            </Grid>
+            {/* Unknown */}
+            <Typography
+              variant="h4"
+              className={styles.availiblityHeader}
+              id="appointmentsTop"
+            >
+              {t("Possible Availability") + ":"}
+            </Typography>
+            {showUnknown ? (
+              <>
+                <Grid container spacing={2} className={styles.grid}>
+                  {appointments.unknown.map(
+                    (location: LocationCardProps, key) => {
+                      return (
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          key={`grid-unkn-location-card-${location.id}`}
+                        >
+                          <LocationCard {...location} />
+                        </Grid>
+                      );
+                    }
+                  )}
+                </Grid>
+              </>
+            ) : (
+              <Button
+                color="primary"
+                variant="contained"
+                className={styles.disclosureButtons}
+                onClick={() => {
+                  setShowUnknown(true);
+                }}
+              >
+                Show Potentially Available Appointments
+              </Button>
+            )}
+            {/* Unavailable */}
+            <Typography
+              variant="h4"
+              className={styles.availiblityHeader}
+              id="appointmentsTop"
+            >
+              {t("No Appointments Available") + ":"}
+            </Typography>
+            {showUnavailable ? (
+              <>
+                <Grid container spacing={2} className={styles.grid}>
+                  {appointments.not_available.map(
+                    (location: LocationCardProps, key) => {
+                      return (
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          key={`grid-navlb-location-card-${location.id}`}
+                        >
+                          <LocationCard {...location} />
+                        </Grid>
+                      );
+                    }
+                  )}
+                </Grid>
+              </>
+            ) : (
+              <Button
+                color="primary"
+                variant="contained"
+                className={styles.disclosureButtons}
+                onClick={() => {
+                  setShowUnavailable(true);
+                }}
+              >
+                Show Unavailable Appointments
+              </Button>
+            )}
+          </>
+        )}
+      </Container>
+      <Footer />
+    </>
   );
 }
