@@ -117,7 +117,7 @@ export default function Home() {
       )
       .then((response) => {
         const serverResponse = response.data.data;
-        // console.log(serverResponse);
+        console.log(serverResponse);
         setAppointments(serverResponse);
       });
 
@@ -166,11 +166,18 @@ export default function Home() {
     },
   };
 
+  //TEST
+  const count2 = 10;
+  const name = "Daniel";
+
   return (
     <>
       <ResponsiveNavBar value={0} />
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
+        {/* <Trans i18nKey="testComplexTranslations" count={count2} name={name}>
+          Hi {{ name }}! You have {{ count }} new messages
+        </Trans> */}
         <Typography
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}

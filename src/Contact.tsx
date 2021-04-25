@@ -99,7 +99,7 @@ export default function Contact() {
             </Link>
           </ListItem>
         </List>
-        <div className={styles.contactGrid}>
+        {/* <div className={styles.contactGrid}>
           <Grid container spacing={4}>
             <Grid item xs={6} md={4}>
               <EmailIcon />
@@ -114,7 +114,7 @@ export default function Contact() {
               <Typography>@findmyvaxsc</Typography>
             </Grid>
           </Grid>
-        </div>
+        </div> */}
       </Container>
     </>
   );

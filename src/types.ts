@@ -1,8 +1,12 @@
 export interface LocationCardProps {
   last_check_message: string;
   last_check_date: string;
+  last_check_val: number;
+  last_check_unit: string;
   last_time_available_date: string;
   last_time_available_message: string;
+  last_time_available_val: number;
+  last_time_available_unit: string;
   id: string;
   x_parent: string;
   organization: string;

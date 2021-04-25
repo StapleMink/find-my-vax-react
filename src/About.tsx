@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    msTransform: "translate(-50%, -50%)",
   },
   pressLogo: {
     height: 100,

@@ -153,9 +153,9 @@ def add_location_and_appointment(json_data, main_entry):
     json_location_data['long_loc'] = main_entry.long_loc
     json_location_data['category'] = category
     json_location_data['last_check_date'] = main_entry.last_check
-    json_location_data['last_check_message'] = get_time_difference(main_entry.last_check)
+    json_location_data['last_check_message'], json_location_data['last_check_val'], json_location_data['last_check_unit'] = get_time_difference(main_entry.last_check)
     json_location_data['last_time_available_date'] = main_entry.last_good
-    json_location_data['last_time_available_message'] = get_time_difference(main_entry.last_good)
+    json_location_data['last_time_available_message'], json_location_data['last_time_available_val'], json_location_data['last_time_available_unit'] = get_time_difference(main_entry.last_good)
     json_location_data['current_uuid_set'] = main_entry.current_uuid_set
     json_location_data['appointment_list'] = []
     json_location_data['distance'] = -1
@@ -166,39 +166,47 @@ def add_location_and_appointment(json_data, main_entry):
 ''' Get time differences '''
 def get_time_difference(end):
     start = datetime.datetime.utcnow()
-    info_str = get_time_difference_string(start, end)
+    info_str, info_val, info_unit = get_time_difference_string(start, end)
 
-    return info_str
+    return info_str, info_val, info_unit
 
 
 ''' Format time differences into nice strings! '''
 def get_time_difference_string(start, end):
     if end is None:
-        return None
+        return None, None, None
     difference = start - end
     seconds = difference.total_seconds()
     if seconds < 60:
         info_str = "Less Than a Minute Ago"
+        info_val = seconds
+        info_unit = "SEC"
     elif seconds <= 3600:
         minutes = math.floor(seconds / 60)
+        info_val = minutes
+        info_unit = "MIN"
         if minutes == 1:
             info_str = "{} Minute Ago".format(minutes)
         else:
             info_str = "{} Minutes Ago".format(minutes)
     elif seconds >= 86400:
         days = math.floor(seconds / 86400)
+        info_val = days
+        info_unit = "DAY"
         if days == 1:
             info_str = "{} Day Ago".format(days)
         else:
             info_str = "{} Days Ago".format(days)
     elif seconds > 3600:
         hours = math.floor(seconds / 3600)
+        info_val = hours
+        info_unit = "HR"
         if hours == 1:
             info_str = "{} Hour Ago".format(hours)
         else:
             info_str = "{} Hours Ago".format(hours)
 
-    return info_str
+    return info_str, info_val, info_unit
 
 
 ''' Add additional info to locatiosn such as images and notes! '''

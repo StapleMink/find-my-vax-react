@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import TranslateIcon from "@material-ui/icons/Translate";
@@ -19,13 +19,13 @@ import { Divider } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { ReactComponent as FindMyVaxLogo } from "../assets/logo.svg";
 
-interface NavTabProps {
+interface NavProps {
   label?: string;
   href?: string;
   to: string;
 }
 
-function NavTab(props: NavTabProps) {
+function NavTab(props: NavProps) {
   const renderLink = React.useMemo(
     () =>
       React.forwardRef((itemProps, ref) => (
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-
+    msTransform: "translate(-50%, -50%)",
     width: 200,
   },
   desktopLogo: {
@@ -109,7 +109,7 @@ function TranslateMenu(props: TranslateMenuProps) {
       </MenuItem>
       {/* <MenuItem onClick={() => {handleLanguageChange("fr", "Français")}}>Français</MenuItem> */}
       <Divider className={styles.menuDivider} />
-      <MenuItem onClick={handleClose}>{t("Help to translate")}</MenuItem>
+      <MenuItem component={RouterLink} to="/contact" onClick={handleClose}>{t("Help to translate")}</MenuItem>
     </Menu>
   );
 }
@@ -187,10 +187,12 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               edge="start"
               className={styles.desktopLogo}
               color="inherit"
-              aria-label="menu"
+              aria-label="home"
               disableRipple
               disableFocusRipple
               style={{ backgroundColor: "transparent" }}
+              component={RouterLink}
+              to="/"
             >
               <FindMyVaxLogo className={styles.fmvLogo} />
             </IconButton>
@@ -212,9 +214,9 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
               })}
             </Tabs>
             <div className={styles.grow} />
-            <IconButton color="inherit" style={{ display: "none" }}>
+            {/* <IconButton color="inherit" style={{ display: "none" }}>
               <SearchIcon />
-            </IconButton>
+            </IconButton> */}
             <Button
               color="inherit"
               size="large"
@@ -240,16 +242,20 @@ export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
             </IconButton>
             <IconButton
               color="inherit"
-              aria-label="add"
+              aria-label="home"
               className={styles.logo}
+              disableRipple
+              disableFocusRipple
               style={{ backgroundColor: "transparent" }}
+              component={RouterLink}
+              to="/"
             >
               <FindMyVaxLogo className={styles.fmvLogo} />
             </IconButton>
             <div className={styles.grow} />
-            <IconButton color="inherit" style={{ display: "none" }}>
+            {/* <IconButton color="inherit" style={{ display: "none" }}>
               <SearchIcon />
-            </IconButton>
+            </IconButton> */}
             <Button
               color="inherit"
               size="large"

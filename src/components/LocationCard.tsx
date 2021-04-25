@@ -15,9 +15,10 @@ import Link from "@material-ui/core/Link";
 import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
 import ReportProblemRoundedIcon from "@material-ui/icons/ReportProblemRounded";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { green, orange, red } from "@material-ui/core/colors";
 import { LocationCardProps, AppointmentProps } from "../types";
+import LocationDialog from "./LocationDialog";
 
 const useStyles = makeStyles({
   root: {
@@ -117,7 +118,16 @@ export default function LocationCard(props: LocationCardProps) {
   const styles = useStyles();
   const { t } = useTranslation();
 
+  const last_checked_unit: string = props.last_check_unit;
+  const last_checked_value: number = props.last_check_val;
+  const last_time_available_unit: string = props.last_time_available_unit;
+  const last_time_available_value: number = props.last_time_available_val;
+
+  //Location Dialog
+  const [showLocationDialog, setShowLocationDialog] = React.useState(false);
+
   return (
+    <>
     <Card
       className={clsx({
         [styles.root]: true,
@@ -201,6 +211,7 @@ export default function LocationCard(props: LocationCardProps) {
                         <GreenButton
                           variant="outlined"
                           endIcon={<LaunchIcon />}
+                          onClick={() => setShowLocationDialog(true)}
                         >
                           {`${appointment.appointment_num} ${t("Appointment")}${
                             appointment.appointment_num > 1 ? "s" : ""
@@ -242,7 +253,11 @@ export default function LocationCard(props: LocationCardProps) {
           size="small"
           color="primary"
           component={Link}
-          href={`sms:&body=I found a vaccine appointments at ${props.name}! Located at: ${props.addr1}, ${props.addr2}. Book it here: ${props.link}`}
+          href={`sms:&body=${t("I found a vaccine appointments at")} ${
+            props.name
+          }! ${t("Located at")} ${props.addr1}, ${props.addr2}. ${t(
+            "Book it here"
+          )}: ${props.link}`}
         >
           {t("Share")}
         </Button>
@@ -279,20 +294,35 @@ export default function LocationCard(props: LocationCardProps) {
       <CardActions>
         <div>
           <Typography variant="caption" className={styles.metadata}>
-            <strong>{t("Last Updated")}:</strong> {props.last_check_message}
+            <strong>{t("Last Updated")}:</strong>{" "}
+            <Trans
+              i18nKey={last_checked_unit + "UpdateCaptionLC"}
+              count={last_checked_value}
+            >
+              {{ last_checked_value }} ago
+            </Trans>
           </Typography>
           {props.category === "available" ? (
             <></>
           ) : (
             <Typography variant="caption" className={styles.metadata}>
               <strong>{t("Last Availability")}:</strong>{" "}
-              {props.last_time_available_message === null
-                ? "Unknown"
-                : props.last_time_available_message}
+              {props.last_time_available_message === null ? (
+                t("Unknown")
+              ) : (
+                <Trans
+                  i18nKey={last_time_available_unit + "UpdateCaptionLA"}
+                  count={last_time_available_value}
+                >
+                  {{ last_time_available_value }} ago
+                </Trans>
+              )}
             </Typography>
           )}
         </div>
       </CardActions>
     </Card>
+    <LocationDialog location={props} showLocationDialog={showLocationDialog} setShowLocationDialog={setShowLocationDialog} />
+    </>
   );
 }

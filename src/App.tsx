@@ -5,6 +5,7 @@ import Tips from "./Tips";
 import Contact from "./Contact";
 import About from "./About";
 import HowToUse from "./HowToUse";
+import Status from "./Status";
 
 export default function App() {
   return (
@@ -13,6 +14,9 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/status">
+            <Status />
+          </Route>
           <Route path="/contact">
             <Contact />
           </Route>
