@@ -64,7 +64,7 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-      "@types/react-lottie": "^1.2.5",
+    "@types/react-lottie": "^1.2.5",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-scroll": "^1.8.2",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
