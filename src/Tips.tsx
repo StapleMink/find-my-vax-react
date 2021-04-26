@@ -4,10 +4,11 @@ import ResponsiveNavBar from "./components/ResponsiveNavBar";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
-import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
+import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Container from "@material-ui/core/Container";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function Tips() {
+export default function Tips(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
@@ -233,6 +234,7 @@ export default function Tips() {
           </Typography>
         </div>
       </Container>
+      <Footer />
     </>
   );
 }

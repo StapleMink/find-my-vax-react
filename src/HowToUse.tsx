@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function HowToUse() {
+export default function HowToUse(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
@@ -79,6 +80,7 @@ export default function HowToUse() {
           </Link>
         </Typography>
       </Container>
+      <Footer />
     </>
   );
 }

@@ -5,12 +5,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-} from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 import TranslateIcon from "@material-ui/icons/Translate";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -31,7 +28,7 @@ interface NavProps {
 function NavTab(props: NavProps) {
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps, ref) => (
+      React.forwardRef((itemProps) => (
         <RouterLink to={props.to} {...itemProps} />
       )),
     [props.to]
@@ -83,7 +80,7 @@ function TranslateMenu(props: TranslateMenuProps) {
   const { i18n, t } = useTranslation();
   const styles = useStyles();
 
-  function handleLanguageChange(newLanguageCode: string, newLanguage: string) {
+  function handleLanguageChange(newLanguageCode: string) {
     handleClose();
     i18n.changeLanguage(newLanguageCode);
   }
@@ -98,14 +95,14 @@ function TranslateMenu(props: TranslateMenuProps) {
     >
       <MenuItem
         onClick={() => {
-          handleLanguageChange("en", "English");
+          handleLanguageChange("en");
         }}
       >
         English
       </MenuItem>
       <MenuItem
         onClick={() => {
-          handleLanguageChange("es", "Español");
+          handleLanguageChange("es");
         }}
       >
         Español
@@ -119,7 +116,9 @@ function TranslateMenu(props: TranslateMenuProps) {
   );
 }
 
-export default function ResponsiveNavBar(props: ResponsiveNavBarProps) {
+export default function ResponsiveNavBar(
+  props: ResponsiveNavBarProps
+): JSX.Element {
   const styles = useStyles();
   const { t } = useTranslation();
   const pages = [

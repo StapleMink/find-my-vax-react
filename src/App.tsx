@@ -7,7 +7,7 @@ import About from "./About";
 import HowToUse from "./HowToUse";
 import Status from "./Status";
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <Router>
       <div>

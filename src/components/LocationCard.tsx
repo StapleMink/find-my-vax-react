@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, withStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -84,7 +84,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GreenButton = withStyles((theme: Theme) => ({
+const GreenButton = withStyles(() => ({
   root: {
     borderColor: green[600],
     color: green[700],
@@ -94,7 +94,7 @@ const GreenButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-const OrangeButton = withStyles((theme: Theme) => ({
+const OrangeButton = withStyles(() => ({
   root: {
     borderColor: orange[700],
     color: orange[800],
@@ -104,7 +104,7 @@ const OrangeButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-const RedButton = withStyles((theme: Theme) => ({
+const RedButton = withStyles(() => ({
   root: {
     borderColor: red[600],
     color: red[700],
@@ -114,7 +114,7 @@ const RedButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-export default function LocationCard(props: LocationCardProps) {
+export default function LocationCard(props: LocationCardProps): JSX.Element {
   const styles = useStyles();
   const { t } = useTranslation();
 
@@ -193,7 +193,7 @@ export default function LocationCard(props: LocationCardProps) {
             {props.category === "available" ? (
               <>
                 {props.appointment_list.map(
-                  (appointment: AppointmentProps, apptKey) => {
+                  (appointment: AppointmentProps) => {
                     return (
                       <Grid
                         item

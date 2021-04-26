@@ -5,9 +5,9 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Grid from "@material-ui/core/Grid";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import clsx from "clsx";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -72,6 +72,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+//TODO: Add popover and key
+
 function StatusItem(props: { name: string; status: string }) {
   const styles = useStyles();
   return (
@@ -89,7 +91,7 @@ function StatusItem(props: { name: string; status: string }) {
   );
 }
 
-export default function Status() {
+export default function Status(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
@@ -147,6 +149,9 @@ export default function Status() {
             <td className={styles.statusTableCell}>
               <StatusItem name={"Twitter Bot"} status="ONLINE" />
             </td>
+            <td className={styles.statusTableCell}>
+              <StatusItem name={"API"} status="ONLINE" />
+            </td>
           </tr>
         </table>
         <Typography variant="body1" className={styles.info}>
@@ -158,6 +163,7 @@ export default function Status() {
           </strong>
         </Typography>
       </Container>
+      <Footer />
     </>
   );
 }

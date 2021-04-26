@@ -97,7 +97,7 @@ interface AppointmentAPIProps {
   not_available: LocationCardProps[];
 }
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const styles = useStyles();
   const { t } = useTranslation();
   const [showUnknown, setShowUnknown] = useState(false);
@@ -166,18 +166,11 @@ export default function Home() {
     },
   };
 
-  //TEST
-  const count2 = 10;
-  const name = "Daniel";
-
   return (
     <>
       <ResponsiveNavBar value={0} />
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
-        {/* <Trans i18nKey="testComplexTranslations" count={count2} name={name}>
-          Hi {{ name }}! You have {{ count }} new messages
-        </Trans> */}
         <Typography
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
@@ -322,7 +315,7 @@ export default function Home() {
               <>
                 <Grid container spacing={2} className={styles.grid}>
                   {appointments.unknown.map(
-                    (location: LocationCardProps, key) => {
+                    (location: LocationCardProps) => {
                       return (
                         <Grid
                           item
@@ -361,7 +354,7 @@ export default function Home() {
               <>
                 <Grid container spacing={2} className={styles.grid}>
                   {appointments.not_available.map(
-                    (location: LocationCardProps, key) => {
+                    (location: LocationCardProps) => {
                       return (
                         <Grid
                           item
