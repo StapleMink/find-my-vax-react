@@ -314,20 +314,18 @@ export default function Home(): JSX.Element {
             {showUnknown ? (
               <>
                 <Grid container spacing={2} className={styles.grid}>
-                  {appointments.unknown.map(
-                    (location: LocationCardProps) => {
-                      return (
-                        <Grid
-                          item
-                          xs={12}
-                          sm={6}
-                          key={`grid-unkn-location-card-${location.id}`}
-                        >
-                          <LocationCard {...location} />
-                        </Grid>
-                      );
-                    }
-                  )}
+                  {appointments.unknown.map((location: LocationCardProps) => {
+                    return (
+                      <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        key={`grid-unkn-location-card-${location.id}`}
+                      >
+                        <LocationCard {...location} />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
               </>
             ) : (

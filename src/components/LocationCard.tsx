@@ -192,38 +192,34 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
           <Grid container spacing={1}>
             {props.category === "available" ? (
               <>
-                {props.appointment_list.map(
-                  (appointment: AppointmentProps) => {
-                    return (
-                      <Grid
-                        item
-                        xs={12}
-                        key={`${props.id}-appt-${appointment.id}`}
+                {props.appointment_list.map((appointment: AppointmentProps) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      key={`${props.id}-appt-${appointment.id}`}
+                    >
+                      <Typography>
+                        <strong>{appointment.date_str}:</strong>
+                      </Typography>
+                      <Tooltip
+                        arrow
+                        title={t("Book Appointment").toString()}
+                        placement="bottom"
                       >
-                        <Typography>
-                          <strong>{appointment.date_str}:</strong>
-                        </Typography>
-                        <Tooltip
-                          arrow
-                          title={t("Book Appointment").toString()}
-                          placement="bottom"
+                        <GreenButton
+                          variant="outlined"
+                          endIcon={<LaunchIcon />}
+                          onClick={() => setShowLocationDialog(true)}
                         >
-                          <GreenButton
-                            variant="outlined"
-                            endIcon={<LaunchIcon />}
-                            onClick={() => setShowLocationDialog(true)}
-                          >
-                            {`${appointment.appointment_num} ${t(
-                              "Appointment"
-                            )}${appointment.appointment_num > 1 ? "s" : ""} ${t(
-                              "Available"
-                            )}`}
-                          </GreenButton>
-                        </Tooltip>
-                      </Grid>
-                    );
-                  }
-                )}
+                          {`${appointment.appointment_num} ${t("Appointment")}${
+                            appointment.appointment_num > 1 ? "s" : ""
+                          } ${t("Available")}`}
+                        </GreenButton>
+                      </Tooltip>
+                    </Grid>
+                  );
+                })}
               </>
             ) : (
               <Grid item xs={12}>
