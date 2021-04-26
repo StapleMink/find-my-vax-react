@@ -1,4 +1,4 @@
-from app import db
+from api import app, db
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import ARRAY
 

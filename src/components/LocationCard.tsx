@@ -19,6 +19,12 @@ import { useTranslation, Trans } from "react-i18next";
 import { green, orange, red } from "@material-ui/core/colors";
 import { LocationCardProps, AppointmentProps } from "../types";
 import LocationDialog from "./LocationDialog";
+import generic from "../assets/generic.jpg";
+import cvsLogo from "../assets/cvsLogo.jpeg";
+import walgreensLogo from "../assets/walgreensLogo.jpeg";
+import riteAidLogo from "../assets/riteAidLogo.jpg";
+import emmanuelChurch from "../assets/emmanuelChurch.jpg";
+import eastValley from "../assets/eastValley.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -126,6 +132,20 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
   //Location Dialog
   const [showLocationDialog, setShowLocationDialog] = React.useState(false);
 
+  //Banner Image
+  let bannerImage = generic;
+  if (props.id === "6a44f9fe-2263-4688-b46b-9c4a0be74b01") {
+    bannerImage = emmanuelChurch;
+  } else if (props.id === "40965187-1b98-4135-bc1d-625c7bb46558") {
+    bannerImage = eastValley;
+  } else if (props.x_parent === "-21") {
+    bannerImage = cvsLogo;
+  } else if (props.x_parent === "-13") {
+    bannerImage = walgreensLogo;
+  } else if (props.x_parent === "") {
+    bannerImage = riteAidLogo;
+  }
+
   return (
     <>
       <Card
@@ -148,7 +168,15 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
         )}
 
         {props.vaccines === null || props.vaccines === "Unknown" ? (
-          <></>
+          <div className={styles.innerBadgeRight}>
+            <Typography variant="caption">
+              <strong>
+                {props.age === null || props.age === "Unknown"
+                  ? "Unknown Age"
+                  : props.age}
+              </strong>
+            </Typography>
+          </div>
         ) : (
           <div className={styles.innerBadgeRight}>
             <Typography variant="caption">
@@ -160,7 +188,10 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
           {props.category === "available" ? (
             <CardMedia
               className={styles.media}
-              image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
+              //image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
+              image={bannerImage}
+              //src={CVSLogo}
+              //component="img"
               title={props.name}
             />
           ) : (

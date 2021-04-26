@@ -228,7 +228,7 @@ def inject_additional_location_info(json_location_data, specific_text, category)
     elif json_location_data['x_parent'] == "8" and json_location_data["category"] == "available":
         json_location_data['notes'] = "Rite Aid Pharmacy appointments go quickly"
         json_location_data['warning_tier'] = 2
-    elif json_location_data['x_parent'] == "13" and json_location_data["category"] == "available":
+    elif json_location_data['x_parent'] == "-13" and json_location_data["category"] == "available":
         json_location_data['notes'] = "Walgreens Pharmacy appointments go quickly"
         json_location_data['warning_tier'] = 2
     temp_fixes(json_location_data)

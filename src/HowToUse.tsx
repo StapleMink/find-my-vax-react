@@ -6,6 +6,10 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Footer from "./components/Footer";
+import searchImage from "./assets/searchbar.png";
+import apptImage from "./assets/availappts-02.png";
+import possibleImage from "./assets/possible.png";
+import papptImage from "./assets/pappt.png";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,6 +30,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     display: "block",
+  },
+  searchImage: {
+    width: "400px",
+  },
+  apptImage: {
+    width: "400px",
+  },
+  possibleImage: {
+    maxWidth: "400px",
+  },
+  papptImage: {
+    maxWidth: "400px",
   },
 }));
 
@@ -49,6 +65,10 @@ export default function HowToUse(): JSX.Element {
           {
             "Type in your zip code if you would like to sort appointments by distance to you."
           }
+          {/* Search Bar Image*/}
+          <div>
+            <img src={searchImage} className={styles.searchImage}></img>
+          </div>
         </Typography>
         <Typography variant="body1" className={styles.info}>
           <strong>2.</strong>{" "}
@@ -62,6 +82,10 @@ export default function HowToUse(): JSX.Element {
             "If you find an appointment that matches your schedule, click on the relevant green button."
           }
         </Typography>
+        {/* Appointments Image*/}
+        <div>
+          <img src={apptImage} className={styles.apptImage}></img>
+        </div>
         <Typography variant="body1" className={styles.info}>
           <strong>4.</strong>{" "}
           {
@@ -73,10 +97,18 @@ export default function HowToUse(): JSX.Element {
           <strong>{`"Possible Availability"`}</strong>{" "}
           {" button and check appointments on an individual basis."}
         </Typography>
+        {/* Possible Appointments*/}
+        <div>
+          <img src={possibleImage} className={styles.possibleImage}></img>
+        </div>
+        {/* Possible Appointments Image*/}
+        <div>
+          <img src={papptImage} className={styles.papptImage}></img>
+        </div>
         <Typography variant="h6" className={styles.info}>
           {"If you have any questions contact us at "}
-          <Link href="mailto:press@findmyvaxsc.com" target="_blank">
-            press@findmyvaxsc.com
+          <Link href="mailto:help@findmyvaxsc.com" target="_blank">
+            help@findmyvaxsc.com
           </Link>
         </Typography>
       </Container>

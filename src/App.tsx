@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home";
-import Tips from "./Tips";
+import Resources from "./Resources";
 import Contact from "./Contact";
 import About from "./About";
 import HowToUse from "./HowToUse";
@@ -23,8 +23,8 @@ export default function App(): JSX.Element {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/tips">
-            <Tips />
+          <Route path="/resources">
+            <Resources />
           </Route>
           <Route path="/howtouse">
             <HowToUse />

@@ -83,11 +83,11 @@ export default function Contact(): JSX.Element {
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="sc@findmyvaxla.com" target="_blank">
+            <Link href="mailto:contact@findmyvaxsc.com" target="_blank">
               <ListItemIcon>
                 <EmailIcon />
               </ListItemIcon>
-              <ListItemText primary="Email: sc@findmyvaxla.com"></ListItemText>
+              <ListItemText primary="Email: contact@findmyvaxsc.com"></ListItemText>
             </Link>
           </ListItem>
           <ListItem>

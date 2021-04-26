@@ -112,9 +112,7 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     //Get Appointment Details
     axios
-      .get(
-        `/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}&brands=true`
-      )
+      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}`)
       .then((response) => {
         const serverResponse = response.data.data;
         console.log(serverResponse);
@@ -126,12 +124,10 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     //Get Appointment Details
-    axios
-      .get("/api/v2.0/appointments/results.json?brands=true")
-      .then((response) => {
-        const serverResponse = response.data.data;
-        setAppointments(serverResponse);
-      });
+    axios.get("/api/v2.0/appointments/results.json").then((response) => {
+      const serverResponse = response.data.data;
+      setAppointments(serverResponse);
+    });
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
@@ -295,6 +291,7 @@ export default function Home(): JSX.Element {
                       item
                       xs={12}
                       sm={6}
+                      md={4}
                       key={`grid-avlb-location-card-${key}`}
                     >
                       <LocationCard {...location} />

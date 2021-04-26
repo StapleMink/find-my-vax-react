@@ -126,43 +126,44 @@ export default function About(): JSX.Element {
           <Link href="https://twitter.com/findmyvaxsc" target="_blank">
             Twitter
           </Link>
-          {"."}
-          <div className={styles.pressLogoGrid}>
-            <Grid spacing={4} container>
-              <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
-                <div className={styles.pressLogo}>
-                  {/* <img
+        </Typography>
+        {"."}
+        <div className={styles.pressLogoGrid}>
+          <Grid spacing={4} container>
+            <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
+              <div className={styles.pressLogo}>
+                {/* <img
                     src={
                       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/American_Broadcasting_Company_Logo.svg/1022px-American_Broadcasting_Company_Logo.svg.png"
                     }
                     alt="San Francisco Chronicle"
                     className={styles.pressLogoImg}
                   /> */}
-                </div>
-              </Grid>
-              <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
-                <div className={styles.pressLogo}>
-                  <img
-                    src={sfChronicle}
-                    alt="San Francisco Chronicle"
-                    className={styles.pressLogoImg}
-                  />
-                </div>
-              </Grid>
-              <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
-                <div className={styles.pressLogo}>
-                  {/* <img
+              </div>
+            </Grid>
+            <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
+              <div className={styles.pressLogo}>
+                <img
+                  src={sfChronicle}
+                  alt="San Francisco Chronicle"
+                  className={styles.pressLogoImg}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
+              <div className={styles.pressLogo}>
+                {/* <img
                     src={
                       "https://cdn.abcotvs.net/abcotv/static/kgo/logos/kgo_logo_2x.png"
                     }
                     alt="San Francisco Chronicle"
                     className={styles.pressLogoImg}
                   /> */}
-                </div>
-              </Grid>
+              </div>
             </Grid>
-          </div>
-        </Typography>
+          </Grid>
+        </div>
+
         <Typography variant="h4" className={styles.title}>
           {"Donate"}
         </Typography>

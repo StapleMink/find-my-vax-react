@@ -28,7 +28,7 @@ interface NavProps {
 function NavTab(props: NavProps) {
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps) => (
+      React.forwardRef((itemProps, ref) => (
         <RouterLink to={props.to} {...itemProps} />
       )),
     [props.to]
@@ -131,8 +131,8 @@ export default function ResponsiveNavBar(
       link: "/howtouse",
     },
     {
-      name: t("Tips"),
-      link: "/tips",
+      name: t("Resources"),
+      link: "/resources",
     },
     {
       name: t("About"),

@@ -14,6 +14,7 @@ export interface LocationCardProps {
   addr1: string;
   addr2: string;
   vaccines: string | undefined;
+  age: string | undefined;
   map_zoom: string;
   link: string;
   comments: string | undefined;
