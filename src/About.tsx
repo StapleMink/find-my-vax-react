@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import sfChronicle from "./assets/sfChronicle.png";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -182,6 +183,7 @@ export default function About(): JSX.Element {
           </ListItem>
         </List>
       </Container>
+      <Footer/>
     </>
   );
 }
