@@ -140,6 +140,7 @@ def add_location_and_appointment(json_data, main_entry):
     json_location_data['id'] = main_entry_id
     json_location_data['x_parent'] = main_entry.x_parent
     json_location_data['organization'] = main_entry.organization
+    json_location_data['age'] = main_entry.age
     json_location_data['name'] = main_entry.name
     json_location_data['addr1'] = main_entry.addr1
     json_location_data['addr2'] = main_entry.addr2
