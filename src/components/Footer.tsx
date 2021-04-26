@@ -1,11 +1,11 @@
 import React from "react";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   footer: {
     marginTop: 50,
     textAlign: "center",
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   const styles = useStyles();
 
   return (

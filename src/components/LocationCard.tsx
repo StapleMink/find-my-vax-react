@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, withStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -19,6 +19,12 @@ import { useTranslation, Trans } from "react-i18next";
 import { green, orange, red } from "@material-ui/core/colors";
 import { LocationCardProps, AppointmentProps } from "../types";
 import LocationDialog from "./LocationDialog";
+import generic from "../assets/generic.jpg";
+import cvsLogo from "../assets/cvsLogo.jpeg";
+import walgreensLogo from "../assets/walgreensLogo.jpeg";
+import riteAidLogo from "../assets/riteAidLogo.jpg";
+import emmanuelChurch from "../assets/emmanuelChurch.jpg";
+import eastValley from "../assets/eastValley.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -84,7 +90,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GreenButton = withStyles((theme: Theme) => ({
+const GreenButton = withStyles(() => ({
   root: {
     borderColor: green[600],
     color: green[700],
@@ -94,7 +100,7 @@ const GreenButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-const OrangeButton = withStyles((theme: Theme) => ({
+const OrangeButton = withStyles(() => ({
   root: {
     borderColor: orange[700],
     color: orange[800],
@@ -104,7 +110,7 @@ const OrangeButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-const RedButton = withStyles((theme: Theme) => ({
+const RedButton = withStyles(() => ({
   root: {
     borderColor: red[600],
     color: red[700],
@@ -114,7 +120,7 @@ const RedButton = withStyles((theme: Theme) => ({
   },
 }))(Button);
 
-export default function LocationCard(props: LocationCardProps) {
+export default function LocationCard(props: LocationCardProps): JSX.Element {
   const styles = useStyles();
   const { t } = useTranslation();
 
@@ -125,6 +131,20 @@ export default function LocationCard(props: LocationCardProps) {
 
   //Location Dialog
   const [showLocationDialog, setShowLocationDialog] = React.useState(false);
+
+  //Banner Image
+  let bannerImage = generic;
+  if (props.id === "6a44f9fe-2263-4688-b46b-9c4a0be74b01") {
+    bannerImage = emmanuelChurch;
+  } else if (props.id === "40965187-1b98-4135-bc1d-625c7bb46558") {
+    bannerImage = eastValley;
+  } else if (props.x_parent === "-21") {
+    bannerImage = cvsLogo;
+  } else if (props.x_parent === "-13") {
+    bannerImage = walgreensLogo;
+  } else if (props.x_parent === "") {
+    bannerImage = riteAidLogo;
+  }
 
   return (
     <>
@@ -148,7 +168,15 @@ export default function LocationCard(props: LocationCardProps) {
         )}
 
         {props.vaccines === null || props.vaccines === "Unknown" ? (
-          <></>
+          <div className={styles.innerBadgeRight}>
+            <Typography variant="caption">
+              <strong>
+                {props.age === null || props.age === "Unknown"
+                  ? t("Unknown Age")
+                  : props.age}
+              </strong>
+            </Typography>
+          </div>
         ) : (
           <div className={styles.innerBadgeRight}>
             <Typography variant="caption">
@@ -160,7 +188,10 @@ export default function LocationCard(props: LocationCardProps) {
           {props.category === "available" ? (
             <CardMedia
               className={styles.media}
-              image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
+              //image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
+              image={bannerImage}
+              //src={CVSLogo}
+              //component="img"
               title={props.name}
             />
           ) : (
@@ -192,38 +223,41 @@ export default function LocationCard(props: LocationCardProps) {
           <Grid container spacing={1}>
             {props.category === "available" ? (
               <>
-                {props.appointment_list.map(
-                  (appointment: AppointmentProps, apptKey) => {
-                    return (
-                      <Grid
-                        item
-                        xs={12}
-                        key={`${props.id}-appt-${appointment.id}`}
+                {props.appointment_list.map((appointment: AppointmentProps) => {
+                  const numberAppointments = appointment.appointment_num;
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      key={`${props.id}-appt-${appointment.id}`}
+                    >
+                      <Typography>
+                        <strong>{appointment.date_str}:</strong>
+                      </Typography>
+                      <Tooltip
+                        arrow
+                        title={t("Book Appointment").toString()}
+                        placement="bottom"
                       >
-                        <Typography>
-                          <strong>{appointment.date_str}:</strong>
-                        </Typography>
-                        <Tooltip
-                          arrow
-                          title={t("Book Appointment").toString()}
-                          placement="bottom"
+                        <GreenButton
+                          variant="outlined"
+                          endIcon={<LaunchIcon />}
+                          onClick={() => setShowLocationDialog(true)}
                         >
-                          <GreenButton
-                            variant="outlined"
-                            endIcon={<LaunchIcon />}
-                            onClick={() => setShowLocationDialog(true)}
+                          {/* {`${appointment.appointment_num} ${t("Appointment")}${
+                            appointment.appointment_num > 1 ? "s" : ""
+                          } ${t("Available")}`} */}
+                          <Trans
+                            i18nKey="appointmentsButton"
+                            count={numberAppointments}
                           >
-                            {`${appointment.appointment_num} ${t(
-                              "Appointment"
-                            )}${appointment.appointment_num > 1 ? "s" : ""} ${t(
-                              "Available"
-                            )}`}
-                          </GreenButton>
-                        </Tooltip>
-                      </Grid>
-                    );
-                  }
-                )}
+                            {{ numberAppointments }} Appointments Available
+                          </Trans>
+                        </GreenButton>
+                      </Tooltip>
+                    </Grid>
+                  );
+                })}
               </>
             ) : (
               <Grid item xs={12}>
@@ -285,7 +319,8 @@ export default function LocationCard(props: LocationCardProps) {
                 })}
               />
               <Typography variant="body2" className={styles.metadata}>
-                <strong>{t("Note")}:</strong> {props.notes}
+                <strong>{t("Note")}:</strong>{" "}
+                {t((props.notes ?? "").toString())}
               </Typography>
             </CardActions>
           </>

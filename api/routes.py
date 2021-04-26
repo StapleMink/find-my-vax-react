@@ -52,7 +52,6 @@ def get_lat_long_for_cali_zipcodes():
     return zip_code_json
 
 
-
 def get_vaccine_appointments():
     zipcode = request.args.get('zipcode')
     brands = request.args.get('brands')
@@ -141,6 +140,7 @@ def add_location_and_appointment(json_data, main_entry):
     json_location_data['id'] = main_entry_id
     json_location_data['x_parent'] = main_entry.x_parent
     json_location_data['organization'] = main_entry.organization
+    json_location_data['age'] = main_entry.age
     json_location_data['name'] = main_entry.name
     json_location_data['addr1'] = main_entry.addr1
     json_location_data['addr2'] = main_entry.addr2
@@ -222,15 +222,15 @@ def inject_additional_location_info(json_location_data, specific_text, category)
         if json_location_data['addr1'].lower().strip() == "615 W Avenue l.":
             json_location_data['addr1'] = "2551 West Ave. H"
             json_location_data['addr2'] = "Lancaster, CA 93534"
-    elif json_location_data['x_parent'] == "-11" and json_location_data["category"] == "available":
+    elif json_location_data['x_parent'] == "-21" and json_location_data["category"] == "available":
         json_location_data['notes'] = "CVS Pharmacy appointments go quickly"
-        json_location_data['warning_tier'] = 1
+        json_location_data['warning_tier'] = 2
     elif json_location_data['x_parent'] == "8" and json_location_data["category"] == "available":
         json_location_data['notes'] = "Rite Aid Pharmacy appointments go quickly"
-        json_location_data['warning_tier'] = 1
-    elif json_location_data['x_parent'] == "13" and json_location_data["category"] == "available":
+        json_location_data['warning_tier'] = 2
+    elif json_location_data['x_parent'] == "-13" and json_location_data["category"] == "available":
         json_location_data['notes'] = "Walgreens Pharmacy appointments go quickly"
-        json_location_data['warning_tier'] = 1
+        json_location_data['warning_tier'] = 2
     temp_fixes(json_location_data)
 
 

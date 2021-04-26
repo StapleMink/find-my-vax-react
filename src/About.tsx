@@ -5,11 +5,12 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
-import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
+import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import sfChronicle from "./assets/sfChronicle.png";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function About() {
+export default function About(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
@@ -125,43 +126,44 @@ export default function About() {
           <Link href="https://twitter.com/findmyvaxsc" target="_blank">
             Twitter
           </Link>
-          {"."}
-          <div className={styles.pressLogoGrid}>
-            <Grid spacing={4} container>
-              <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
-                <div className={styles.pressLogo}>
-                  {/* <img
+        </Typography>
+        {"."}
+        <div className={styles.pressLogoGrid}>
+          <Grid spacing={4} container>
+            <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
+              <div className={styles.pressLogo}>
+                {/* <img
                     src={
                       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/American_Broadcasting_Company_Logo.svg/1022px-American_Broadcasting_Company_Logo.svg.png"
                     }
                     alt="San Francisco Chronicle"
                     className={styles.pressLogoImg}
                   /> */}
-                </div>
-              </Grid>
-              <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
-                <div className={styles.pressLogo}>
-                  <img
-                    src={sfChronicle}
-                    alt="San Francisco Chronicle"
-                    className={styles.pressLogoImg}
-                  />
-                </div>
-              </Grid>
-              <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
-                <div className={styles.pressLogo}>
-                  {/* <img
+              </div>
+            </Grid>
+            <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
+              <div className={styles.pressLogo}>
+                <img
+                  src={sfChronicle}
+                  alt="San Francisco Chronicle"
+                  className={styles.pressLogoImg}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
+              <div className={styles.pressLogo}>
+                {/* <img
                     src={
                       "https://cdn.abcotvs.net/abcotv/static/kgo/logos/kgo_logo_2x.png"
                     }
                     alt="San Francisco Chronicle"
                     className={styles.pressLogoImg}
                   /> */}
-                </div>
-              </Grid>
+              </div>
             </Grid>
-          </div>
-        </Typography>
+          </Grid>
+        </div>
+
         <Typography variant="h4" className={styles.title}>
           {"Donate"}
         </Typography>
@@ -182,6 +184,7 @@ export default function About() {
           </ListItem>
         </List>
       </Container>
+      <Footer />
     </>
   );
 }

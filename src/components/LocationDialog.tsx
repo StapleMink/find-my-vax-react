@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const GreenButton = withStyles((theme: Theme) => ({
+const GreenButton = withStyles(() => ({
   root: {
     borderColor: green[600],
     color: "white",
@@ -115,13 +115,13 @@ export default function LocationDialog(props: {
   location: LocationCardProps;
   setShowLocationDialog: React.Dispatch<React.SetStateAction<boolean>>;
   showLocationDialog: boolean;
-}) {
+}): JSX.Element {
   const { location, setShowLocationDialog, showLocationDialog } = props;
   const styles = useStyles();
 
-  const handleClickOpen = () => {
-    setShowLocationDialog(true);
-  };
+  // const handleClickOpen = () => {
+  //   setShowLocationDialog(true);
+  // };
   const handleClose = () => {
     setShowLocationDialog(false);
   };

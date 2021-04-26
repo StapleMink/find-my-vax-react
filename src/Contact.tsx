@@ -4,7 +4,7 @@ import ResponsiveNavBar from "./components/ResponsiveNavBar";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
-import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
+import ListItem from "@material-ui/core/ListItem";
 import Container from "@material-ui/core/Container";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -12,7 +12,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import EmailIcon from "@material-ui/icons/Email";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Grid from "@material-ui/core/Grid";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function Contact() {
+export default function Contact(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
@@ -83,11 +83,11 @@ export default function Contact() {
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="sc@findmyvaxla.com" target="_blank">
+            <Link href="mailto:contact@findmyvaxsc.com" target="_blank">
               <ListItemIcon>
                 <EmailIcon />
               </ListItemIcon>
-              <ListItemText primary="Email: sc@findmyvaxla.com"></ListItemText>
+              <ListItemText primary="Email: contact@findmyvaxsc.com"></ListItemText>
             </Link>
           </ListItem>
           <ListItem>
@@ -116,6 +116,7 @@ export default function Contact() {
           </Grid>
         </div> */}
       </Container>
+      <Footer />
     </>
   );
 }

@@ -97,7 +97,7 @@ interface AppointmentAPIProps {
   not_available: LocationCardProps[];
 }
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const styles = useStyles();
   const { t } = useTranslation();
   const [showUnknown, setShowUnknown] = useState(false);
@@ -112,9 +112,7 @@ export default function Home() {
   useEffect(() => {
     //Get Appointment Details
     axios
-      .get(
-        `/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}&brands=true`
-      )
+      .get(`/api/v2.0/appointments/results.json?zipcode=${zipcodeToSearch}`)
       .then((response) => {
         const serverResponse = response.data.data;
         console.log(serverResponse);
@@ -126,12 +124,10 @@ export default function Home() {
 
   useEffect(() => {
     //Get Appointment Details
-    axios
-      .get("/api/v2.0/appointments/results.json?brands=true")
-      .then((response) => {
-        const serverResponse = response.data.data;
-        setAppointments(serverResponse);
-      });
+    axios.get("/api/v2.0/appointments/results.json").then((response) => {
+      const serverResponse = response.data.data;
+      setAppointments(serverResponse);
+    });
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
   }, []);
@@ -166,18 +162,11 @@ export default function Home() {
     },
   };
 
-  //TEST
-  const count2 = 10;
-  const name = "Daniel";
-
   return (
     <>
       <ResponsiveNavBar value={0} />
       {/* Content */}
       <Container maxWidth="lg" className={styles.content}>
-        {/* <Trans i18nKey="testComplexTranslations" count={count2} name={name}>
-          Hi {{ name }}! You have {{ count }} new messages
-        </Trans> */}
         <Typography
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
@@ -302,6 +291,7 @@ export default function Home() {
                       item
                       xs={12}
                       sm={6}
+                      md={4}
                       key={`grid-avlb-location-card-${key}`}
                     >
                       <LocationCard {...location} />
@@ -321,20 +311,18 @@ export default function Home() {
             {showUnknown ? (
               <>
                 <Grid container spacing={2} className={styles.grid}>
-                  {appointments.unknown.map(
-                    (location: LocationCardProps, key) => {
-                      return (
-                        <Grid
-                          item
-                          xs={12}
-                          sm={6}
-                          key={`grid-unkn-location-card-${location.id}`}
-                        >
-                          <LocationCard {...location} />
-                        </Grid>
-                      );
-                    }
-                  )}
+                  {appointments.unknown.map((location: LocationCardProps) => {
+                    return (
+                      <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        key={`grid-unkn-location-card-${location.id}`}
+                      >
+                        <LocationCard {...location} />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
               </>
             ) : (
@@ -346,7 +334,7 @@ export default function Home() {
                   setShowUnknown(true);
                 }}
               >
-                Show Potentially Available Appointments
+                {t("Show Potentially Available Appointments")}
               </Button>
             )}
             {/* Unavailable */}
@@ -361,7 +349,7 @@ export default function Home() {
               <>
                 <Grid container spacing={2} className={styles.grid}>
                   {appointments.not_available.map(
-                    (location: LocationCardProps, key) => {
+                    (location: LocationCardProps) => {
                       return (
                         <Grid
                           item
@@ -385,7 +373,7 @@ export default function Home() {
                   setShowUnavailable(true);
                 }}
               >
-                Show Unavailable Appointments
+                {t("Show Unavailable Appointments")}
               </Button>
             )}
           </>

@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-// import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-// import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link as RouterLink } from "react-router-dom";
@@ -27,7 +25,8 @@ function NavSideBarTab(props: NavTabProps) {
   //console.log("Destination: " + props.to);
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps, ref) => (
+      //React.forwardRef((itemProps, ref) =>
+      React.forwardRef((itemProps) => (
         <RouterLink to={props.to} {...itemProps} />
       )),
     [props.to]
@@ -51,7 +50,7 @@ interface SideBarProps {
   }[];
 }
 
-export default function SideBar(props: SideBarProps) {
+export default function SideBar(props: SideBarProps): JSX.Element {
   const classes = useStyles();
 
   return (
