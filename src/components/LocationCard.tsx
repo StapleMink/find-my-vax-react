@@ -172,7 +172,7 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
             <Typography variant="caption">
               <strong>
                 {props.age === null || props.age === "Unknown"
-                  ? "Unknown Age"
+                  ? t("Unknown Age")
                   : props.age}
               </strong>
             </Typography>
@@ -224,6 +224,7 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
             {props.category === "available" ? (
               <>
                 {props.appointment_list.map((appointment: AppointmentProps) => {
+                  const numberAppointments = appointment.appointment_num;
                   return (
                     <Grid
                       item
@@ -243,9 +244,15 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
                           endIcon={<LaunchIcon />}
                           onClick={() => setShowLocationDialog(true)}
                         >
-                          {`${appointment.appointment_num} ${t("Appointment")}${
+                          {/* {`${appointment.appointment_num} ${t("Appointment")}${
                             appointment.appointment_num > 1 ? "s" : ""
-                          } ${t("Available")}`}
+                          } ${t("Available")}`} */}
+                          <Trans
+                            i18nKey="appointmentsButton"
+                            count={numberAppointments}
+                          >
+                            {{ numberAppointments }} Appointments Available
+                          </Trans>
                         </GreenButton>
                       </Tooltip>
                     </Grid>
@@ -312,7 +319,8 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
                 })}
               />
               <Typography variant="body2" className={styles.metadata}>
-                <strong>{t("Note")}:</strong> {props.notes}
+                <strong>{t("Note")}:</strong>{" "}
+                {t((props.notes ?? "").toString())}
               </Typography>
             </CardActions>
           </>

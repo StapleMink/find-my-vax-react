@@ -49,5 +49,14 @@
   "DAYUpdateCaptionLA_plural": "<0>{{last_time_available_value}}</0> days ago",
   "I found a vaccine appointments at": "I found a vaccine appointments at",
   "Located at": "Located at",
-  "Book it here": "Book it here"
+  "Book it here": "Book it here",
+  "Unknown Age": "Unknown Age",
+  "You do NOT need to be a member of Kaiser Permanente": "You do NOT need to be a member of Kaiser Permanente",
+  "CVS Pharmacy appointments go quickly": "CVS Pharmacy appointments go quickly",
+  "Rite Aid Pharmacy appointments go quickly": "Rite Aid Pharmacy appointments go quickly",
+  "Walgreens Pharmacy appointments go quickly": "Walgreens Pharmacy appointments go quickly",
+  "Show Potentially Available Appointments": "Show Potentially Available Appointments",
+  "Show Unavailable Appointments": "Show Unavailable Appointments",
+  "appointmentsButton": "<0>{{numberAppointments}}</0> appointment",
+  "appointmentsButton_plural": "<0>{{numberAppointments}}</0> appointments"
 }

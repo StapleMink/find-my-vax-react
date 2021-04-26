@@ -334,7 +334,7 @@ export default function Home(): JSX.Element {
                   setShowUnknown(true);
                 }}
               >
-                Show Potentially Available Appointments
+                {t("Show Potentially Available Appointments")}
               </Button>
             )}
             {/* Unavailable */}
@@ -373,7 +373,7 @@ export default function Home(): JSX.Element {
                   setShowUnavailable(true);
                 }}
               >
-                Show Unavailable Appointments
+                {t("Show Unavailable Appointments")}
               </Button>
             )}
           </>
