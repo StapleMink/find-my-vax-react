@@ -183,7 +183,7 @@ export default function About(): JSX.Element {
           </ListItem>
         </List>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   );
 }

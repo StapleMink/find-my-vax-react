@@ -25,7 +25,7 @@ function NavSideBarTab(props: NavTabProps) {
   //console.log("Destination: " + props.to);
   const renderLink = React.useMemo(
     () =>
-    //React.forwardRef((itemProps, ref) => 
+      //React.forwardRef((itemProps, ref) =>
       React.forwardRef((itemProps) => (
         <RouterLink to={props.to} {...itemProps} />
       )),
