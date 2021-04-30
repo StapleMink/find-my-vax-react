@@ -12,6 +12,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import EmailIcon from "@material-ui/icons/Email";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTranslation } from "react-i18next";
 import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function Contact(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
+  const { t } = useTranslation();
 
   return (
     <>
@@ -62,11 +64,11 @@ export default function Contact(): JSX.Element {
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
         >
-          {"Contact"}
+          {t("Contact")}
         </Typography>
         <Typography variant="h6" className={styles.info}>
           {
-            "If you have any other questions or concerns, please contact us through the options below: "
+            t("contact1")
           }
         </Typography>
         <List
@@ -87,7 +89,7 @@ export default function Contact(): JSX.Element {
               <ListItemIcon>
                 <EmailIcon />
               </ListItemIcon>
-              <ListItemText primary="Email: contact@findmyvaxsc.com"></ListItemText>
+              <ListItemText primary={`${t("Email")} contact@findmyvaxsc.com`}></ListItemText>
             </Link>
           </ListItem>
           <ListItem>

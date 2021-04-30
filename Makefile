@@ -1,6 +1,6 @@
-.PHONY: clean
-clean:
-	rm -rf node_modules .cache public
+# .PHONY: clean
+# clean:
+# 	rm -rf node_modules .cache public
 
 .PHONY: develop
 	npm start

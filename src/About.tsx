@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import sfChronicle from "./assets/sfChronicle.png";
+import { useTranslation } from "react-i18next";
 import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -65,6 +66,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function About(): JSX.Element {
   const styles = useStyles();
+  const { t } = useTranslation();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
   return (
@@ -76,7 +78,7 @@ export default function About(): JSX.Element {
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
         >
-          {"About"}
+          {t("About")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
           {

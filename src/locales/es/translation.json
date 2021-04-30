@@ -1,7 +1,7 @@
 {
   "Home": "Inicio",
   "How To Use": "Cómo Utilizar",
-  "Tips": "Consejos",
+  "Resources": "Recursos",
   "About": "Acerca De",
   "Contact": "Contacto",
   "English": "Español",
@@ -58,5 +58,20 @@
   "Show Potentially Available Appointments": "Mostrar citas potencialmente disponibles",
   "Show Unavailable Appointments": "Mostrar citas no disponibles",
   "appointmentsButton": "<0>{{numberAppointments}}</0> cita",
-  "appointmentsButton_plural": "<0>{{numberAppointments}}</0> citas"
+  "appointmentsButton_plural": "<0>{{numberAppointments}}</0> citas",
+
+  "How to Use Find My Vax": "Cómo utilizar Find My Vax",
+  "howToUse1": "Escriba su código postal si desea ordenar las citas por distancia a usted.",
+  "howToUse2": "Desplácese hacia abajo para verificar la disponibilidad casi en tiempo real en \"<1>Citas disponibles</1>\" y verifique si alguna cita se ajusta a su horario.",
+  "howToUse3": "Si encuentra una cita que coincida con su horario, haga clic en el botón verde correspondiente.",
+  "howToUse4": "Una vez que haga clic en el enlace, aparecerá una ventana emergente con instrucciones adicionales y un botón verde de continuar para ir al sitio correspondiente y seguir las instrucciones del sitio para registrarse.",
+  "howToUse5": "Si ninguna cita se ajusta a su horario, haga clic en el botón \"<1>Posible disponibilidad\"</1> y verifique las citas de forma individual.",
+  "If you have any questions contact us at":"Si tiene alguna pregunta comuníquese con nosotros al",
+
+  "":"",
+
+  "":"",
+
+  "contact1": "If you have any other questions or concerns, please contact us through the options below:",
+  "Email":"Correo electrónico:"
 }

@@ -1,7 +1,7 @@
 {
   "Home": "Home",
   "How To Use": "How To Use",
-  "Tips": "Tips",
+  "Resources": "Resources",
   "About": "About",
   "Contact": "Contact",
   "English": "English",
@@ -58,5 +58,21 @@
   "Show Potentially Available Appointments": "Show Potentially Available Appointments",
   "Show Unavailable Appointments": "Show Unavailable Appointments",
   "appointmentsButton": "<0>{{numberAppointments}}</0> appointment",
-  "appointmentsButton_plural": "<0>{{numberAppointments}}</0> appointments"
+  "appointmentsButton_plural": "<0>{{numberAppointments}}</0> appointments",
+  
+  "How to Use Find My Vax": "How to Use Find My Vax",
+  "howToUse1": "Type in your zip code if you would like to sort appointments by distance to you.",
+  "howToUse2":"Scroll down to check near-real-time availability under \"<1>Available Appointments</1>\" and check if any appointments fit your schedule.",
+  "howToUse3":"If you find an appointment that matches your schedule, click on the relevant green button.",
+  "howToUse4":"Once you click the link, a pop-up window will show with additional instruction and a green continue button to go to the relevant site and follow the instructions on the site to sign up.",
+  "howToUse5": "If no appointments fit your schedule, click \"<1>Possible Availability</1>\" button and check appointments on an individual basis.",
+  "If you have any questions contact us at":"If you have any questions contact us at",
+
+  "":"",
+
+  "":"",
+
+  "contact1": "If you have any other questions or concerns, please contact us through the options below:",
+  "Email":"Email:"
+
 }
