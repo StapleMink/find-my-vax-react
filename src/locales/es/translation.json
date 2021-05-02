@@ -4,8 +4,9 @@
   "Resources": "Recursos",
   "About": "Acerca De",
   "Contact": "Contacto",
-  "English": "Español",
+  "currentLangauge": "Español",
   "Help to translate": "Ayuda para traducir",
+
   "Welcome to Find My Vax Santa Clara": "Bienvenido a Find My Vax Santa Clara",
   "A Vaccine Locator for Santa Clara County": "Un Localizador de Vacunas para el Condado de Santa Clara",
   "You are eligible for vaccination if you are 16 and older!": "¡Es elegible para la vacunación si tiene 16 años o más!",
@@ -14,6 +15,7 @@
   "Find My Vaccine!": "¡Encuentra mi vacuna!",
   "Notes": "Notas",
   "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support.": "En este momento apoyamos los sitios del condado de Santa Clara, CVS, Rite Aid, Walgreens y Walmart. Tenemos soporte de disponibilidad limitada para Safeway. Puede haber falsos positivos. Estamos trabajando para agregar continuamente más soporte.",
+  
   "Find Appointments": "Buscar Citas",
   "Search by Zipcode": "Buscar por Código Postal",
   "Search Locations": "Buscar Ubicaciones",
@@ -60,6 +62,7 @@
   "appointmentsButton": "<0>{{numberAppointments}}</0> cita",
   "appointmentsButton_plural": "<0>{{numberAppointments}}</0> citas",
 
+
   "How to Use Find My Vax": "Cómo utilizar Find My Vax",
   "howToUse1": "Escriba su código postal si desea ordenar las citas por distancia a usted.",
   "howToUse2": "Desplácese hacia abajo para verificar la disponibilidad casi en tiempo real en \"<1>Citas disponibles</1>\" y verifique si alguna cita se ajusta a su horario.",
@@ -68,10 +71,56 @@
   "howToUse5": "Si ninguna cita se ajusta a su horario, haga clic en el botón \"<1>Posible disponibilidad\"</1> y verifique las citas de forma individual.",
   "If you have any questions contact us at":"Si tiene alguna pregunta comuníquese con nosotros al",
 
-  "":"",
 
-  "":"",
+  "about1": "Find My Vax Santa Clara se creó como una sucursal del sitio principal <1>Find My Vax LA</1> para ayudar a los residentes elegibles de Santa Clara a recibir las vacunas COVID-19 al centralizar la disponibilidad de vacunas.",
+  "about2": "El proyecto fue desarrollado por <1> Daniel Budziwojski </1> y <3> Jessica Li </3> en colaboración con <5> Andrew Friedman </5> del sitio principal Find My Vax LA.",
+  "about3": "El apoyo adicional fue proporcionado por Aishwarya Atmakuri y Michelle Lum.",
+  "In The News": "En las noticias",
+  "about4": "Find My Vax Santa Clara ha aparecido en los medios de comunicación a continuación. Para consultas de los medios, envíenos un correo electrónico a <1> press@findmyvaxsc.com </1> o envíenos un mensaje directo a <4> Twitter </4>.",
+  "Donate":"Donar",
+  "donate1": "Considere donar en nuestro nombre a una organización benéfica existente sugerida por miembros de nuestro equipo:",
+
 
   "contact1": "If you have any other questions or concerns, please contact us through the options below:",
-  "Email":"Correo electrónico:"
+  "Email":"Correo electrónico:",
+
+
+  "resources0":"¿Tiene preguntas o desea información o recursos adicionales sobre la vacuna COVID-19? Lea a continuación para obtener más información.",
+  
+  "resources1Title1":"Dónde Puede Vacunarse en el Condado de Santa Clara",
+  "resources1Subtitle1":"Sitios oficiales de vacunación del condado de Santa Clara",
+  "Website":"Sitio Web:",
+  "Phone Number":"Número de Teléfono:",
+  "contactNotes":"Nota: ¡Solo llame si lo NECESITA! Los tiempos de espera pueden ser largos, ¡y no queremos abrumar al ya abrumado sistema de llamadas!",
+  "Locations": "Ubicaciones:",
+  "locationNotes":"Nota: Si tiene 16 o 17 años, solo puede vacunarse en <1> Levi's Stadium, Fairgrounds Expo Hall, Gilroy High School y Mountain View Community Center </1>",
+  "resources1Subtitle2":"Farmacias Locales:",
+  "need account": "Cuenta Necesaria",
+  "pharamacyTip":"Consejo: para CVS, las citas se agregan generalmente de 12 a.m. a 1 a.m.",
+  "resources1Subtitle3": "Hospitales locales (llame si no es un paciente, es posible que deba crear una cuenta)",
+  "hospitalNotes":"Nota: otros hospitales pueden tener vacunas, pero la disponibilidad puede ser baja",
+  "resources1Subtitle4":"Ubicaciones para grupos específicos",
+  "specialGroup1": "Específicamente para los veteranos",
+  "specialGroup2": "Específicamente para aquellos de 16 a 17 años.",
+  "specialGroup3": "Específicamente para residentes locales",
+  "specialGroup3-1": "Debe mostrar prueba de residencia",
+
+  "resources2Title1":"Preguntas frecuentes sobre la vacuna COVID-19",
+  "resources2Subtitle1":"Preguntas frecuentes sobre la vacuna COVID-19 del condado de Santa Clara",
+  "resources2Subtitle2":"Programación de una cita para la vacuna COVID en el Bay Area",
+  "resources2Subtitle3":"En su tarjeta de vacunas COVID",
+
+  "resources3Title1":"Otros enlaces útiles",
+  "resources3Item1Title":"Sitio oficial de vacunas de Santa Clara",
+  "resources3Item1Caption":"",
+  "resources3Item2Title":"Vaccine Fairy:",
+  "resources3Item2Caption":"Regístrese para que alguien reserve su cita",
+  "resources3Item3Title":"Información de VTA sobre transporte a los lugares de vacunación:",
+  "resources3Item3Caption":"Opciones de transporte gratuito a los lugares de vacunación e información sobre la ruta del autobús",
+  "resources3Item4Title":"Shot O' Clock:",
+  "resources3Item4Caption":"Reciba notificaciones sobre citas de farmacia en su correo electrónico o teléfono",
+  "resources3Item5Title":"It's My Shot:",
+  "resources3Item5Caption":"Más información específica del Bay Area",
+  "resources3Item6Title":"Get My Vaccine:",
+  "resources3Item6Caption":"Más información sobre vacunas en farmacias"
 }
