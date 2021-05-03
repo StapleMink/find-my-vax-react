@@ -4,9 +4,6 @@ import ResponsiveNavBar from "./components/ResponsiveNavBar";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import sfChronicle from "./assets/sfChronicle.png";
@@ -83,35 +80,39 @@ export default function About(): JSX.Element {
           {t("About")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-        <Trans i18nKey="about1">
-          Find My Vax Santa Clara was created as a branch off of parent site 
-          <Link href="https://www.findmyvaxla.com/" target="_blank">
-            Find My Vax LA
-          </Link>
-          to help eligible Santa Clara residents receive COVID-19 vaccines by centralizing vaccination availability.
+          <Trans i18nKey="about1">
+            Find My Vax Santa Clara was created as a branch off of parent site
+            <Link href="https://www.findmyvaxla.com/" target="_blank">
+              Find My Vax LA
+            </Link>
+            to help eligible Santa Clara residents receive COVID-19 vaccines by
+            centralizing vaccination availability.
           </Trans>
         </Typography>
         <Typography variant="body1" className={styles.info}>
           <Trans i18nKey="about2">
-          The project was developed by 
-          <Link
-            href="https://www.linkedin.com/in/daniel-budziwojski-559b15168/"
-            target="_blank"
-          >
-            Daniel Budziwojski
-          </Link>
-           and 
-          <Link href="https://www.linkedin.com/in/jjessica-li/" target="_blank">
-            Jessica Li
-          </Link>
-           in collaboration with 
-          <Link
-            href="https://www.linkedin.com/in/andrew-friedman4/"
-            target="_blank"
-          >
-            Andrew Friedman
-          </Link>
-          from parent site Find My Vax LA.
+            The project was developed by
+            <Link
+              href="https://www.linkedin.com/in/daniel-budziwojski-559b15168/"
+              target="_blank"
+            >
+              Daniel Budziwojski
+            </Link>
+            and
+            <Link
+              href="https://www.linkedin.com/in/jjessica-li/"
+              target="_blank"
+            >
+              Jessica Li
+            </Link>
+            in collaboration with
+            <Link
+              href="https://www.linkedin.com/in/andrew-friedman4/"
+              target="_blank"
+            >
+              Andrew Friedman
+            </Link>
+            from parent site Find My Vax LA.
           </Trans>
         </Typography>
         <Typography variant="body1" className={styles.info}>
@@ -122,15 +123,16 @@ export default function About(): JSX.Element {
         </Typography>
         <Typography variant="body1" className={styles.info}>
           <Trans i18nKey="about4">
-            Find My Vax Santa Clara has appeared in media outlets below. For media inquiries, email us at
-          
-          <Link href="mailto:press@findmyvaxsc.com" target="_blank">
-            press@findmyvaxsc.com
-          </Link>{" "}
-          or direct message us on 
-          <Link href="https://twitter.com/findmyvaxsc" target="_blank">
-            Twitter
-          </Link>.
+            Find My Vax Santa Clara has appeared in media outlets below. For
+            media inquiries, email us at
+            <Link href="mailto:press@findmyvaxsc.com" target="_blank">
+              press@findmyvaxsc.com
+            </Link>{" "}
+            or direct message us on
+            <Link href="https://twitter.com/findmyvaxsc" target="_blank">
+              Twitter
+            </Link>
+            .
           </Trans>
         </Typography>
         <div className={styles.pressLogoGrid}>
@@ -138,10 +140,10 @@ export default function About(): JSX.Element {
             <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
               <div className={styles.pressLogo}>
                 <img
-                    src={spotlight}
-                    alt="San Jose Spotlight"
-                    className={styles.pressLogoImg}
-                  />
+                  src={spotlight}
+                  alt="San Jose Spotlight"
+                  className={styles.pressLogoImg}
+                />
               </div>
             </Grid>
             <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
@@ -156,10 +158,10 @@ export default function About(): JSX.Element {
             <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
               <div className={styles.pressLogo}>
                 <img
-                    src={laTimes}                   
-                    alt="LA Times"
-                    className={styles.pressLogoImg}
-                  />
+                  src={laTimes}
+                  alt="LA Times"
+                  className={styles.pressLogoImg}
+                />
               </div>
             </Grid>
           </Grid>
@@ -169,33 +171,28 @@ export default function About(): JSX.Element {
           {t("Donate")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          {
-            t("donate1")
-          }
+          {t("donate1")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
           <Link
-              href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
-              target="_blank"
-            >
-              COVID Relief Fund
-            </Link>{" "}
+            href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
+            target="_blank"
+          >
+            COVID Relief Fund
+          </Link>{" "}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-            <Link
-              href="https://impact.site/"
-              target="_blank"
-            >
-              Impact Resources
-            </Link>{" "}
+          <Link href="https://impact.site/" target="_blank">
+            Impact Resources
+          </Link>{" "}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-            <Link
-              href="https://donate.givedirect.org/?cid=14711&n=272810/"
-              target="_blank"
-            >
-              Stop AAPI Hate
-            </Link>{" "}
+          <Link
+            href="https://donate.givedirect.org/?cid=14711&n=272810/"
+            target="_blank"
+          >
+            Stop AAPI Hate
+          </Link>{" "}
         </Typography>
       </Container>
       <Footer />

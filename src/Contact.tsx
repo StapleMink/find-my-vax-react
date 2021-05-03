@@ -67,9 +67,7 @@ export default function Contact(): JSX.Element {
           {t("Contact")}
         </Typography>
         <Typography variant="h6" className={styles.info}>
-          {
-            t("contact1")
-          }
+          {t("contact1")}
         </Typography>
         <List
           component="nav"
@@ -89,7 +87,9 @@ export default function Contact(): JSX.Element {
               <ListItemIcon>
                 <EmailIcon />
               </ListItemIcon>
-              <ListItemText primary={`${t("Email")} contact@findmyvaxsc.com`}></ListItemText>
+              <ListItemText
+                primary={`${t("Email")} contact@findmyvaxsc.com`}
+              ></ListItemText>
             </Link>
           </ListItem>
           <ListItem>

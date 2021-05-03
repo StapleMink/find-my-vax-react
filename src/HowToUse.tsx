@@ -63,10 +63,7 @@ export default function HowToUse(): JSX.Element {
           {t("How to Use Find My Vax")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>1.</strong>{" "}
-          {
-            t("howToUse1")
-          }
+          <strong>1.</strong> {t("howToUse1")}
           {/* Search Bar Image*/}
           <div>
             <img src={searchImage} className={styles.searchImage}></img>
@@ -79,27 +76,23 @@ export default function HowToUse(): JSX.Element {
           </Trans>
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>3.</strong>{" "}
-          {
-            t("howToUse3")
-          }
+          <strong>3.</strong> {t("howToUse3")}
         </Typography>
         {/* Appointments Image*/}
         <div>
           <img src={apptImage} className={styles.apptImage}></img>
         </div>
         <Typography variant="body1" className={styles.info}>
-          <strong>4.</strong>{" "}
-          {
-            t("howToUse4")
-          }
+          <strong>4.</strong> {t("howToUse4")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>5.</strong> {/*{"If no appointments fit your schedule, click "}
+          <strong>5.</strong>{" "}
+          {/*{"If no appointments fit your schedule, click "}
           <strong>{`"Possible Availability"`}</strong>{" "}
           {" button and check appointments on an individual basis."} */}
           <Trans i18nKey="howToUse5">
-            If no appointment fit yout schedule, click <strong>Possible Availability</strong> and ...
+            If no appointment fit yout schedule, click{" "}
+            <strong>Possible Availability</strong> and ...
           </Trans>
         </Typography>
         {/* Possible Appointments*/}
@@ -113,7 +106,8 @@ export default function HowToUse(): JSX.Element {
         <Typography variant="h6" className={styles.info}>
           {t("If you have any questions contact us at")}
           <Link href="mailto:help@findmyvaxsc.com" target="_blank">
-            {" "}help@findmyvaxsc.com
+            {" "}
+            help@findmyvaxsc.com
           </Link>
         </Typography>
       </Container>

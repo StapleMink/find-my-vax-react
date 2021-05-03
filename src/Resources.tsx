@@ -67,9 +67,7 @@ export default function Resources(): JSX.Element {
             {t("Resources")}
           </Typography>
           <Typography variant="h6" className={styles.subheader}>
-            {
-              t("resources0")
-            }
+            {t("resources0")}
           </Typography>
           {/* TODO: vertical tabs */}
 
@@ -87,9 +85,7 @@ export default function Resources(): JSX.Element {
             </AccordionSummary>
             <AccordionDetails>
               <ul>
-                <li color="primary.main">
-                  {t("resources1Subtitle1")}
-                </li>
+                <li color="primary.main">{t("resources1Subtitle1")}</li>
                 <ul>
                   <li>
                     {`${t("Website")} `}
@@ -99,16 +95,15 @@ export default function Resources(): JSX.Element {
                   </li>
                 </ul>
                 <ul>
-                  <li>{`${t("Phone Number")} `}
+                  <li>
+                    {`${t("Phone Number")} `}
                     <Link href="tel:4089702000" target="_blank">
                       (408) 970-2000
                     </Link>
                   </li>
                   <ul>
                     <li>
-                      <strong>
-                      {t("contactNotes")}
-                      </strong>
+                      <strong>{t("contactNotes")}</strong>
                     </li>
                   </ul>
                 </ul>
@@ -127,7 +122,12 @@ export default function Resources(): JSX.Element {
                     <li>
                       <strong>
                         <Trans i18nKey="locationNotes">
-                        Note: If you are 16 or 17 years old, you can only get vaccinated at <span>Levis Stadium, Fairgrounds Expo Hall, Gilroy High School, and Mountain View Community Center</span>
+                          Note: If you are 16 or 17 years old, you can only get
+                          vaccinated at{" "}
+                          <span>
+                            Levis Stadium, Fairgrounds Expo Hall, Gilroy High
+                            School, and Mountain View Community Center
+                          </span>
                         </Trans>
                       </strong>
                     </li>
@@ -174,9 +174,7 @@ export default function Resources(): JSX.Element {
                   </li>
                 </ul>
 
-                <li>
-                  {t("resources1Subtitle3")}
-                </li>
+                <li>{t("resources1Subtitle3")}</li>
                 <ul>
                   <li>Kaiser</li>
                   <li>Stanford</li>
@@ -189,14 +187,10 @@ export default function Resources(): JSX.Element {
                 <li>{t("resources1Subtitle4")}</li>
                 <ul>
                   <li>VA Hospital: {t("specialGroup1")}</li>
-                  <li>
-                    Stanford Children’s Hospital: {t("specialGroup2")}
-                  </li>
+                  <li>Stanford Children’s Hospital: {t("specialGroup2")}</li>
                   <li>
                     Community clinics: {t("specialGroup3")}.{" "}
-                    <strong>
-                    {t("specialGroup3-1")}
-                    </strong>
+                    <strong>{t("specialGroup3-1")}</strong>
                   </li>
                 </ul>
               </ul>
@@ -716,13 +710,13 @@ export default function Resources(): JSX.Element {
             <AccordionDetails>
               <List className={styles.faqs_list}>
                 <ListItem>
-                <ListItemText>
-                  <Link
-                    href="https://www.sccgov.org/sites/covid19/Pages/COVID19-vaccine-information-for-public.aspx"
-                    target="_blank"
-                  >
-                    {t("resources3Item1Title")}
-                  </Link>
+                  <ListItemText>
+                    <Link
+                      href="https://www.sccgov.org/sites/covid19/Pages/COVID19-vaccine-information-for-public.aspx"
+                      target="_blank"
+                    >
+                      {t("resources3Item1Title")}
+                    </Link>
                   </ListItemText>
                 </ListItem>
 
@@ -736,41 +730,41 @@ export default function Resources(): JSX.Element {
                 </ListItem>
 
                 <ListItem>
-                <ListItemText>
-                  <Link
-                    href="https://www.vta.org/blog/vta-offers-free-rides-covid-vaccination-sites"
-                    target="_blank"
-                  >
-                    {t("resources3Item3Title")}
-                  </Link>{" "}
-                  {t("resources3Item3Caption")}
+                  <ListItemText>
+                    <Link
+                      href="https://www.vta.org/blog/vta-offers-free-rides-covid-vaccination-sites"
+                      target="_blank"
+                    >
+                      {t("resources3Item3Title")}
+                    </Link>{" "}
+                    {t("resources3Item3Caption")}
                   </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                <ListItemText>
-                  <Link href="https://shotoclock.io/" target="_blank">
-                    {t("resources3Item4Title")}
-                  </Link>{" "}
-                 {t("resources3Item4Caption")}
-                 </ListItemText>
-                </ListItem>
-
-                <ListItem>
-                <ListItemText>
-                  <Link href="https://itsmyshot.weebly.com" target="_blank">
-                    {t("resources3Item5Title")}
-                  </Link>{" "}
-                      {t("resources3Item5Caption")}
+                  <ListItemText>
+                    <Link href="https://shotoclock.io/" target="_blank">
+                      {t("resources3Item4Title")}
+                    </Link>{" "}
+                    {t("resources3Item4Caption")}
                   </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                <ListItemText>
-                  <Link href="https://www.getmyvaccine.org" target="_blank">
-                  {t("resources3Item6Title")}
-                  </Link>{" "}
-                  {t("resources3Item6Caption")}
+                  <ListItemText>
+                    <Link href="https://itsmyshot.weebly.com" target="_blank">
+                      {t("resources3Item5Title")}
+                    </Link>{" "}
+                    {t("resources3Item5Caption")}
+                  </ListItemText>
+                </ListItem>
+
+                <ListItem>
+                  <ListItemText>
+                    <Link href="https://www.getmyvaccine.org" target="_blank">
+                      {t("resources3Item6Title")}
+                    </Link>{" "}
+                    {t("resources3Item6Caption")}
                   </ListItemText>
                 </ListItem>
               </List>

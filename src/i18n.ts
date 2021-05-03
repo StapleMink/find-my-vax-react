@@ -50,7 +50,7 @@ const resources = {
   },
   zh: {
     translation: translationChi,
-  }
+  },
 };
 
 const options = {
