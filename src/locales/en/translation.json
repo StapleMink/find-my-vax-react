@@ -135,5 +135,22 @@
   "Status": "Status",
   "System Status": "System Status",
   "Services": "Services:",
-  "contactSupport": "If you are experiencing issues not listed here, <1>contact support.</1>"
+  "contactSupport": "If you are experiencing issues not listed here, <1>contact support.</1>",
+
+  "COVID Relief Fund": "COVID Relief Fund",
+  "Impact Resources": "Impact Resources",
+  "Stop AAPI Hate": "Stop AAPI Hate",
+
+  "January": "January {{appt_day}}, {{appt_year}}",
+  "February": "February {{appt_day}}, {{appt_year}}",
+  "March": "March {{appt_day}}, {{appt_year}}",
+  "April": "April {{appt_day}}, {{appt_year}}",
+  "May": "May {{appt_day}}, {{appt_year}}",
+  "June": "June {{appt_day}}, {{appt_year}}",
+  "July": "July {{appt_day}}, {{appt_year}}",
+  "August": "August {{appt_day}}, {{appt_year}}",
+  "September": "September {{appt_day}}, {{appt_year}}",
+  "October": "October {{appt_day}}, {{appt_year}}",
+  "November": "November {{appt_day}}, {{appt_year}}",
+  "December": "December {{appt_day}}, {{appt_year}}"
 }
