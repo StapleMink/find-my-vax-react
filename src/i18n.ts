@@ -4,6 +4,7 @@ import XHR from "i18next-xhr-backend";
 
 import translationEng from "./locales/en/translation.json";
 import translationSpa from "./locales/es/translation.json";
+import translationChi from "./locales/zh/translation.json";
 // import translationFre from "./locales/fre/translation.json";
 // import translationHin from "./locales/hin/translation.json";
 // import translationJap from "./locales/jap/translation.json";
@@ -47,6 +48,9 @@ const resources = {
   es: {
     translation: translationSpa,
   },
+  zh: {
+    translation: translationChi,
+  },
 };
 
 const options = {
@@ -66,7 +70,7 @@ i18n
     fallbackLng: "en", // use en if detected lng is not available
 
     keySeparator: false, // we do not use keys in form messages.welcome
-    supportedLngs: ["en", "es", "fr"],
+    supportedLngs: ["en", "es", "zh"],
     interpolation: {
       escapeValue: false, // react already safes from xss
     },

@@ -171,26 +171,19 @@ export default function Home(): JSX.Element {
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
         >
-          {t("Welcome to Find My Vax Santa Clara")}
+          {t("homeTitle")}
         </Typography>
         <Typography
           variant={!isMobilePortrait ? "h4" : "h5"}
           className={styles.subtitle}
         >
-          {t("A Vaccine Locator for Santa Clara County")}
+          {t("homeSubtitle")}
         </Typography>
         <Typography className={styles.info} variant="h6">
-          {t("You are eligible for vaccination if you are 16 and older!")}
+          {t("homeSubtitle2")}
         </Typography>
         <Typography className={styles.info} variant="subtitle1">
-          <strong>
-            {t(
-              "COVID-19 vaccines are free regardless of insurance or immigration status."
-            )}
-          </strong>{" "}
-          {t(
-            "You will not be asked about your immigration status when you get a COVID vaccine. For more information see COVID-19 Vaccine FAQs"
-          )}
+          <strong>{t("homeCaptionStrong")}</strong> {t("homeCaptionWeak")}
         </Typography>
         <ScrollLink
           to="appointmentsTop"
@@ -212,9 +205,7 @@ export default function Home(): JSX.Element {
         <Typography className={styles.supportDisclaimer}>
           <em>
             <strong>{t("Notes")}: </strong>
-            {t(
-              "At this time we support the Santa Clara County sites, CVS, Rite Aid, Walgreens, and Walmart. We have limited availability support for Safeway. There may be false positives. We are working to continually add more support."
-            )}
+            {t("supportText")}
           </em>
         </Typography>
         <Divider className={styles.divider} />

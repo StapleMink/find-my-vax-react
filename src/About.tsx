@@ -4,13 +4,13 @@ import ResponsiveNavBar from "./components/ResponsiveNavBar";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import sfChronicle from "./assets/sfChronicle.png";
+import spotlight from "./assets/spotlightlogo.png";
+import laTimes from "./assets/latimes.png";
 import Footer from "./components/Footer";
+import { useTranslation, Trans } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function About(): JSX.Element {
   const styles = useStyles();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
+  const { t } = useTranslation();
 
   return (
     <>
@@ -76,69 +77,73 @@ export default function About(): JSX.Element {
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
         >
-          {"About"}
+          {t("About")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          {
-            "Find My Vax Santa Clara was created as a branch off of parent site "
-          }
-          <Link href="https://www.findmyvaxla.com/" target="_blank">
-            Find My Vax LA
-          </Link>{" "}
-          {
-            "to help eligible Santa Clara residents receive COVID-19 vaccines by centralizing vaccination availability."
-          }
+          <Trans i18nKey="about1">
+            Find My Vax Santa Clara was created as a branch off of parent site
+            <Link href="https://www.findmyvaxla.com/" target="_blank">
+              Find My Vax LA
+            </Link>
+            to help eligible Santa Clara residents receive COVID-19 vaccines by
+            centralizing vaccination availability.
+          </Trans>
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          {"The project was originally developed by "}
-          <Link
-            href="https://www.linkedin.com/in/andrew-friedman4/"
-            target="_blank"
-          >
-            Andrew Friedman
-          </Link>{" "}
-          {
-            "from Find My Vax LA, with Santa Clara county-specific features added by "
-          }
-          <Link
-            href="https://www.linkedin.com/in/daniel-budziwojski-559b15168/"
-            target="_blank"
-          >
-            Daniel Budziwojski
-          </Link>{" "}
-          {"and"}{" "}
-          <Link href="https://www.linkedin.com/in/jjessica-li/" target="_blank">
-            Jessica Li
-          </Link>
-          {"."}
+          <Trans i18nKey="about2">
+            The project was developed by
+            <Link
+              href="https://www.linkedin.com/in/daniel-budziwojski-559b15168/"
+              target="_blank"
+            >
+              Daniel Budziwojski
+            </Link>
+            and
+            <Link
+              href="https://www.linkedin.com/in/jjessica-li/"
+              target="_blank"
+            >
+              Jessica Li
+            </Link>
+            in collaboration with
+            <Link
+              href="https://www.linkedin.com/in/andrew-friedman4/"
+              target="_blank"
+            >
+              Andrew Friedman
+            </Link>
+            from parent site Find My Vax LA.
+          </Trans>
+        </Typography>
+        <Typography variant="body1" className={styles.info}>
+          {t("about3")}
         </Typography>
         <Typography variant="h4" className={styles.title}>
-          {"In The News"}
+          {t("In The News")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          {
-            "Find My Vax Santa Clara has appeared in media outlets below. For media inquiries, email us at "
-          }
-          <Link href="mailto:press@findmyvaxsc.com" target="_blank">
-            press@findmyvaxsc.com
-          </Link>{" "}
-          {"or direct message us on "}
-          <Link href="https://twitter.com/findmyvaxsc" target="_blank">
-            Twitter
-          </Link>
+          <Trans i18nKey="about4">
+            Find My Vax Santa Clara has appeared in media outlets below. For
+            media inquiries, email us at
+            <Link href="mailto:press@findmyvaxsc.com" target="_blank">
+              press@findmyvaxsc.com
+            </Link>{" "}
+            or direct message us on
+            <Link href="https://twitter.com/findmyvaxsc" target="_blank">
+              Twitter
+            </Link>
+            .
+          </Trans>
         </Typography>
-        {"."}
         <div className={styles.pressLogoGrid}>
           <Grid spacing={4} container>
             <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
               <div className={styles.pressLogo}>
-                {/* <img
-                    src={
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/American_Broadcasting_Company_Logo.svg/1022px-American_Broadcasting_Company_Logo.svg.png"
-                    }
-                    alt="San Francisco Chronicle"
-                    className={styles.pressLogoImg}
-                  /> */}
+                <img
+                  src={spotlight}
+                  alt="San Jose Spotlight"
+                  className={styles.pressLogoImg}
+                />
               </div>
             </Grid>
             <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
@@ -152,37 +157,43 @@ export default function About(): JSX.Element {
             </Grid>
             <Grid item xs={6} md={4} className={styles.pressLogoGridItem}>
               <div className={styles.pressLogo}>
-                {/* <img
-                    src={
-                      "https://cdn.abcotvs.net/abcotv/static/kgo/logos/kgo_logo_2x.png"
-                    }
-                    alt="San Francisco Chronicle"
-                    className={styles.pressLogoImg}
-                  /> */}
+                <img
+                  src={laTimes}
+                  alt="LA Times"
+                  className={styles.pressLogoImg}
+                />
               </div>
             </Grid>
           </Grid>
         </div>
 
         <Typography variant="h4" className={styles.title}>
-          {"Donate"}
+          {t("Donate")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          {
-            "We are not accepting donations at this time. Please consider donating in our names to an existing charity suggested by members of our team:"
-          }
+          {t("donate1")}
         </Typography>
-        <List component="nav" className={styles.funds_list}>
-          <ListItem>
-            <ListItemText primary="Impact Resources: Impact Site provies a myriad of funds and causes you can support, from racial justice to COVID-19 relief" />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Stop AAPI Hate - In response to the alarming escalation in xenophobia and bigotry resulting from the COVID-19 pandemic, the Asian Pacific Planning and Policy Council (A3PCON), Chinese for Affirmative Action (CAA), and the Asian American Studies Department of San Francisco State University launched the Stop AAPI Hate reporting center on March 19, 2020. The center tracks and responds to incidents of hate, violence, harassment, discrimination, shunning, and child bullying against Asian Americans and Pacific Islanders in the United States." />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="COVID Relief Fund" />
-          </ListItem>
-        </List>
+        <Typography variant="body1" className={styles.info}>
+          <Link
+            href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
+            target="_blank"
+          >
+            COVID Relief Fund
+          </Link>{" "}
+        </Typography>
+        <Typography variant="body1" className={styles.info}>
+          <Link href="https://impact.site/" target="_blank">
+            Impact Resources
+          </Link>{" "}
+        </Typography>
+        <Typography variant="body1" className={styles.info}>
+          <Link
+            href="https://donate.givedirect.org/?cid=14711&n=272810/"
+            target="_blank"
+          >
+            Stop AAPI Hate
+          </Link>{" "}
+        </Typography>
       </Container>
       <Footer />
     </>

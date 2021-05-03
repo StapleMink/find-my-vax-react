@@ -8,6 +8,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import clsx from "clsx";
 import Footer from "./components/Footer";
+import { useTranslation, Trans } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -93,6 +94,7 @@ function StatusItem(props: { name: string; status: string }) {
 
 export default function Status(): JSX.Element {
   const styles = useStyles();
+  const { t } = useTranslation();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
   return (
@@ -104,10 +106,10 @@ export default function Status(): JSX.Element {
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
         >
-          {"System Status"}
+          {t("System Status")}
         </Typography>
         <Typography variant="h5" className={styles.subtitle}>
-          Locations:
+          {t("Locations")}
         </Typography>
         <table className={styles.statusTable}>
           <tr className={styles.statusTableRow}>
@@ -142,7 +144,7 @@ export default function Status(): JSX.Element {
           </tr>
         </table>
         <Typography variant="h5" className={styles.subtitle}>
-          Services:
+          {t("Services")}
         </Typography>
         <table className={styles.statusTable}>
           <tr className={styles.statusTableRow}>
@@ -155,12 +157,16 @@ export default function Status(): JSX.Element {
           </tr>
         </table>
         <Typography variant="body1" className={styles.info}>
-          {"If you are experiencing issues not listed here, "}
-          <strong>
-            <Link href="mailto:support@findmyvaxsc.com" target="_blank">
+          <Trans i18nKey="contactSupport">
+            If you are experiencing issues not listed here,
+            <Link
+              href="mailto:support@findmyvaxsc.com"
+              target="_blank"
+              style={{ fontWeight: "bold" }}
+            >
               contact support.
             </Link>
-          </strong>
+          </Trans>
         </Typography>
       </Container>
       <Footer />
