@@ -130,5 +130,10 @@
   "proofOfResidenceTitle": "Cualquier documento oficial que incluya nombre y fecha de nacimiento, por ejemplo, expediente escolar Ejemplos de prueba de que vive o trabaja en el condado de Santa Clara:",
   "proofOfResidenceItems": "Licencia de conducir o permiso (país extranjero o identificación vencida está bien);Tarjeta de identificación de California o tarjeta de identificación REAL (del DMV);Identificación Consular (Matrícula Consular);Tarjeta de seguro Social;ID militar;Pasaporte (país extranjero o vencido bien);Certificado de nacimiento;Documento / registros médicos del proveedor médico, clínica o médico;Tarjeta de membresía (el país extranjero está bien si está escrito en inglés);Cualquier documento oficial que incluya nombre y fecha de nacimiento, por ejemplo, expediente escolar",
   "Go Back": "Regresa",
-  "Continue to Book Appointment": "Continuar para reservar cita"
+  "Continue to Book Appointment": "Continuar para reservar cita",
+
+  "Status": "Estado",
+  "System Status": "Estado del Sistema",
+  "Services": "Servicios:",
+  "contactSupport": "Si tiene problemas que no se enumeran aquí, <1>comuníquese con el servicio de asistencia. </1>"
 }

@@ -130,5 +130,10 @@
   "proofOfResidenceTitle": "Examples of proof that you live or work in Santa Clara County:",
   "proofOfResidenceItems": "Driving license or permit (foreign country or expired ID okay);California ID card or REAL ID card (from the DMV);Consular ID (Matricula Consular);Social Security card;Military ID;Passport (foreign country or expired okay);Birth certificate;Medical document/records from medical provider, clinic, or doctor;Membership card (foreign country okay if written in English);Any official document that includes name and date of birth for example, school record",
   "Go Back": "Go Back",
-  "Continue to Book Appointment": "Continue To Book Appointment"
+  "Continue to Book Appointment": "Continue To Book Appointment",
+
+  "Status": "Status",
+  "System Status": "System Status",
+  "Services": "Services:",
+  "contactSupport": "If you are experiencing issues not listed here, <1>contact support.</1>"
 }
