@@ -107,6 +107,13 @@ function TranslateMenu(props: TranslateMenuProps) {
       >
         Español
       </MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleLanguageChange("zh");
+        }}
+      >
+        中文
+      </MenuItem>
       {/* <MenuItem onClick={() => {handleLanguageChange("fr", "Français")}}>Français</MenuItem> */}
       <Divider className={styles.menuDivider} />
       <MenuItem component={RouterLink} to="/contact" onClick={handleClose}>
@@ -228,7 +235,7 @@ export default function ResponsiveNavBar(
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              {t("English")}
+              {t("currentLangauge")}
             </Button>
             <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
           </Toolbar>
@@ -267,7 +274,7 @@ export default function ResponsiveNavBar(
               startIcon={<TranslateIcon />}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              {isMobilePortrait ? <> </> : <> {t("English")} </>}
+              {isMobilePortrait ? <> </> : <> {t("currentLangauge")} </>}
             </Button>
             <TranslateMenu anchorEl={anchorEl} handleClose={handleClose} />
           </Toolbar>

@@ -14,6 +14,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import { grey } from "@material-ui/core/colors";
+import { useTranslation, Trans } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function Resources(): JSX.Element {
   const styles = useStyles();
+  const { t } = useTranslation();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
   return (
@@ -62,12 +64,10 @@ export default function Resources(): JSX.Element {
             variant={!isMobilePortrait ? "h2" : "h3"}
             className={styles.title}
           >
-            {"Tips"}
+            {t("Resources")}
           </Typography>
           <Typography variant="h6" className={styles.subheader}>
-            {
-              "Have questions or want additional information or resources on the COVID-19 vaccine? Read below for more."
-            }
+            {t("resources0")}
           </Typography>
           {/* TODO: vertical tabs */}
 
@@ -80,32 +80,35 @@ export default function Resources(): JSX.Element {
               id="vaccine-locations-header"
             >
               <Typography variant="h5" className={styles.subheader}>
-                Where You Can Get Vaccinated in Santa Clara County
+                {t("resources1Title1")}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <ul>
-                <li color="primary.main">
-                  Santa Clara County Official Vaccination Sites
-                </li>
+                <li color="primary.main">{t("resources1Subtitle1")}</li>
                 <ul>
                   <li>
-                    Website:{" "}
+                    {`${t("Website")} `}
                     <Link href="https://vax.sccgov.org" target="_blank">
                       https://vax.sccgov.org
                     </Link>
                   </li>
                 </ul>
                 <ul>
-                  <li>Phone Number: (408)970-2000</li>
+                  <li>
+                    {`${t("Phone Number")} `}
+                    <Link href="tel:4089702000" target="_blank">
+                      (408) 970-2000
+                    </Link>
+                  </li>
                   <ul>
                     <li>
-                      {`NOTE: Only call if you NEED to! Wait times might be long, and we don't want to overwhelm the already-overwhelmed call system!`}
+                      <strong>{t("contactNotes")}</strong>
                     </li>
                   </ul>
                 </ul>
                 <ul>
-                  <li>Locations:</li>
+                  <li>{t("Locations")}</li>
                   <ul>
                     <li>Berger Auditorium</li>
                     <li>Levi’s Stadium</li>
@@ -118,14 +121,20 @@ export default function Resources(): JSX.Element {
                     <li>Emmanuel Baptist Church</li>
                     <li>
                       <strong>
-                        Note: If you are 16 or 17 years old, you can only get
-                        vaccinated at{" "}
+                        <Trans i18nKey="locationNotes">
+                          Note: If you are 16 or 17 years old, you can only get
+                          vaccinated at{" "}
+                          <span>
+                            Levis Stadium, Fairgrounds Expo Hall, Gilroy High
+                            School, and Mountain View Community Center
+                          </span>
+                        </Trans>
                       </strong>
                     </li>
                   </ul>
                 </ul>
 
-                <li>Local Pharmacies:</li>
+                <li>{t("resources1Subtitle2")}</li>
                 <ul>
                   <li>
                     <Link
@@ -150,7 +159,7 @@ export default function Resources(): JSX.Element {
                       {" "}
                       Walgreens
                     </Link>{" "}
-                    (need account),
+                    ({t("need account")}),
                     <Link
                       href="https://www.walmart.com/cp/1228302"
                       target="_blank"
@@ -158,39 +167,30 @@ export default function Resources(): JSX.Element {
                       {" "}
                       Walmart
                     </Link>{" "}
-                    (need account), etc.
+                    ({t("need account")})
                   </li>
                   <li>
-                    TIP: For CVS, appointments are generally added from 12am to
-                    1am
+                    <strong>{t("pharamacyTip")}</strong>
                   </li>
                 </ul>
 
-                <li>
-                  Local Hospitals (call if you’re not a patient, may need to
-                  make an account):
-                </li>
+                <li>{t("resources1Subtitle3")}</li>
                 <ul>
                   <li>Kaiser</li>
                   <li>Stanford</li>
                   <li>Sutter Health</li>
                   <li>
-                    Other hospitals have vaccines, but availability may be low
+                    <strong>{t("hospitalNotes")}</strong>
                   </li>
                 </ul>
 
-                <li>Locations for Specific Groups:</li>
+                <li>{t("resources1Subtitle4")}</li>
                 <ul>
-                  <li>VA Hospital: Specifically for veterans</li>
+                  <li>VA Hospital: {t("specialGroup1")}</li>
+                  <li>Stanford Children’s Hospital: {t("specialGroup2")}</li>
                   <li>
-                    Stanford Children’s Hospital: Specifically for those 16-17
-                  </li>
-                  <li>
-                    Community clinics: Specifically for local residents.{" "}
-                    <strong>
-                      Please do not go if you are not from that specific
-                      community.
-                    </strong>
+                    Community clinics: {t("specialGroup3")}.{" "}
+                    <strong>{t("specialGroup3-1")}</strong>
                   </li>
                 </ul>
               </ul>
@@ -204,17 +204,19 @@ export default function Resources(): JSX.Element {
               id="vaccine-faq-header"
             >
               <Typography variant="h5" className={styles.subheader}>
-                {"FAQs on the COVID-19 Vaccine"}
+                {t("resources2Title1")}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <List className={styles.faqs_list}>
-                <Link
-                  href="https://covid19.sccgov.org/covid-19-vaccine-information#3925188384-982666580"
-                  target="_blank"
-                >
-                  Santa Clara County COVID-19 Vaccine FAQs
-                </Link>
+                <ListItem>
+                  <Link
+                    href="https://covid19.sccgov.org/covid-19-vaccine-information#3925188384-982666580"
+                    target="_blank"
+                  >
+                    {t("resources2Subtitle1")}
+                  </Link>
+                </ListItem>
                 <AccordionDetails>
                   <Accordion>
                     <AccordionSummary
@@ -680,7 +682,7 @@ export default function Resources(): JSX.Element {
                     href="https://www.sfchronicle.com/local/article/find-schedule-california-COVID-vaccine-appointment-16062302.php"
                     target="_blank"
                   >
-                    Scheduling a COVID Vaccine Appointment in the Bay Area
+                    {t("resources2Subtitle2")}
                   </Link>
                 </ListItem>
                 <ListItem>
@@ -688,7 +690,7 @@ export default function Resources(): JSX.Element {
                     href="https://www.sfchronicle.com/local/article/Your-COVID-vaccine-card-What-to-do-if-you-lose-16070378.php"
                     target="_blank"
                   >
-                    On Your COVID Vaccine Card{" "}
+                    {t("resources2Subtitle3")}
                   </Link>
                 </ListItem>
               </List>
@@ -702,56 +704,68 @@ export default function Resources(): JSX.Element {
               id="useful-links-header"
             >
               <Typography variant="h5" className={styles.subheader}>
-                Other Useful Links
+                {t("resources3Title1")}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <List className={styles.faqs_list}>
                 <ListItem>
-                  <Link
-                    href="https://www.sccgov.org/sites/covid19/Pages/COVID19-vaccine-information-for-public.aspx"
-                    target="_blank"
-                  >
-                    {`Santa Clara Official Vaccine Site `}
-                  </Link>
+                  <ListItemText>
+                    <Link
+                      href="https://www.sccgov.org/sites/covid19/Pages/COVID19-vaccine-information-for-public.aspx"
+                      target="_blank"
+                    >
+                      {t("resources3Item1Title")}
+                    </Link>
+                  </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                  <Link href="https://vaccinefairy.org/" target="_blank">
-                    {`Vaccine Fairy: `}
-                  </Link>
-                  <ListItemText primary="Sign up to have someone book your appointment" />
+                  <ListItemText>
+                    <Link href="https://vaccinefairy.org/" target="_blank">
+                      {t("resources3Item2Title")}
+                    </Link>{" "}
+                    {t("resources3Item2Caption")}
+                  </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                  <Link
-                    href="https://www.vta.org/blog/vta-offers-free-rides-covid-vaccination-sites"
-                    target="_blank"
-                  >
-                    {`VTA Info on Transportation to Vaccination Sites:`}
-                  </Link>
-                  <ListItemText primary="Free transportation options to vaccination sites and bus route information" />
+                  <ListItemText>
+                    <Link
+                      href="https://www.vta.org/blog/vta-offers-free-rides-covid-vaccination-sites"
+                      target="_blank"
+                    >
+                      {t("resources3Item3Title")}
+                    </Link>{" "}
+                    {t("resources3Item3Caption")}
+                  </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                  <Link href="https://shotoclock.io/" target="_blank">
-                    {`Shot O' Clock: `}
-                  </Link>
-                  <ListItemText primary="Get notifications about pharmacy appointments on your email or phone" />
+                  <ListItemText>
+                    <Link href="https://shotoclock.io/" target="_blank">
+                      {t("resources3Item4Title")}
+                    </Link>{" "}
+                    {t("resources3Item4Caption")}
+                  </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                  <Link href="https://itsmyshot.weebly.com" target="_blank">
-                    {`It's My Shot: `}
-                  </Link>
-                  <ListItemText primary="More Bay Area-specific information" />
+                  <ListItemText>
+                    <Link href="https://itsmyshot.weebly.com" target="_blank">
+                      {t("resources3Item5Title")}
+                    </Link>{" "}
+                    {t("resources3Item5Caption")}
+                  </ListItemText>
                 </ListItem>
 
                 <ListItem>
-                  <Link href="https://www.getmyvaccine.org" target="_blank">
-                    {`Get My Vaccine: `}
-                  </Link>
-                  <ListItemText primary="More vaccine info on pharmacies" />
+                  <ListItemText>
+                    <Link href="https://www.getmyvaccine.org" target="_blank">
+                      {t("resources3Item6Title")}
+                    </Link>{" "}
+                    {t("resources3Item6Caption")}
+                  </ListItemText>
                 </ListItem>
               </List>
             </AccordionDetails>

@@ -18,6 +18,7 @@ import LaunchIcon from "@material-ui/icons/Launch";
 import { LocationCardProps } from "../types";
 import Divider from "@material-ui/core/Divider";
 import { green } from "@material-ui/core/colors";
+import { useTranslation } from "react-i18next";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -38,16 +39,6 @@ export interface DialogTitleProps extends WithStyles<typeof styles> {
   children: React.ReactNode;
   onClose: () => void;
 }
-
-// const GreenButton = withStyles((theme: Theme) => ({
-//   root: {
-//     borderColor: green[600],
-//     color: green[700],
-//     "&:hover": {
-//       backgroundColor: green[100],
-//     },
-//   },
-// }))(Button);
 
 const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
   const { children, classes, onClose, ...other } = props;
@@ -118,6 +109,7 @@ export default function LocationDialog(props: {
 }): JSX.Element {
   const { location, setShowLocationDialog, showLocationDialog } = props;
   const styles = useStyles();
+  const { t } = useTranslation();
 
   // const handleClickOpen = () => {
   //   setShowLocationDialog(true);
@@ -134,79 +126,61 @@ export default function LocationDialog(props: {
         open={showLocationDialog}
       >
         <div className={styles.header}>
-          {" "}
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             {location.name}
           </DialogTitle>
         </div>
         <DialogContent dividers>
           <Typography variant="h6" className={styles.subtitle}>
-            {"Required Identification:"}
+            {t("Required Identification")}
           </Typography>
           <Divider />
           <Typography gutterBottom className={styles.content}>
             <strong>
-              In order to be vaccinated, you will need to show:
-              <ol>
-                <li>Photo ID, and</li>
-                <li>Proof yout live or work in LA County, and</li>
-                <li>Proof that you are 16 or older.</li>
-              </ol>
+              {t("vaccinationRequirementsTitle")}
+              {t("vaccinationRequirementsItems")
+                .split(";")
+                .map((val) => {
+                  return <li key={val}>{val}</li>;
+                })}
             </strong>
           </Typography>
           <Typography gutterBottom>
-            {
-              "You do not need to show government issued ID and you do not need to be a US citizen to get a vaccine. Below, is a list of documents that will be accepted. This list is not complete and other documents may be accepted One document may meet more than one requirement (e.g. a driving license)."
-            }
+            {t("vaccinationRequirementsBody1")}
           </Typography>
           <Typography gutterBottom>
-            {
-              "If you have health insurance, please bring your health insurance card (COVID-19 vaccines are free regardless of insurance status)"
-            }
+            {t("vaccinationRequirementsBody2")}
           </Typography>
           <Typography gutterBottom>
-            <strong>{"Consent for minors:"}</strong>{" "}
-            {
-              "Minors (age 16 and 17) who meet the eligibility criteria can only receive the Pfizer vaccine. Minors must be accompanied by a parent or guardian who can provide consent for vaccination."
-            }
+            <strong>{t("minorsConsentTitle")}</strong>{" "}
+            {t("minorsConsentContent")}
           </Typography>
           <Typography gutterBottom>
-            <strong>Examples of proof of age:</strong>
+            <strong>{t("proofOfAgeTitle")}</strong>
             <ul>
-              <li>
-                Driving license or permit (foreign country or expired ID okay)
-              </li>
-              <li>California ID card or REAL ID card (from the DMV)</li>
-              <li>Consular ID (Matricula Consular)</li>
-              <li>Social Security card</li>
-              <li>Military ID</li>
-              <li>Passport (foreign country or expired okay)</li>
-              <li>Birth certificate</li>
-              <li>
-                Medical document/records from medical provider, clinic, or
-                doctor
-              </li>
-              <li>
-                Membership card (foreign country okay if written in English)
-              </li>
-              <li>
-                Any official document that includes name and date of birth for
-                example, school record
-              </li>
+              {t("proofOfAgeItems")
+                .split(";")
+                .map((val) => {
+                  return <li key={val}>{val}</li>;
+                })}
             </ul>
           </Typography>
           <Typography gutterBottom>
             <strong>
-              Examples of proof that you live or work in LA County:
+              <strong>{t("proofOfResidenceTitle")}</strong>
             </strong>
             <ul>
-              <li>TO DO</li>
+              {t("proofOfResidenceItems")
+                .split(";")
+                .map((val) => {
+                  return <li key={val}>{val}</li>;
+                })}
             </ul>
           </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary" variant="outlined">
-            {"Go Back"}
+            {t("Go Back")}
           </Button>
           <div className={styles.grow} />
           <GreenButton
@@ -215,7 +189,7 @@ export default function LocationDialog(props: {
             variant="outlined"
             href={location.link}
           >
-            {"Continue to Book Appointment"}
+            {t("Continue to Book Appointment")}
           </GreenButton>
         </DialogActions>
       </Dialog>

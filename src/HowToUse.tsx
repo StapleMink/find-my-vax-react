@@ -10,6 +10,7 @@ import searchImage from "./assets/searchbar.png";
 import apptImage from "./assets/availappts-02.png";
 import possibleImage from "./assets/possible.png";
 import papptImage from "./assets/pappt.png";
+import { useTranslation, Trans } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function HowToUse(): JSX.Element {
   const styles = useStyles();
+  const { t } = useTranslation();
   const isMobilePortrait = useMediaQuery("(max-width:550px)");
 
   return (
@@ -58,13 +60,10 @@ export default function HowToUse(): JSX.Element {
           variant={!isMobilePortrait ? "h2" : "h3"}
           className={styles.title}
         >
-          {"How to Use Find My Vax"}
+          {t("How to Use Find My Vax")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>1.</strong>{" "}
-          {
-            "Type in your zip code if you would like to sort appointments by distance to you."
-          }
+          <strong>1.</strong> {t("howToUse1")}
           {/* Search Bar Image*/}
           <div>
             <img src={searchImage} className={styles.searchImage}></img>
@@ -72,30 +71,29 @@ export default function HowToUse(): JSX.Element {
         </Typography>
         <Typography variant="body1" className={styles.info}>
           <strong>2.</strong>{" "}
-          {
-            'Scroll down to check near-real-time availability under "Available Appointments" and check if any appointments fit your schedule.'
-          }
+          <Trans i18nKey="howToUse2">
+            Scroll down to <strong>Possible Availibilty</strong> to check...
+          </Trans>
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>3.</strong>{" "}
-          {
-            "If you find an appointment that matches your schedule, click on the relevant green button."
-          }
+          <strong>3.</strong> {t("howToUse3")}
         </Typography>
         {/* Appointments Image*/}
         <div>
           <img src={apptImage} className={styles.apptImage}></img>
         </div>
         <Typography variant="body1" className={styles.info}>
-          <strong>4.</strong>{" "}
-          {
-            "Once you click the link, a pop-up window will show with additional instruction and a green continue button to go to the relevant site and follow the instructions on the site to sign up."
-          }
+          <strong>4.</strong> {t("howToUse4")}
         </Typography>
         <Typography variant="body1" className={styles.info}>
-          <strong>5.</strong> {"If no appointments fit your schedule, click "}
+          <strong>5.</strong>{" "}
+          {/*{"If no appointments fit your schedule, click "}
           <strong>{`"Possible Availability"`}</strong>{" "}
-          {" button and check appointments on an individual basis."}
+          {" button and check appointments on an individual basis."} */}
+          <Trans i18nKey="howToUse5">
+            If no appointment fit yout schedule, click{" "}
+            <strong>Possible Availability</strong> and ...
+          </Trans>
         </Typography>
         {/* Possible Appointments*/}
         <div>
@@ -106,8 +104,9 @@ export default function HowToUse(): JSX.Element {
           <img src={papptImage} className={styles.papptImage}></img>
         </div>
         <Typography variant="h6" className={styles.info}>
-          {"If you have any questions contact us at "}
+          {t("If you have any questions contact us at")}
           <Link href="mailto:help@findmyvaxsc.com" target="_blank">
+            {" "}
             help@findmyvaxsc.com
           </Link>
         </Typography>
