@@ -30,6 +30,9 @@ export interface LocationCardProps {
 
 export interface AppointmentProps {
   date_str: string;
+  date_month: string;
+  date_day: number;
+  date_year: number;
   link_appointment: string;
   appointment_num: number;
   updated_date: string;

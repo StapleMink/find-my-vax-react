@@ -178,12 +178,12 @@ export default function About(): JSX.Element {
             href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate"
             target="_blank"
           >
-            COVID Relief Fund
+            {t("COVID Relief Fund")}
           </Link>{" "}
         </Typography>
         <Typography variant="body1" className={styles.info}>
           <Link href="https://impact.site/" target="_blank">
-            Impact Resources
+            {t("Impact Resources")}
           </Link>{" "}
         </Typography>
         <Typography variant="body1" className={styles.info}>
@@ -191,7 +191,7 @@ export default function About(): JSX.Element {
             href="https://donate.givedirect.org/?cid=14711&n=272810/"
             target="_blank"
           >
-            Stop AAPI Hate
+            {t("Stop AAPI Hate")}
           </Link>{" "}
         </Typography>
       </Container>
