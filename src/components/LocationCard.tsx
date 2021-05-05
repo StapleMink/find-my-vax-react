@@ -24,7 +24,14 @@ import cvsLogo from "../assets/cvsLogo.jpeg";
 import walgreensLogo from "../assets/walgreensLogo.jpeg";
 import riteAidLogo from "../assets/riteAidLogo.jpg";
 import emmanuelChurch from "../assets/emmanuelChurch.jpg";
-import eastValley from "../assets/eastValley.jpg";
+import mvcc from "../assets/mvcc.jpeg";
+import valleyHealthEastValley from "../assets/eastValley.jpg";
+import valleyHealthTully from "../assets/valleyHealthTully.jpeg";
+import levis from "../assets/levis.jpeg";
+import valleySpecialtyCenter from "../assets/valleySpecialtyCenter.jpeg";
+import gilroyHigh from "../assets/gilroyHigh.jpeg";
+import berger from "../assets/berger.jpeg";
+import expo from "../assets/expo.jpeg";
 
 const useStyles = makeStyles({
   root: {
@@ -137,7 +144,21 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
   if (props.id === "6a44f9fe-2263-4688-b46b-9c4a0be74b01") {
     bannerImage = emmanuelChurch;
   } else if (props.id === "40965187-1b98-4135-bc1d-625c7bb46558") {
-    bannerImage = eastValley;
+    bannerImage = valleySpecialtyCenter;
+  } else if (props.id === "8fc4c7cd-00b1-4911-a133-93bd61ab63df") {
+    bannerImage = mvcc;
+  } else if (props.id === "8e88cd12-5758-4ea3-88ca-33b8f640555a") {
+    bannerImage = levis;
+  } else if (props.id === "c15e47a8-d70a-429e-9e3e-2cdc8c5c431b") {
+    bannerImage = valleyHealthEastValley;
+  } else if (props.id === "aa25a2be-9d5c-47b0-860c-512d18d8402c") {
+    bannerImage = berger;
+  } else if (props.id === "99d7c1ba-19bf-45ae-a902-f74ff5d97ae7") {
+    bannerImage = gilroyHigh;
+  } else if (props.id === "cd6436e6-428f-4204-8100-fd567e9c45b3") {
+    bannerImage = valleyHealthTully;
+  } else if (props.id === "57f7f0a4-84d1-4dcd-902e-3b33257e69d4") {
+    bannerImage = expo;
   } else if (props.x_parent === "-21") {
     bannerImage = cvsLogo;
   } else if (props.x_parent === "-13") {
@@ -190,8 +211,6 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
               className={styles.media}
               //image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
               image={bannerImage}
-              //src={CVSLogo}
-              //component="img"
               title={props.name}
             />
           ) : (
@@ -225,6 +244,10 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
               <>
                 {props.appointment_list.map((appointment: AppointmentProps) => {
                   const numberAppointments = appointment.appointment_num;
+                  const appt_day = Number(appointment.date_day);
+                  const appt_month = appointment.date_month;
+                  const appt_year = appointment.date_year;
+
                   return (
                     <Grid
                       item
@@ -232,7 +255,12 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
                       key={`${props.id}-appt-${appointment.id}`}
                     >
                       <Typography>
-                        <strong>{appointment.date_str}:</strong>
+                        <strong>
+                          <Trans i18nKey={appointment.date_month}>
+                            {{ appt_month }} {{ appt_day }}, {{ appt_year }}
+                          </Trans>
+                          :
+                        </strong>
                       </Typography>
                       <Tooltip
                         arrow
