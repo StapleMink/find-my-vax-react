@@ -145,7 +145,7 @@
   "February": "二月 {{appt_day}}, {{appt_year}}",
   "March": "三月 {{appt_day}}, {{appt_year}}",
   "April": "四月 {{appt_day}}, {{appt_year}}",
-  "May": "五月 {{appt_year}}, {{appt_day}}",
+  "May": "五月 {{appt_day}}, {{appt_year}}",
   "June": "六月 {{appt_day}}, {{appt_year}}",
   "July": "七月 {{appt_day}}, {{appt_year}}",
   "August": "八月 {{appt_day}}, {{appt_year}}",
