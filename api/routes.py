@@ -255,6 +255,10 @@ def temp_fixes(json_location_data):
 def add_appointment_to_location(json_data, appointment_entry, main_key, category):
     appointment_dict = {}
     appointment_dict['date_str'] = appointment_entry.date_str
+    appt_date = datetime.datetime.strptime(appointment_entry.date_str, '%m/%d/%Y')
+    appointment_dict['date_month'] = appt_date.strftime("%B")
+    appointment_dict['date_day'] = appt_date.strftime("%d")
+    appointment_dict['date_year'] = appt_date.strftime("%Y")
     appointment_dict['link_appointment'] = appointment_entry.link_appointment
     appointment_dict['appointment_num'] = appointment_entry.appointment_num
     appointment_dict['updated_date'] = appointment_entry.updated_date

@@ -211,8 +211,6 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
               className={styles.media}
               //image="https://stanfordhealthcare.org/content/dam/SHC/newsroom/press-releases/2019/new-stanford-hospital-opens.jpg"
               image={bannerImage}
-              //src={CVSLogo}
-              //component="img"
               title={props.name}
             />
           ) : (
@@ -246,6 +244,10 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
               <>
                 {props.appointment_list.map((appointment: AppointmentProps) => {
                   const numberAppointments = appointment.appointment_num;
+                  const appt_day = Number(appointment.date_day);
+                  const appt_month = appointment.date_month;
+                  const appt_year = appointment.date_year;
+
                   return (
                     <Grid
                       item
@@ -253,7 +255,12 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
                       key={`${props.id}-appt-${appointment.id}`}
                     >
                       <Typography>
-                        <strong>{appointment.date_str}:</strong>
+                        <strong>
+                          <Trans i18nKey={appointment.date_month}>
+                            {{ appt_month }} {{ appt_day }}, {{ appt_year }}
+                          </Trans>
+                          :
+                        </strong>
                       </Typography>
                       <Tooltip
                         arrow
