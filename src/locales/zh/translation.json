@@ -141,16 +141,16 @@
   "Impact Resources": "Impact Resources",
   "Stop AAPI Hate": "Stop AAPI Hate",
 
-  "January": "一月 {{appt_day}}, {{appt_year}}",
-  "February": "二月 {{appt_day}}, {{appt_year}}",
-  "March": "三月 {{appt_day}}, {{appt_year}}",
-  "April": "四月 {{appt_day}}, {{appt_year}}",
-  "May": "五月 {{appt_year}}, {{appt_day}}",
-  "June": "六月 {{appt_day}}, {{appt_year}}",
-  "July": "七月 {{appt_day}}, {{appt_year}}",
-  "August": "八月 {{appt_day}}, {{appt_year}}",
-  "September": "九月 {{appt_day}}, {{appt_year}}",
-  "October": "十月 {{appt_day}}, {{appt_year}}",
-  "November": "十一月 {{appt_day}}, {{appt_year}}",
-  "December": "十二月 {{appt_day}}, {{appt_year}}"
+  "January": "一月 {{appt_day}}日, {{appt_year}}",
+  "February": "二月 {{appt_day}}日, {{appt_year}}",
+  "March": "三月 {{appt_day}}日, {{appt_year}}",
+  "April": "四月 {{appt_day}}日, {{appt_year}}",
+  "May": "五月 {{appt_day}}日, {{appt_year}}",
+  "June": "六月 {{appt_day}}日, {{appt_year}}",
+  "July": "七月 {{appt_day}}日, {{appt_year}}",
+  "August": "八月 {{appt_day}}日, {{appt_year}}",
+  "September": "九月 {{appt_day}}日, {{appt_year}}",
+  "October": "十月 {{appt_day}}日, {{appt_year}}",
+  "November": "十一月 {{appt_day}}日, {{appt_year}}",
+  "December": "十二月 {{appt_day}}日, {{appt_year}}"
 }
