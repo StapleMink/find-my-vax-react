@@ -1,56 +1,56 @@
 {
-    "locations": [
-        {
-            "name": "SCC Sites",
-            "status": "Operational",
-            "notes": ""
-        },
-        {
-            "name": "Walgreens",
-            "status": "Operational",
-            "notes": ""
-        },
-        {
-            "name": "Walmart",
-            "status": "Affected",
-            "notes": "We are aware of issues and are working to find a resolution."
-        },
-        {
-            "name": "El Camino Hospital",
-            "status": "Operational",
-            "notes": ""
-        },
-        {
-            "name": "CVS",
-            "status": "Down",
-            "notes": "We are diagnosing the problem."
-        },
-        {
-            "name": "Costco",
-            "status": "Operational",
-            "notes": ""
-        },
-        {
-            "name": "Rite Aid",
-            "status": "Operational",
-            "notes": ""
-        },
-        {
-            "name": "MyTurn",
-            "status": "Operational",
-            "notes": ""
-        }
-    ],
-    "services": [
-        {
-            "name": "Twitter Bot",
-            "status": "Operational",
-            "notes": ""
-        },
-        {
-            "name": "API",
-            "status": "Operational",
-            "notes": ""
-        }
-    ]
+  "locations": [
+    {
+      "name": "SCC Sites",
+      "status": "Operational",
+      "notes": ""
+    },
+    {
+      "name": "Walgreens",
+      "status": "Operational",
+      "notes": ""
+    },
+    {
+      "name": "Walmart",
+      "status": "Affected",
+      "notes": "We are aware of issues and are working to find a resolution."
+    },
+    {
+      "name": "El Camino Hospital",
+      "status": "Operational",
+      "notes": ""
+    },
+    {
+      "name": "CVS",
+      "status": "Down",
+      "notes": "We are diagnosing the problem."
+    },
+    {
+      "name": "Costco",
+      "status": "Operational",
+      "notes": ""
+    },
+    {
+      "name": "Rite Aid",
+      "status": "Operational",
+      "notes": ""
+    },
+    {
+      "name": "MyTurn",
+      "status": "Operational",
+      "notes": ""
+    }
+  ],
+  "services": [
+    {
+      "name": "Twitter Bot",
+      "status": "Operational",
+      "notes": ""
+    },
+    {
+      "name": "API",
+      "status": "Operational",
+      "notes": ""
+    }
+  ]
 }
