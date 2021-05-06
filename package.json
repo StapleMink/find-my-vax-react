@@ -18,6 +18,7 @@
     "i18next": "^20.2.2",
     "i18next-browser-languagedetector": "^6.1.0",
     "i18next-xhr-backend": "^3.2.2",
+    "npm-force-resolutions": "0.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.8.15",
@@ -29,6 +30,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "start-api": "cd api && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
@@ -83,5 +85,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "license-check-and-add": "^4.0.2",
     "prettier": "^2.2.1"
+  },
+  "resolutions": {
+    "hosted-git-info": "^3.0.8"
   }
 }
