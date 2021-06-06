@@ -298,11 +298,19 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
                   placement="bottom"
                 >
                   {props.category === "unknown" ? (
-                    <OrangeButton variant="outlined" endIcon={<LaunchIcon />} onClick={() => setShowLocationDialog(true)}>
+                    <OrangeButton
+                      variant="outlined"
+                      endIcon={<LaunchIcon />}
+                      onClick={() => setShowLocationDialog(true)}
+                    >
                       {t("Check Appointments")}
                     </OrangeButton>
                   ) : (
-                    <RedButton variant="outlined" endIcon={<LaunchIcon />} onClick={() => setShowLocationDialog(true)}>
+                    <RedButton
+                      variant="outlined"
+                      endIcon={<LaunchIcon />}
+                      onClick={() => setShowLocationDialog(true)}
+                    >
                       {t("Check Appointments")}
                     </RedButton>
                   )}
