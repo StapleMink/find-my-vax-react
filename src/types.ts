@@ -26,6 +26,10 @@ export interface LocationCardProps {
   distance: number;
   notes: string | undefined;
   warning_tier: number;
+  is_walk_thru: number;
+  is_drive_thru: number;
+  is_waitlist: number;
+  has_walk_ins: number;
 }
 
 export interface AppointmentProps {

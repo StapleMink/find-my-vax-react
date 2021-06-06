@@ -308,6 +308,7 @@ export default function Home(): JSX.Element {
                         item
                         xs={12}
                         sm={6}
+                        md={4}
                         key={`grid-unkn-location-card-${location.id}`}
                       >
                         <LocationCard {...location} />
@@ -346,6 +347,7 @@ export default function Home(): JSX.Element {
                           item
                           xs={12}
                           sm={6}
+                          md={4}
                           key={`grid-navlb-location-card-${location.id}`}
                         >
                           <LocationCard {...location} />
