@@ -122,7 +122,7 @@ export default function Resources(): JSX.Element {
                     <li>
                       <strong>
                         <Trans i18nKey="locationNotes">
-                          Note: If you are 16 or 17 years old, you can only get
+                          Note: If you are younger than 18 years old, you can only get
                           vaccinated at{" "}
                           <span>
                             Levis Stadium, Fairgrounds Expo Hall, Gilroy High
