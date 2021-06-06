@@ -285,9 +285,6 @@ def create_final_dict(json_data):
             if len(zipcode_str) == 5:
                 lat_loc, long_loc = get_lat_long_from_zip(zipcode_str)
                 query_lat_long = (lat_loc, long_loc)
-                print("Requested")
-                print(query_lat_long)
-                print("End Requested")
                 zipcode_bool = True
         except:
             zipcode_bool = False
@@ -297,10 +294,8 @@ def create_final_dict(json_data):
     for item in final_dict["data"]:
         for key in json_data[item]:
             if zipcode_bool:
-                print("---")
                 distance = get_distance_appointment(final_dict, json_data[item][key], query_lat_long,
                                             zipcode_int)
-                print("Dist: " + repr(distance))
                 json_data[item][key]["distance"] = distance
 
             final_dict["data"][item].append(json_data[item][key])
@@ -326,7 +321,6 @@ def get_lat_long_from_zip(zipcode):
     return lat_loc, long_loc
 
 def get_distance_appointment(final_dict, json_location, query_lat_long, zipcode_int):
-    # print("Loc: " + json_location["lat_loc"] + "-:-" + json_location["long_loc"])
     if json_location["lat_loc"] and json_location["long_loc"]:
         try:
             location_lat_long = (json_location["lat_loc"],
@@ -336,7 +330,6 @@ def get_distance_appointment(final_dict, json_location, query_lat_long, zipcode_
             if distance > 400 and zipcode_int >= 90001 and zipcode_int <= 96162:
                 zipcode_new = items[6].split(" ")[-1]
                 lat_loc, long_loc = get_lat_long_from_zip(all_zipcode_coords, zipcode_new)
-                print(lat_loc,long_loc)
                 if not lat_loc or not long_loc:
                     distance = -1
                 else:
@@ -344,7 +337,6 @@ def get_distance_appointment(final_dict, json_location, query_lat_long, zipcode_
         except:
             distance = -1
     else:
-        print("No lat long avail")
         distance = -1
 
     return distance
