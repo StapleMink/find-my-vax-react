@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(() => ({
   footer: {
@@ -86,12 +87,21 @@ export default function Footer(): JSX.Element {
         </Typography>
         {/* <LinkIcon /> */}|
         <Typography
-          variant="caption"
+          variant="caption" 
           className={styles.copyrightItemLink}
           component={RouterLink}
           to="/contact"
         >
           {t("Contact")}
+        </Typography>
+        |
+        <Typography
+          variant="caption"
+          className={styles.copyrightItemLink}
+          component={Link}
+          href="http://www.phrase.com"
+        >
+          Translation by Phrase
         </Typography>
       </div>
     </>
