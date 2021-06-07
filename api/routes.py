@@ -159,6 +159,10 @@ def add_location_and_appointment(json_data, main_entry):
     json_location_data['current_uuid_set'] = main_entry.current_uuid_set
     json_location_data['appointment_list'] = []
     json_location_data['distance'] = -1
+    json_location_data['is_walk_thru'] = main_entry.is_walk_thru
+    json_location_data['is_drive_thru'] = main_entry.is_drive_thru
+    json_location_data['is_waitlist'] = main_entry.is_waitlist
+    json_location_data['has_walk_ins'] = main_entry.has_walk_ins
 
     inject_additional_location_info(json_location_data, specific_text, category)
 

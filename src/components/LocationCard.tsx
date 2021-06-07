@@ -54,8 +54,6 @@ const useStyles = makeStyles({
     zIndex: 1,
     top: 10,
     left: 10,
-    // backgroundColor: "#4a4a4a",
-    // color: "white",
     backgroundColor: "#FFF",
     color: "black",
     paddingLeft: 5,
@@ -67,13 +65,50 @@ const useStyles = makeStyles({
     zIndex: 1,
     top: 10,
     right: 10,
-    // backgroundColor: "#4a4a4a",
-    // color: "white",
     backgroundColor: "#FFF",
     color: "black",
     paddingLeft: 5,
     paddingRight: 5,
     borderRadius: 5,
+  },
+  bubbleParent: {
+    position: "absolute",
+    zIndex: 1,
+    top: 110,
+    left: 10,
+    // backgroundColor: "green",
+    color: "black",
+    height: 20,
+    width: "calc(100% - 20px)",
+    display: "flex",
+  },
+  bubbleParentNoBanner: {
+    position: "absolute",
+    zIndex: 1,
+    top: 175,
+    right: 10,
+    // backgroundColor: "green",
+    color: "black",
+    height: 20,
+    width: "calc(100% - 20px)",
+    display: "flex",
+    flexDirection: "row-reverse",
+  },
+  bubbleChild: {
+    backgroundColor: "#FFF",
+    color: "black",
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 5,
+    marginRight: 10,
+  },
+  bubbleChildNoBanner: {
+    backgroundColor: "#FFF",
+    color: "black",
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 5,
+    marginLeft: 10,
   },
   metadata: {
     display: "block",
@@ -205,6 +240,84 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
             </Typography>
           </div>
         )}
+
+        <div
+          className={clsx({
+            [styles.bubbleParent]: props.category === "available",
+            [styles.bubbleParentNoBanner]:
+              props.category === "unknown" ||
+              props.category === "not_available",
+          })}
+        >
+          {props.has_walk_ins === 1 ? (
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
+              <Typography variant="caption">
+                <strong>Walk-In</strong>
+              </Typography>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {props.is_drive_thru === 1 ? (
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
+              <Typography variant="caption">
+                <strong>Drive-Thru</strong>
+              </Typography>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {props.is_walk_thru === 1 ? (
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
+              <Typography variant="caption">
+                <strong>Walk-Thru</strong>
+              </Typography>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {props.is_waitlist === 1 ? (
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
+              <Typography variant="caption">
+                <strong>Waitlist</strong>
+              </Typography>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+
         <CardActionArea>
           {props.category === "available" ? (
             <CardMedia
@@ -298,11 +411,19 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
                   placement="bottom"
                 >
                   {props.category === "unknown" ? (
-                    <OrangeButton variant="outlined" endIcon={<LaunchIcon />}>
+                    <OrangeButton
+                      variant="outlined"
+                      endIcon={<LaunchIcon />}
+                      onClick={() => setShowLocationDialog(true)}
+                    >
                       {t("Check Appointments")}
                     </OrangeButton>
                   ) : (
-                    <RedButton variant="outlined" endIcon={<LaunchIcon />}>
+                    <RedButton
+                      variant="outlined"
+                      endIcon={<LaunchIcon />}
+                      onClick={() => setShowLocationDialog(true)}
+                    >
                       {t("Check Appointments")}
                     </RedButton>
                   )}
