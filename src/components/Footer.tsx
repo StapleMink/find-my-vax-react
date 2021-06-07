@@ -87,7 +87,7 @@ export default function Footer(): JSX.Element {
         </Typography>
         {/* <LinkIcon /> */}|
         <Typography
-          variant="caption" 
+          variant="caption"
           className={styles.copyrightItemLink}
           component={RouterLink}
           to="/contact"

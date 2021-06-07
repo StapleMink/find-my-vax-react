@@ -241,15 +241,23 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
           </div>
         )}
 
-        <div className={clsx({
-          [styles.bubbleParent]: props.category === "available",
-          [styles.bubbleParentNoBanner]: props.category === "unknown" || props.category === "not_available"
-        })}>
+        <div
+          className={clsx({
+            [styles.bubbleParent]: props.category === "available",
+            [styles.bubbleParentNoBanner]:
+              props.category === "unknown" ||
+              props.category === "not_available",
+          })}
+        >
           {props.has_walk_ins === 1 ? (
-            <div className={clsx({
-              [styles.bubbleChild]: props.category === "available",
-              [styles.bubbleChildNoBanner]: props.category === "unknown" || props.category === "not_available"
-            })}>
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
               <Typography variant="caption">
                 <strong>Walk-In</strong>
               </Typography>
@@ -259,10 +267,14 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
           )}
 
           {props.is_drive_thru === 1 ? (
-            <div className={clsx({
-              [styles.bubbleChild]: props.category === "available",
-              [styles.bubbleChildNoBanner]: props.category === "unknown" || props.category === "not_available"
-            })}>
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
               <Typography variant="caption">
                 <strong>Drive-Thru</strong>
               </Typography>
@@ -272,10 +284,14 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
           )}
 
           {props.is_walk_thru === 1 ? (
-            <div className={clsx({
-              [styles.bubbleChild]: props.category === "available",
-              [styles.bubbleChildNoBanner]: props.category === "unknown" || props.category === "not_available"
-            })}>
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
               <Typography variant="caption">
                 <strong>Walk-Thru</strong>
               </Typography>
@@ -285,10 +301,14 @@ export default function LocationCard(props: LocationCardProps): JSX.Element {
           )}
 
           {props.is_waitlist === 1 ? (
-            <div className={clsx({
-              [styles.bubbleChild]: props.category === "available",
-              [styles.bubbleChildNoBanner]: props.category === "unknown" || props.category === "not_available"
-            })}>
+            <div
+              className={clsx({
+                [styles.bubbleChild]: props.category === "available",
+                [styles.bubbleChildNoBanner]:
+                  props.category === "unknown" ||
+                  props.category === "not_available",
+              })}
+            >
               <Typography variant="caption">
                 <strong>Waitlist</strong>
               </Typography>
