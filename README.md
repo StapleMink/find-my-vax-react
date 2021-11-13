@@ -1,3 +1,7 @@
+# FindMyVaxSC Frontend
+
+This repository is for the React frontend of the FMVSC system. It utilizes a standard format for storing vaccine locations and appointments for future location support and forking for other backends. If you'd like to fork this repo for your county please reach out and we'd happy to help.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
